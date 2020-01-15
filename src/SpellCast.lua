@@ -1,3 +1,20 @@
+
+GlobalRect=Rect(0,0,0,0)
+function KillTreeInRange (x,y,range)
+	local k=0
+	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
+	EnumDestructablesInRect(GlobalRect,nil,function ()
+		local d=GetEnumDestructable()
+			if GetDestructableLife(d)>0 then --GetDestructableTypeId
+				k=k+1
+				--print("найдено дерево")
+			KillDestructable(d)
+			end
+		end)
+	return k
+end
+
+
 perebor=CreateGroup()
 function UnitDamageArea(u,damage,x,y,range,type)
 	local e--временный юнит
@@ -14,8 +31,6 @@ function UnitDamageArea(u,damage,x,y,range,type)
 	end
 end
 
-
-HandleData={}
 function InitSpellTrigger()
 
 	local SpellTrigger = CreateTrigger()
@@ -37,36 +52,38 @@ function InitSpellTrigger()
 
 		if spellId == FourCC('A000') then -- Лезвия
 			--local eff=AddSpecialEffectTarget("war3mapImported/ArcaneGlaive_2.mdl",caster,"chest")
-			local eff=AddSpecialEffect("war3mapImported/ArcaneGlaive_2.mdl",casterX,casterY)
-			local dur=0.9
-			local data = HandleData[GetHandleId(caster)]
-			local damage=BlzGetUnitBaseDamage(caster,0)
+			local eff                    = AddSpecialEffect("war3mapImported/ArcaneGlaive_2.mdl", casterX, casterY)
+			local period                 = 0.03
+			local durAll, durDmg, durCur = 0.3, 0.1, 0
+			local damage                 = BlzGetUnitBaseDamage(caster, 0)/3
+			local oldcd=10--BlzGetUnitAbilityCooldown(caster,spellId,0)
+			local longblades=1
+			local range=200*longblades
 
-			if (data==nil) then data = {} HandleData[GetHandleId(caster)] = data end
-			data.durQ = dur
-			data.damagetimeQ=10
+			BlzSetSpecialEffectScale(eff, 2*longblades)
+			--print("oldcd="..oldcd)
+			BlzSetUnitAbilityCooldown(caster,spellId,0,oldcd-KillTreeInRange(casterX,casterY,range))
+			--[[урон в 0 секунду]] UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)
+			TimerStart(CreateTimer(), period, true, function()
+				BlzSetSpecialEffectPosition(eff, GetUnitX(caster), GetUnitY(caster), GetUnitZ(caster) + 60)
 
-			BlzSetSpecialEffectScale(eff,2)
-
-			TimerStart(CreateTimer(), 0.03, true, function()
-
-				BlzSetSpecialEffectPosition(eff,GetUnitX(caster),GetUnitY(caster),GetUnitZ(caster)+60)
-
-				data.durQ=data.durQ-0.03
-				data.damagetimeQ=data.damagetimeQ+1
-				if data.damagetimeQ>=10 then
-					data.damagetimeQ=0
-					--print("damagetime")
-					UnitDamageArea(caster,damage,GetUnitX(caster),GetUnitY(caster),150)
+				-- damage duration
+				durCur = durCur + period
+				if durCur >= durDmg then
+					durCur = 0
+					--print("damage")
+					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)
 				end
-				if data.durQ<=0 then
+
+				-- all duration
+				durAll = durAll - period
+				if durAll < 0 then
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
-					print("destroy")
 				end
+
 			end)
-			--print("effect")
 
 		elseif spellId == FourCC('A002') then -- Призыв стрелка
 		elseif spellId == FourCC('A021') then -- Пополнение маны
