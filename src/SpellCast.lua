@@ -1,3 +1,20 @@
+perebor=CreateGroup()
+function UnitDamageArea(u,damage,x,y,range,type)
+	local e--временный юнит
+	GroupEnumUnitsInRange(perebor,x,y,range,null)
+	while true do
+		e = FirstOfGroup(perebor)
+		if e == nil then break end
+
+		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
+
+			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
+		end
+		GroupRemoveUnit(perebor,e)
+	end
+end
+
+
 HandleData={}
 function InitSpellTrigger()
 
@@ -40,7 +57,7 @@ function InitSpellTrigger()
 				if data.damagetimeQ>=10 then
 					data.damagetimeQ=0
 					--print("damagetime")
-					UnitDamageArea(caster,damage,500,damagetype)
+					UnitDamageArea(caster,damage,GetUnitX(caster),GetUnitY(caster),150)
 				end
 				if data.durQ<=0 then
 					DestroyEffect(eff)
