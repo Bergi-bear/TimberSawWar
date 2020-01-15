@@ -263,17 +263,20 @@ function InitSpellTrigger()
 			--local eff=AddSpecialEffectTarget("war3mapImported/ArcaneGlaive_2.mdl",caster,"chest")
 			local eff                    = AddSpecialEffect("war3mapImported/ArcaneGlaive_2.mdl", casterX, casterY)
 			local period                 = 0.03
-			local durAll, durDmg, durCur = 0.3, 0.1, 0
+			local durAll, durDmg, durCur = 0.6, 0.1, 0
 			local damage                 = BlzGetUnitBaseDamage(caster, 0)/3
 			local oldcd=10--BlzGetUnitAbilityCooldown(caster,spellId,0)
 			local longblades=1
 			local range=200*longblades
+			local ttk=0
 			BlzSetSpecialEffectScale(eff, 2*longblades)
 			--print("oldcd="..oldcd)
-			BlzSetUnitAbilityCooldown(caster,spellId,0,oldcd-KillTreeInRange(casterX,casterY,range))
-			--[[урон в 0 секунду]] UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)
+			ttk=KillTreeInRange(casterX,casterY,range)
+			BlzSetUnitAbilityCooldown(caster,spellId,0,oldcd-ttk)
+			UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)--[[урон в 0 секунду]]
 			TimerStart(CreateTimer(), period, true, function()
 				BlzSetSpecialEffectPosition(eff, GetUnitX(caster), GetUnitY(caster), GetUnitZ(caster) + 60)
+				ttk=ttk+KillTreeInRange(GetUnitX(caster), GetUnitY(caster),range)
 				-- damage duration
 				durCur = durCur + period
 				if durCur >= durDmg then
@@ -284,6 +287,9 @@ function InitSpellTrigger()
 				-- all duration
 				durAll = durAll - period
 				if durAll < 0 then
+					--print("Всего срублено деревьев "..ttk)
+					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
@@ -294,6 +300,77 @@ function InitSpellTrigger()
 			SetUnitState(target,UNIT_STATE_MANA,GetUnitState(target,UNIT_STATE_MANA)+1)
 		end
 	end)
+end
+---@param text string
+---@param textSize real
+---@param x real
+---@param y real
+---@param z real
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+---@param xvel real
+---@param yvel real
+---@param fadepoint real
+---@param lifespan real
+---@param player player
+---@return texttag
+function FlyTextTag(text, textSize, x, y, z, red, green, blue, alpha, xvel, yvel, fadepoint, lifespan, player)
+	local t = CreateTextTag()
+	SetTextTagText(t, text, textSize)
+	SetTextTagPos(t, x, y, z)
+	SetTextTagColor(t, red, green, blue, alpha)
+	SetTextTagVelocity(t, xvel, yvel)
+	SetTextTagFadepoint(t, fadepoint)
+	SetTextTagLifespan(t, lifespan)
+	SetTextTagPermanent(t, false)
+	if player ~= nil then
+		SetTextTagVisibility(t, player == GetLocalPlayer())
+	end
+	return t
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagGoldBounty(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target) - 16, GetWidgetY(target), 0, 255, 220, 0, 255, 0, 0.03, 2, 3, player)
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagLumberBounty(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target) - 16, GetWidgetY(target), 0, 0, 200, 80, 255, 0, 0.03, 2, 3, player)
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagMiss(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 255, 0, 0, 255, 0, 0.03, 1, 3, player)
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagCriticalStrike(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 255, 0, 0, 255, 0, 0.04, 2, 5, player)
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagManaBurn(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 82, 82, 255, 255, 0, 0.04, 2, 5, player)
+end
+---@param target widget
+---@param text string
+---@param player player
+---@return texttag
+function FlyTextTagShadowStrike(target, text, player)
+	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 160, 255, 0, 255, 0, 0.04, 2, 5, player)
 end
 --CUSTOM_CODE
 function InitCustomPlayerSlots()

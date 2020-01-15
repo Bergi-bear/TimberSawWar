@@ -54,19 +54,21 @@ function InitSpellTrigger()
 			--local eff=AddSpecialEffectTarget("war3mapImported/ArcaneGlaive_2.mdl",caster,"chest")
 			local eff                    = AddSpecialEffect("war3mapImported/ArcaneGlaive_2.mdl", casterX, casterY)
 			local period                 = 0.03
-			local durAll, durDmg, durCur = 0.3, 0.1, 0
+			local durAll, durDmg, durCur = 0.6, 0.1, 0
 			local damage                 = BlzGetUnitBaseDamage(caster, 0)/3
 			local oldcd=10--BlzGetUnitAbilityCooldown(caster,spellId,0)
 			local longblades=1
 			local range=200*longblades
+			local ttk=0
 
 			BlzSetSpecialEffectScale(eff, 2*longblades)
 			--print("oldcd="..oldcd)
-			BlzSetUnitAbilityCooldown(caster,spellId,0,oldcd-KillTreeInRange(casterX,casterY,range))
-			--[[урон в 0 секунду]] UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)
+			ttk=KillTreeInRange(casterX,casterY,range)
+			BlzSetUnitAbilityCooldown(caster,spellId,0,oldcd-ttk)
+			UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)--[[урон в 0 секунду]]
 			TimerStart(CreateTimer(), period, true, function()
 				BlzSetSpecialEffectPosition(eff, GetUnitX(caster), GetUnitY(caster), GetUnitZ(caster) + 60)
-
+				ttk=ttk+KillTreeInRange(GetUnitX(caster), GetUnitY(caster),range)
 				-- damage duration
 				durCur = durCur + period
 				if durCur >= durDmg then
@@ -78,6 +80,9 @@ function InitSpellTrigger()
 				-- all duration
 				durAll = durAll - period
 				if durAll < 0 then
+					--print("Всего срублено деревьев "..ttk)
+					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
