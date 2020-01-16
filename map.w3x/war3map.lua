@@ -325,8 +325,10 @@ function InitSpellTrigger()
 				durAll = durAll - period
 				if durAll < 0 then
 					--print("Всего срублено деревьев "..ttk)
-					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
-					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+					if ttk>0 then
+						FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+						AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+					end
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
@@ -345,7 +347,7 @@ function InitSpellTrigger()
 			local revers=false
 			local forces=false
 			local CasterRange=0
-			local TreeFinderRange=80
+			local TreeFinderRange=95
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
 			BlzSetSpecialEffectScale(hook, 2)
@@ -388,7 +390,7 @@ function InitSpellTrigger()
 					SetUnitY(caster,MoveY(casterY,CasterRange,Angle))
 					PauseUnit(caster,true)
 					--PauseUnit(caster,false)
-					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 300)
+					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 150)
 					if CasterRange>=CurRange then
 						PauseUnit(caster,false)
 						if ttk>0 then

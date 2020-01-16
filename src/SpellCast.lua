@@ -121,7 +121,7 @@ function InitSpellTrigger()
 			local revers=false
 			local forces=false
 			local CasterRange=0
-			local TreeFinderRange=80
+			local TreeFinderRange=95
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
 			BlzSetSpecialEffectScale(hook, 2)
