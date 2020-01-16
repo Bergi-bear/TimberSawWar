@@ -9,6 +9,7 @@ do
 		f() -- вызываем оригинальную InitGlobals из переменной
 		--добавляем в список функции для инициализации
 		InitSpellTrigger()
+		InitMouseMoveTrigger()
 		--print("globalinit")
 	end
 

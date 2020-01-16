@@ -31,10 +31,25 @@ function UnitDamageArea(u,damage,x,y,range,type)
 	end
 end
 
+
+
+
+function PointContainAnyDest(x,y,range)
+	local IsHooked=false
+	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
+	EnumDestructablesInRect(GlobalRect,nil,function ()
+		if GetDestructableLife(GetEnumDestructable())>0 then
+			IsHooked=true
+		end
+	end)
+	return IsHooked
+end
+
+----------------------------------
+----------------------------------
+----------------------------------
 function InitSpellTrigger()
-
 	local SpellTrigger = CreateTrigger()
-
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
 
@@ -48,6 +63,7 @@ function InitSpellTrigger()
 		local casterX, casterY = GetUnitX(caster), GetUnitY(caster)
 		local spellId          = GetSpellAbilityId()
 		local ownplayer=GetOwningPlayer(caster)
+		local id=GetPlayerId(ownplayer)
 
 
 		if spellId == FourCC('A000') then -- Лезвия
@@ -81,8 +97,10 @@ function InitSpellTrigger()
 				durAll = durAll - period
 				if durAll < 0 then
 					--print("Всего срублено деревьев "..ttk)
-					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
-					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+					if ttk>0 then
+						FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+						AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+					end
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
@@ -90,8 +108,97 @@ function InitSpellTrigger()
 
 			end)
 
-		elseif spellId == FourCC('A002') then -- Призыв стрелка
-		elseif spellId == FourCC('A021') then -- Пополнение маны
+		elseif spellId == FourCC('A001') then -- Крюк
+			local MaxRange=700
+			local EffChain={}
+			local speed=50
+			local ChainCount=1
+			local CurRange=0
+			local NewX,NewY=casterX,casterY
+			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD -- вот уже где реаьный разврат
+			local hook=AddSpecialEffect("war3mapImported/TimberChainHead.mdl", NewX, NewY)
+			local z=0
+			local revers=false
+			local forces=false
+			local CasterRange=0
+			local TreeFinderRange=80
+			local ttk=0
+			local damage=GetHeroStr(caster,true)/3
+			BlzSetSpecialEffectScale(hook, 2)
+			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
+			--нужны функции PointContainAnyTarget(x,y,range)
+
+			TimerStart(CreateTimer(), 0.03, true, function()
+				if revers==false and forces==false then
+					NewX=MoveX(casterX,CurRange,Angle)
+					NewY=MoveY(casterY,CurRange,Angle)
+					z=GetTerrainZ(NewX, NewY) + 60
+
+					PauseUnit(caster,true)
+					PauseUnit(caster,false)
+					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
+					if ChainCount>=2 then
+						EffChain[ChainCount]=AddSpecialEffect("war3mapImported/ChainElement.mdl", NewX, NewY)
+						BlzSetSpecialEffectZ(EffChain[ChainCount],z)
+						BlzSetSpecialEffectScale(EffChain[ChainCount], 2)
+						BlzSetSpecialEffectYaw(EffChain[ChainCount],math.rad(Angle))
+					end
+					ChainCount=ChainCount+1
+					CurRange=CurRange+speed
+					if CurRange>=MaxRange  then
+						--print("revers")
+						revers=true
+					end
+					if PointContainAnyDest(NewX, NewY,TreeFinderRange) then
+						--print("Попал в дерево")
+						ttk=KillTreeInRange(NewX, NewY,TreeFinderRange)
+						forces=true
+						revers=false
+						ChainCount=1
+					end
+
+				end
+				if forces then
+
+					DestroyEffect(EffChain[ChainCount])
+					--print("Уничтожение куска цепи "..ChainCount)
+					ChainCount=ChainCount+1
+					CasterRange=CasterRange+speed
+					SetUnitX(caster,MoveX(casterX,CasterRange,Angle))
+					SetUnitY(caster,MoveY(casterY,CasterRange,Angle))
+					PauseUnit(caster,true)
+					--PauseUnit(caster,false)
+					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 150)
+					if CasterRange>=CurRange then
+						PauseUnit(caster,false)
+						if ttk>0 then
+							FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+							AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+						end
+						DestroyEffect(hook)
+						PauseTimer(GetExpiredTimer())
+						DestroyTimer(GetExpiredTimer())
+					end
+				end
+
+				if revers then
+					DestroyEffect(EffChain[ChainCount])
+					ChainCount=ChainCount-1
+					CurRange=CurRange-speed
+					PauseUnit(caster,true)
+					--PauseUnit(caster,false)
+					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
+					if ChainCount<=0 then
+						PauseUnit(caster,false)
+						DestroyEffect(hook)
+						PauseTimer(GetExpiredTimer())
+						DestroyTimer(GetExpiredTimer())
+					end
+				end
+			end)
+
+
+		elseif spellId == FourCC('A021') then -- Чакрам
 			SetUnitState(target,UNIT_STATE_MANA,GetUnitState(target,UNIT_STATE_MANA)+1)
 
 		end
