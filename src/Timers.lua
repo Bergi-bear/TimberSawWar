@@ -5,24 +5,20 @@
 ---
 --FIXME
 --TODO
-SECOND=0
-group=CreateGroup()
+SECOND = 0
 function InitTimers()
 	TimerStart(CreateTimer(), 1, true, function()
-		SECOND = SECOND + 1
-	end)
-	for index = BlzGroupGetSize(group) - 1, 0, -1 do
-		local target = BlzGroupUnitAt(group, index)
-		local data = HandleData[GetHandleId(target)]
-		local duration=10
-		if (data==nil) then data = {} HandleData[GetHandleId(target)] = data end
-
-		if data.chargeMinusTime < SECOND then
-			print("отнимаем заряд")
-			data.chargeMinusTime = SECOND + duration
-			data.stack=data.stack-1
-			AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
+		SECOND         = SECOND + 1
+		-- пассивка
+		local duration = 10
+		for _, data in pairs(HERO) do
+			local hero = data.unit
+			if data.armorElapsed < SECOND and data.armorCharge > 0 then
+				print 'отнимаем заряд'
+				data.armorElapsed = SECOND + duration
+				data.armorCharge  = data.armorCharge - 1
+				AddUnitToStock(hero, FourCC('n000'), data.armorCharge, data.armorCharge)
+			end
 		end
-
-	end
+	end)
 end

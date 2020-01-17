@@ -4,9 +4,10 @@
 --- DateTime: 10.01.2020 22:05
 ---
 do
-	local f = InitGlobals -- записываем InitGlobals в переменную
-	function InitGlobals() -- заменяем оригинальную InitGlobals своей
-		f() -- вызываем оригинальную InitGlobals из переменной
+	local InitGlobalsOrigin = InitGlobals -- записываем InitGlobals в переменную
+	function InitGlobals()
+		-- заменяем оригинальную InitGlobals своей
+		InitGlobalsOrigin() -- вызываем оригинальную InitGlobals из переменной
 		--добавляем в список функции для инициализации
 		InitSpellTrigger()
 		InitMouseMoveTrigger()
@@ -17,28 +18,27 @@ do
 	end
 
 end
-HERO={}
-function InitGameCore()
-	local e=nil
-	GroupEnumUnitsInRect(perebor,bj_mapInitialPlayableArea,nil)
-	while true do
-		e = FirstOfGroup(perebor)
-		if e == nil then break end
+HERO    = {} -- таблица героев
+HERO_ID = FourCC('H000') -- ид единственного героя
 
-		if GetUnitTypeId(e)==FourCC('H000') then
-			HERO[GetPlayerId(GetOwningPlayer(e))]=e
-			--print(GetUnitName(e).." В переборе")
+function InitGameCore()
+	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+		local player = Player(i)
+		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+			--FIXME сделать нормальное появление героя
+			local hero = CreateUnit(player, HERO_ID, 0, 0, 0)
+			
+			-- пассивка
+			UnitAddAbility(hero, FourCC('Asud'))
+			AddUnitToStock(hero, FourCC('n000'), 0, 0)
+			HERO[GetHandleId(hero)] = {
+				unit         = hero, -- ссылка на юнита
+				-- пассивка
+				armorDamage  = 0, -- полученный урон
+				armorElapsed = 0, -- время снятия заряда
+				armorCharge  = 0 -- количество зарядов
+			}
 		end
-		GroupRemoveUnit(perebor,e)
 	end
-	--добавляем пассивки
-	print("добавление пассивки для"..GetUnitName(HERO[0]))
-	UnitAddAbility(HERO[0],FourCC('Asud'))
-	AddUnitToStock(HERO[0],FourCC('n000'),0,0)
-	GroupAddUnit(group,HERO[0])
-	local data = HandleData[GetHandleId(HERO[0])]
-	if (data==nil) then data = {} HandleData[GetHandleId(HERO[0])] = data end
-	data.stack=0
-	data.chargeMinusTime=0
 end
 

@@ -1,10 +1,5 @@
 require 'build' {
-	game     = [[C:\Games\Warcraft III\x86_64]],
-	map      = 'map.w3x',
-	src      = {
-		'src'
-	},
+	game = [[C:\Games\Warcraft III\x86_64]],
 	--run      = 'editor',
-	run      = 'game',
-	reforged = false
+	run  = 'game',
 }

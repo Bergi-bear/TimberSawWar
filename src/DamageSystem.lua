@@ -3,7 +3,6 @@
 --- Created by Bergi.
 --- DateTime: 04.01.2020 23:10
 ---
-HandleData={}
 do
 	function InitDamage()
 		local DamageTrigger = CreateTrigger()
@@ -15,43 +14,31 @@ do
 			local damage     = GetEventDamage() -- число урона
 			local damageType = BlzGetEventDamageType()
 			if damage < 1 then return end
-
+			
 			local eventId         = GetHandleId(GetTriggerEventId())
 			local isEventDamaging = eventId == GetHandleId(EVENT_PLAYER_UNIT_DAMAGING)
 			local isEventDamaged  = eventId == GetHandleId(EVENT_PLAYER_UNIT_DAMAGED)
-
-			local target            = GetTriggerUnit() -- тот кто получил урон
-			local caster            = GetEventDamageSource() -- тот кто нанёс урон
-			local casterOwner = GetOwningPlayer(caster)
-
+			
+			local target          = GetTriggerUnit() -- тот кто получил урон
+			local targetHandleId  = GetHandleId(target)
+			local caster          = GetEventDamageSource() -- тот кто нанёс урон
+			local casterOwner     = GetOwningPlayer(caster)
+			
 			if isEventDamaged then
-				if damageType==DAMAGE_TYPE_NORMAL and GetUnitAbilityLevel(target,FourCC('Asud'))>0 then-- могут быть заряды для пассивки тимбера
-					--FIXME
-					--TODO
-					local duration=10
-					local addArmor=1
-					local addRegen=1
-					local maxCharges=10
-					local data = HandleData[GetHandleId(target)]
-					if (data==nil) then data = {} HandleData[GetHandleId(target)] = data end
-					data.chargeMinusTime=SECOND + 10
-					if data.stack<maxCharges then
-						data.stack=data.stack+1
-						AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
+				-- пассивка
+				local damageLimit    = 100 -- количество урона для заряда
+				local damageCooldown = 10 -- перезарядка способности
+				local chargeLimit    = 10
+				local data           = HERO[targetHandleId]
+				if damageType == DAMAGE_TYPE_NORMAL and data ~= nil then
+					data.armorDamage  = data.armorDamage + damage
+					data.armorElapsed = SECOND + damageCooldown
+					if data.armorDamage >= damageLimit then
+						data.armorDamage = 0
+						data.armorCharge = math.min(chargeLimit, data.armorCharge + 1)
+						AddUnitToStock(target, FourCC('n000'), data.armorCharge, data.armorCharge)
 					end
-
-					--[[if data.stack<maxCharges then
-						data.stack=data.stack+1
-						AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
-						TimerStart(CreateTimer(), duration, false, function()
-							data.stack=data.stack-1
-							AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
-							PauseTimer(GetExpiredTimer())
-							DestroyTimer(GetExpiredTimer())
-						end)
-					end]]--
-
-				end--конец пассивки
+				end
 			end
 		end)
 	end
