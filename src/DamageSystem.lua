@@ -27,6 +27,7 @@ do
 			if isEventDamaged then
 				if damageType==DAMAGE_TYPE_NORMAL and GetUnitAbilityLevel(target,FourCC('Asud'))>0 then-- могут быть заряды для пассивки тимбера
 					--FIXME
+					--TODO
 					local duration=10
 					local addArmor=1
 					local addRegen=1
