@@ -10,12 +10,11 @@ function InitTimers()
 	TimerStart(CreateTimer(), 1, true, function()
 		SECOND         = SECOND + 1
 		-- пассивка
-		local duration = 10
 		for _, data in pairs(HERO) do
 			local hero = data.unit
 			if data.armorElapsed < SECOND and data.armorCharge > 0 then
 				print 'отнимаем заряд'
-				data.armorElapsed = SECOND + duration
+				data.armorElapsed = SECOND + ARMOR_TIME_COOLDOWN
 				data.armorCharge  = data.armorCharge - 1
 				AddUnitToStock(hero, FourCC('n000'), data.armorCharge, data.armorCharge)
 			end

@@ -21,6 +21,8 @@ end
 HERO    = {} -- таблица героев
 HERO_ID = FourCC('H000') -- ид единственного героя
 
+ARMOR_TIME_COOLDOWN = 10 -- время снятия заряда пассивки
+
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)

@@ -26,13 +26,12 @@ do
 			
 			if isEventDamaged then
 				-- пассивка
-				local damageLimit    = 100 -- количество урона для заряда
-				local damageCooldown = 10 -- перезарядка способности
-				local chargeLimit    = 10
-				local data           = HERO[targetHandleId]
+				local damageLimit = 100 -- количество урона для заряда
+				local chargeLimit = 10
+				local data        = HERO[targetHandleId]
 				if damageType == DAMAGE_TYPE_NORMAL and data ~= nil then
 					data.armorDamage  = data.armorDamage + damage
-					data.armorElapsed = SECOND + damageCooldown
+					data.armorElapsed = SECOND + ARMOR_TIME_COOLDOWN
 					if data.armorDamage >= damageLimit then
 						data.armorDamage = 0
 						data.armorCharge = math.min(chargeLimit, data.armorCharge + 1)
