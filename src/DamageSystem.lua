@@ -25,18 +25,26 @@ do
 			local casterOwner     = GetOwningPlayer(caster)
 			
 			if isEventDamaged then
-				-- пассивка
-				local damageLimit = 100 -- количество урона для заряда
-				local chargeLimit = 10
-				local data        = HERO[targetHandleId]
+				-- ReactiveArmor
+				local data = HERO[targetHandleId]
 				if damageType == DAMAGE_TYPE_NORMAL and data ~= nil then
-					data.armorDamage  = data.armorDamage + damage
-					data.armorElapsed = SECOND + ARMOR_TIME_COOLDOWN
-					if data.armorDamage >= damageLimit then
-						data.armorDamage = 0
-						data.armorCharge = math.min(chargeLimit, data.armorCharge + 1)
-						AddUnitToStock(target, FourCC('n000'), data.armorCharge, data.armorCharge)
+					local charges        = data.ReactiveArmorChargesTime
+					--TODO добавить снятие лимита
+					local chargeMinIndex = 1 -- индекс заряда с минимальным значением
+					for i = 2, #charges do
+						if charges[i] < charges[chargeMinIndex] then
+							chargeMinIndex = i
+						end
 					end
+					charges[chargeMinIndex] = SECOND + ReactiveArmorCooldown
+					
+					local chargeCount       = 0 -- количество активных зарядов
+					for i = 1, #charges do
+						if charges[i] > SECOND then
+							chargeCount = chargeCount + 1
+						end
+					end
+					AddUnitToStock(data.unit, ReactiveArmorUnit, chargeCount, chargeCount)
 				end
 			end
 		end)

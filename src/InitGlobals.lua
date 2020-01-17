@@ -18,10 +18,10 @@ do
 	end
 
 end
-HERO    = {} -- таблица героев
-HERO_ID = FourCC('H000') -- ид единственного героя
-
-ARMOR_TIME_COOLDOWN = 10 -- время снятия заряда пассивки
+HERO                  = {} -- таблица героев
+HERO_ID               = FourCC('H000') -- ид единственного героя
+ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
+ReactiveArmorUnit     = FourCC('n000')
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
@@ -29,16 +29,14 @@ function InitGameCore()
 		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, 0, 0, 0)
+			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			
-			-- пассивка
-			UnitAddAbility(hero, FourCC('Asud'))
-			AddUnitToStock(hero, FourCC('n000'), 0, 0)
+			-- ReactiveArmor
+			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			HERO[GetHandleId(hero)] = {
-				unit         = hero, -- ссылка на юнита
-				-- пассивка
-				armorDamage  = 0, -- полученный урон
-				armorElapsed = 0, -- время снятия заряда
-				armorCharge  = 0 -- количество зарядов
+				unit                 = hero, -- ссылка на юнита
+				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
+				ReactiveArmorLimit   = true -- ограниченное количество зарядов
 			}
 		end
 	end
