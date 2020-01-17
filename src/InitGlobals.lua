@@ -11,6 +11,34 @@ do
 		InitSpellTrigger()
 		InitMouseMoveTrigger()
 		--print("globalinit")
+		InitGameCore()
+		InitDamage()
+		InitTimers()
 	end
 
 end
+HERO={}
+function InitGameCore()
+	local e=nil
+	GroupEnumUnitsInRect(perebor,bj_mapInitialPlayableArea,nil)
+	while true do
+		e = FirstOfGroup(perebor)
+		if e == nil then break end
+
+		if GetUnitTypeId(e)==FourCC('H000') then
+			HERO[GetPlayerId(GetOwningPlayer(e))]=e
+			--print(GetUnitName(e).." В переборе")
+		end
+		GroupRemoveUnit(perebor,e)
+	end
+	--добавляем пассивки
+	print("добавление пассивки для"..GetUnitName(HERO[0]))
+	UnitAddAbility(HERO[0],FourCC('Asud'))
+	AddUnitToStock(HERO[0],FourCC('n000'),0,0)
+	GroupAddUnit(group,HERO[0])
+	local data = HandleData[GetHandleId(HERO[0])]
+	if (data==nil) then data = {} HandleData[GetHandleId(HERO[0])] = data end
+	data.stack=0
+	data.chargeMinusTime=0
+end
+

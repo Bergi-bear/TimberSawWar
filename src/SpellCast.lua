@@ -36,12 +36,26 @@ end
 
 function PointContainAnyDest(x,y,range)
 	local IsHooked=false
+	local e=nil
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		if GetDestructableLife(GetEnumDestructable())>0 then
 			IsHooked=true
 		end
 	end)
+	if IsHooked==false then
+		GroupEnumUnitsInRange(perebor,x,y,range,null)
+		while true do
+			e = FirstOfGroup(perebor)
+			if e == nil then break end
+
+			if UnitAlive(e) and IsUnitType(e,UNIT_TYPE_STRUCTURE) then
+				IsHooked=true
+			end
+			GroupRemoveUnit(perebor,e)
+		end
+	end
+
 	return IsHooked
 end
 

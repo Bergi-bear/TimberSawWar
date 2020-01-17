@@ -4,6 +4,7 @@ require 'build' {
 	src      = {
 		'src'
 	},
+	--run      = 'editor',
 	run      = 'game',
 	reforged = false
 }
