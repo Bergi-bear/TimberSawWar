@@ -1,13 +1,6 @@
 function InitGlobals()
 end
-function CreateUnitsForPlayer0()
-    local p = Player(0)
-    local u
-    local unitID
-    local t
-    local life
-    u = CreateUnit(p, FourCC("H000"), -4532.7, 4599.4, 269.760)
-end
+
 function CreateNeutralHostile()
     local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
@@ -44,6 +37,7 @@ function CreateNeutralHostile()
     u = CreateUnit(p, FourCC("hpea"), -4949.3, 4159.9, 25.969)
     u = CreateUnit(p, FourCC("hpea"), -4962.2, 4121.0, 28.110)
 end
+
 function CreateNeutralPassiveBuildings()
     local p = Player(PLAYER_NEUTRAL_PASSIVE)
     local u
@@ -52,24 +46,226 @@ function CreateNeutralPassiveBuildings()
     local life
     u = CreateUnit(p, FourCC("nef1"), -4256.0, 4832.0, 270.000)
 end
+
 function CreatePlayerBuildings()
 end
+
 function CreatePlayerUnits()
-    CreateUnitsForPlayer0()
 end
+
 function CreateAllUnits()
     CreateNeutralPassiveBuildings()
     CreatePlayerBuildings()
     CreateNeutralHostile()
     CreatePlayerUnits()
 end
+
 --CUSTOM_CODE
+--https://xgm.guru/p/wc3/bonus-mod
+do
+	local POWERS   = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 }
+	local MAX, MIN = POWERS[#POWERS], -POWERS[#POWERS]
+
+	local ABILITY  = {
+		--STR: 1 [1-13]
+		FourCC('ZxF0'), -- +1
+		FourCC('ZxF1'), -- +2
+		FourCC('ZxF2'), -- +4
+		FourCC('ZxF3'), -- +8
+		FourCC('ZxF4'), -- +16
+		FourCC('ZxF5'), -- +32
+		FourCC('ZxF6'), -- +64
+		FourCC('ZxF7'), -- +128
+		FourCC('ZxF8'), -- +256
+		FourCC('ZxF9'), -- +512
+		FourCC('ZxFa'), -- +1024
+		FourCC('ZxFb'), -- +2048
+		FourCC('ZxFc'), -- -4096
+		-- AGI 2 [14-26]
+		FourCC('ZxG0'), -- +1
+		FourCC('ZxG1'), -- +2
+		FourCC('ZxG2'), -- +4
+		FourCC('ZxG3'), -- +8
+		FourCC('ZxG4'), -- +16
+		FourCC('ZxG5'), -- +32
+		FourCC('ZxG6'), -- +64
+		FourCC('ZxG7'), -- +128
+		FourCC('ZxG8'), -- +256
+		FourCC('ZxG9'), -- +512
+		FourCC('ZxGa'), -- +1024
+		FourCC('ZxGb'), -- +2048
+		FourCC('ZxGc'), -- -4096
+		-- INT 3 [27-39]
+		FourCC('ZxH0'), -- +1
+		FourCC('ZxH1'), -- +2
+		FourCC('ZxH2'), -- +4
+		FourCC('ZxH3'), -- +8
+		FourCC('ZxH4'), -- +16
+		FourCC('ZxH5'), -- +32
+		FourCC('ZxH6'), -- +64
+		FourCC('ZxH7'), -- +128
+		FourCC('ZxH8'), -- +256
+		FourCC('ZxH9'), -- +512
+		FourCC('ZxHa'), -- +1024
+		FourCC('ZxHb'), -- +2048
+		FourCC('ZxHc'), -- -4096
+		-- DAMAGE 4 [40-52]
+		FourCC('ZxB0'), -- +1
+		FourCC('ZxB1'), -- +2
+		FourCC('ZxB2'), -- +4
+		FourCC('ZxB3'), -- +8
+		FourCC('ZxB4'), -- +16
+		FourCC('ZxB5'), -- +32
+		FourCC('ZxB6'), -- +64
+		FourCC('ZxB7'), -- +128
+		FourCC('ZxB8'), -- +256
+		FourCC('ZxB9'), -- +512
+		FourCC('ZxBa'), -- +1024
+		FourCC('ZxBb'), -- +2048
+		FourCC('ZxBc'), -- -4096
+		-- ARMOR 5 [53-65]
+		FourCC('ZxA0'), -- +1
+		FourCC('ZxA1'), -- +2
+		FourCC('ZxA2'), -- +4
+		FourCC('ZxA3'), -- +8
+		FourCC('ZxA4'), -- +16
+		FourCC('ZxA5'), -- +32
+		FourCC('ZxA6'), -- +64
+		FourCC('ZxA7'), -- +128
+		FourCC('ZxA8'), -- +256
+		FourCC('ZxA9'), -- +512
+		FourCC('ZxAa'), -- +1024
+		FourCC('ZxAb'), -- +2048
+		FourCC('ZxAc'), -- -4096
+		-- HP 6 [66-78]
+		FourCC('ZxE0'), -- +1
+		FourCC('ZxE1'), -- +2
+		FourCC('ZxE2'), -- +4
+		FourCC('ZxE3'), -- +8
+		FourCC('ZxE4'), -- +16
+		FourCC('ZxE5'), -- +32
+		FourCC('ZxE6'), -- +64
+		FourCC('ZxE7'), -- +128
+		FourCC('ZxE8'), -- +256
+		FourCC('ZxE9'), -- +512
+		FourCC('ZxEa'), -- +1024
+		FourCC('ZxEb'), -- +2048
+		FourCC('ZxEc'), -- -4096
+		-- MP 7 [79-91]
+		FourCC('ZxC0'), -- +1
+		FourCC('ZxC1'), -- +2
+		FourCC('ZxC2'), -- +4
+		FourCC('ZxC3'), -- +8
+		FourCC('ZxC4'), -- +16
+		FourCC('ZxC5'), -- +32
+		FourCC('ZxC6'), -- +64
+		FourCC('ZxC7'), -- +128
+		FourCC('ZxC8'), -- +256
+		FourCC('ZxC9'), -- +512
+		FourCC('ZxCa'), -- +1024
+		FourCC('ZxCb'), -- +2048
+		FourCC('ZxCc'), -- -4096
+		-- SIGHT 8 [92-104]
+		FourCC('ZxC0'), -- +1
+		FourCC('ZxC1'), -- +2
+		FourCC('ZxC2'), -- +4
+		FourCC('ZxC3'), -- +8
+		FourCC('ZxC4'), -- +16
+		FourCC('ZxC5'), -- +32
+		FourCC('ZxC6'), -- +64
+		FourCC('ZxC7'), -- +128
+		FourCC('ZxC8'), -- +256
+		FourCC('ZxC9'), -- +512
+		FourCC('ZxCa'), -- +1024
+		FourCC('ZxCb'), -- +2048
+		FourCC('ZxCc') -- -4096
+	}
+	local TYPES    = #ABILITY / #POWERS
+
+	---@param target unit
+	---@param mod integer
+	function UnitClearBonus (target, mod)
+		if type(mod) ~= 'number' or mod < 1 or mod >= TYPES then
+			return print('UnitGetBonus: Invalid mod', mod)
+		end
+
+		for i = 1, #POWERS do
+			UnitRemoveAbility(target, ABILITY[(mod - 1) * #POWERS + i])
+		end
+	end
+
+	---@param target unit
+	---@param mod integer
+	---@param ammount integer
+	---@return boolean
+	function UnitSetBonus (target, mod, ammount)
+		if type(mod) ~= 'number' or mod < 1 or mod >= TYPES then
+			print('UnitSetBonus: Invalid mod', mod)
+			return false
+		elseif type(ammount) ~= 'number' or ammount < MIN or ammount > MAX then
+			print('UnitSetBonus: Bonus too high or low', ammount)
+			return false
+		end
+
+		local ability = ABILITY[(mod - 1) * #POWERS + #POWERS]
+		if ammount < 0 then
+			ammount = MAX + ammount
+			UnitAddAbility(target, ability)
+			UnitMakeAbilityPermanent(target, true, ability)
+		else
+			UnitRemoveAbility(target, ability)
+		end
+
+		for i = #POWERS - 1, 1, -1 do
+			ability = ABILITY[(mod - 1) * #POWERS + i]
+			if ammount >= POWERS[i] then
+				UnitAddAbility(target, ability)
+				UnitMakeAbilityPermanent(target, true, ability)
+				ammount = ammount - POWERS[i]
+			else
+				UnitRemoveAbility(target, ability)
+			end
+		end
+
+		return true
+	end
+
+	---@param target unit
+	---@param mod integer
+	---@return integer
+	function UnitGetBonus (target, mod)
+		local ammount = 0
+
+		if type(mod) ~= 'number' or mod < 1 or mod >= TYPES then
+			return print('UnitGetBonus: Invalid mod', mod)
+		end
+
+		if GetUnitAbilityLevel(target, ABILITY[(mod - 1) * #POWERS + #POWERS]) > 0 then
+			ammount = MIN
+		end
+
+		for i = 1, #POWERS do
+			if GetUnitAbilityLevel(target, ABILITY[(mod - 1) * #POWERS + i]) > 0 then
+				ammount = ammount + POWERS[i]
+			end
+		end
+
+		return ammount
+	end
+
+	---@param target unit
+	---@param mod integer
+	---@param ammount integer
+	---@return boolean
+	function UnitAddBonus (target, mod, ammount)
+		return UnitSetBonus(target, mod, UnitGetBonus(target, mod) + ammount)
+	end
+end
 ---
 --- Generated by EmmyLua(https://github.com/EmmyLua)
 --- Created by Bergi.
 --- DateTime: 04.01.2020 23:10
 ---
-HandleData={}
 do
 	function InitDamage()
 		local DamageTrigger = CreateTrigger()
@@ -81,36 +277,45 @@ do
 			local damage     = GetEventDamage() -- число урона
 			local damageType = BlzGetEventDamageType()
 			if damage < 1 then return end
+			
 			local eventId         = GetHandleId(GetTriggerEventId())
 			local isEventDamaging = eventId == GetHandleId(EVENT_PLAYER_UNIT_DAMAGING)
 			local isEventDamaged  = eventId == GetHandleId(EVENT_PLAYER_UNIT_DAMAGED)
-			local target            = GetTriggerUnit() -- тот кто получил урон
-			local caster            = GetEventDamageSource() -- тот кто нанёс урон
-			local casterOwner = GetOwningPlayer(caster)
+			
+			local target          = GetTriggerUnit() -- тот кто получил урон
+			local targetHandleId  = GetHandleId(target)
+			local caster          = GetEventDamageSource() -- тот кто нанёс урон
+			local casterOwner     = GetOwningPlayer(caster)
+			
 			if isEventDamaged then
-				if damageType==DAMAGE_TYPE_NORMAL and GetUnitAbilityLevel(target,FourCC('Asud'))>0 then-- могут быть заряды для пассивки тимбера
-					local duration=10
-					local addArmor=1
-					local addRegen=1
-					local maxCharges=10
-					local data = HandleData[GetHandleId(target)]
-					if (data==nil) then data = {} HandleData[GetHandleId(target)] = data end
-					data.chargeMinusTime=SECOND + 10
-					if data.stack<maxCharges then
-						data.stack=data.stack+1
-						AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
+				-- ReactiveArmor
+				local data = HERO[targetHandleId]
+				if damageType == DAMAGE_TYPE_NORMAL and data ~= nil then
+					local charges        = data.ReactiveArmorChargesTime
+					--TODO добавить снятие лимита
+					local chargeMinIndex = 1 -- индекс заряда с минимальным значением
+					for i = 2, #charges do
+						if charges[i] < charges[chargeMinIndex] then
+							chargeMinIndex = i
+						end
 					end
-					--[[if data.stack<maxCharges then
-						data.stack=data.stack+1
-						AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
-						TimerStart(CreateTimer(), duration, false, function()
-							data.stack=data.stack-1
-							AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
-							PauseTimer(GetExpiredTimer())
-							DestroyTimer(GetExpiredTimer())
-						end)
-					end]]--
-				end--конец пассивки
+					charges[chargeMinIndex] = SECOND + ReactiveArmorCooldown
+					
+					local chargeCount       = 0 -- количество активных зарядов
+					for i = 1, #charges do
+						if charges[i] > SECOND then
+							chargeCount = chargeCount + 1
+							--UNIT_RF_HIT_POINTS_REGENERATION_RATE
+						end
+					end
+
+					UnitSetBonus(target,5,chargeCount)--армор
+					UnitSetBonus(target,6,chargeCount)--hpregen
+					if chargeCount>=#charges then
+						--print("получен урон при максимальных зарядах")
+					end
+					AddUnitToStock(data.unit, ReactiveArmorUnit, chargeCount, chargeCount)
+				end
 			end
 		end)
 	end
@@ -135,6 +340,7 @@ function InitMouseMoveTrigger()
 			local id=GetPlayerId(GetTriggerPlayer())
 			GetPlayerMouseX[id]=BlzGetTriggerPlayerMouseX()
 			GetPlayerMouseY[id]=BlzGetTriggerPlayerMouseY()
+
 		end)
 end
 ---
@@ -143,9 +349,10 @@ end
 --- DateTime: 10.01.2020 22:05
 ---
 do
-	local f = InitGlobals -- записываем InitGlobals в переменную
-	function InitGlobals() -- заменяем оригинальную InitGlobals своей
-		f() -- вызываем оригинальную InitGlobals из переменной
+	local InitGlobalsOrigin = InitGlobals -- записываем InitGlobals в переменную
+	function InitGlobals()
+		-- заменяем оригинальную InitGlobals своей
+		InitGlobalsOrigin() -- вызываем оригинальную InitGlobals из переменной
 		--добавляем в список функции для инициализации
 		InitSpellTrigger()
 		InitMouseMoveTrigger()
@@ -154,30 +361,33 @@ do
 		InitDamage()
 		InitTimers()
 	end
+
 end
-HERO={}
+HERO                  = {} -- таблица героев
+HERO_ID               = FourCC('H000') -- ид единственного героя
+ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
+ReactiveArmorUnit     = FourCC('n000')
+
 function InitGameCore()
-	local e=nil
-	GroupEnumUnitsInRect(perebor,bj_mapInitialPlayableArea,nil)
-	while true do
-		e = FirstOfGroup(perebor)
-		if e == nil then break end
-		if GetUnitTypeId(e)==FourCC('H000') then
-			HERO[GetPlayerId(GetOwningPlayer(e))]=e
-			--print(GetUnitName(e).." В переборе")
+	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
+		local player = Player(i)
+		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+			--FIXME сделать нормальное появление героя
+			local hero = CreateUnit(player, HERO_ID, -4300, 4200, 0)
+			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
+			
+			-- ReactiveArmor
+			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+			HERO[GetHandleId(hero)] = {
+				unit                 = hero, -- ссылка на юнита
+				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
+				ReactiveArmorLimit   = true -- ограниченное количество зарядов
+			}
 		end
-		GroupRemoveUnit(perebor,e)
 	end
-	--добавляем пассивки
-	print("добавление пассивки для"..GetUnitName(HERO[0]))
-	UnitAddAbility(HERO[0],FourCC('Asud'))
-	AddUnitToStock(HERO[0],FourCC('n000'),0,0)
-	GroupAddUnit(group,HERO[0])
-	local data = HandleData[GetHandleId(HERO[0])]
-	if (data==nil) then data = {} HandleData[GetHandleId(HERO[0])] = data end
-	data.stack=0
-	data.chargeMinusTime=0
 end
+
+
 ---
 --- Generated by EmmyLua(https://github.com/EmmyLua)
 --- Created by Bergi.
@@ -189,6 +399,7 @@ end
 function InMapXY(x, y)
 	return x > GetRectMinX(bj_mapInitialPlayableArea) and x < GetRectMaxX(bj_mapInitialPlayableArea) and y > GetRectMinY(bj_mapInitialPlayableArea) and y < GetRectMaxY(bj_mapInitialPlayableArea)
 end
+
 ---@param x real
 ---@param distance real
 ---@param angle real radian
@@ -196,6 +407,7 @@ end
 function GetPolarOffsetX(x, distance, angle)
 	return x + distance * math.cos(angle)
 end
+
 ---@param y real
 ---@param distance real
 ---@param angle real radian
@@ -203,6 +415,7 @@ end
 function GetPolarOffsetY(y, distance, angle)
 	return y + distance * math.sin(angle)
 end
+
 ---@param x real
 ---@param distance real
 ---@param angle real degrees
@@ -210,6 +423,7 @@ end
 function MoveX(x, distance, angle)
 	return x + distance * math.cos(angle * bj_DEGTORAD)
 end
+
 ---@param y real
 ---@param distance real
 ---@param angle real degrees
@@ -217,6 +431,7 @@ end
 function MoveY(y, distance, angle)
 	return y + distance * math.sin(angle * bj_DEGTORAD)
 end
+
 local GetTerrainZ_location = Location(0, 0)
 ---@param x real
 ---@param y real
@@ -225,12 +440,14 @@ function GetTerrainZ(x, y)
 	MoveLocation(GetTerrainZ_location, x, y)
 	return GetLocationZ(GetTerrainZ_location)
 end
+
 ---@param target unit
 ---@return real
 function GetUnitZ(target)
 	MoveLocation(GetTerrainZ_location, GetUnitX(target), GetUnitY(target))
 	return GetLocationZ(GetTerrainZ_location) + GetUnitFlyHeight(target)
 end
+
 ---@param target unit
 ---@param z real
 function SetUnitZ(target, z)
@@ -239,6 +456,7 @@ function SetUnitZ(target, z)
 	MoveLocation(GetTerrainZ_location, GetUnitX(target), GetUnitY(target))
 	SetUnitFlyHeight(target, z - GetLocationZ(GetTerrainZ_location), 0)
 end
+
 ---@param h real максимальная высота в прыжке на середине расстояния (x = d / 2)
 ---@param d real общее расстояние до цели
 ---@param x real расстояние от исходной цели до точки, где следует взять высоту по параболе
@@ -246,6 +464,7 @@ end
 function ParabolaZ (h, d, x)
 	return (4 * h / d) * (d - x) * (x / d)
 end
+
 ---@param zs real начальная высота высота одного края дуги
 ---@param ze real конечная высота высота другого края дуги
 ---@param h real максимальная высота на середине расстояния (x = d / 2)
@@ -255,6 +474,7 @@ end
 function GetParabolaZ(zs, ze, h, d, x)
 	return (2 * (zs + ze - 2 * h) * (x / d - 1) + (ze - zs)) * (x / d) + zs
 end
+
 ---@param xa real
 ---@param ya real
 ---@param xb real
@@ -265,6 +485,7 @@ function DistanceBetweenXY(xa, ya, xb, yb)
 	local dy = yb - ya
 	return math.sqrt(dx * dx + dy * dy)
 end
+
 ---@param xa real
 ---@param ya real
 ---@param za real
@@ -278,6 +499,7 @@ function DistanceBetweenXYZ(xa, ya, za, xb, yb, zb)
 	local dz = zb - za
 	return math.sqrt(dx * dx + dy * dy + dz * dz)
 end
+
 ---@param xa real
 ---@param ya real
 ---@param xb real
@@ -286,6 +508,7 @@ end
 function AngleBetweenXY(xa, ya, xb, yb)
 	return math.atan(yb - ya, xb - xa)
 end
+
 ---@param a real radian
 ---@param b real radian
 ---@return real radian
@@ -301,6 +524,7 @@ function AngleDifference(a, b)
 	end
 	return c > d and d or c
 end
+
 ---@author xgm.guru/p/wc3/warden-math
 ---@param a real degrees
 ---@param b real degrees
@@ -317,6 +541,7 @@ function AngleDifferenceDeg(a, b)
 	end
 	return math.abs(a - b)
 end
+
 -- Находит длину перпендикуляра от отрезка, заданного xa, ya, xb, yb к точке, заданной xc, yc
 ---@author https://xgm.guru/p/wc3/perpendicular
 ---@param xa real
@@ -329,6 +554,7 @@ end
 function Perpendicular (xa, ya, xb, yb, xc, yc)
 	return math.sqrt((xa - xc) * (xa - xc) + (ya - yc) * (ya - yc)) * math.sin(math.atan(yc - ya, xc - xa) - math.atan(yb - ya, xb - xa))
 end
+
 GlobalRect=Rect(0,0,0,0)
 function KillTreeInRange (x,y,range)
 	local k=0
@@ -343,6 +569,8 @@ function KillTreeInRange (x,y,range)
 		end)
 	return k
 end
+
+
 perebor=CreateGroup()
 function UnitDamageArea(u,damage,x,y,range,type)
 	local e--временный юнит
@@ -350,12 +578,18 @@ function UnitDamageArea(u,damage,x,y,range,type)
 	while true do
 		e = FirstOfGroup(perebor)
 		if e == nil then break end
+
 		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
+
 			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
 		end
 		GroupRemoveUnit(perebor,e)
 	end
 end
+
+
+
+
 function PointContainAnyDest(x,y,range)
 	local IsHooked=false
 	local e=nil
@@ -370,14 +604,17 @@ function PointContainAnyDest(x,y,range)
 		while true do
 			e = FirstOfGroup(perebor)
 			if e == nil then break end
+
 			if UnitAlive(e) and IsUnitType(e,UNIT_TYPE_STRUCTURE) then
 				IsHooked=true
 			end
 			GroupRemoveUnit(perebor,e)
 		end
 	end
+
 	return IsHooked
 end
+
 ----------------------------------
 ----------------------------------
 ----------------------------------
@@ -385,15 +622,20 @@ function InitSpellTrigger()
 	local SpellTrigger = CreateTrigger()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
+
 		TriggerRegisterPlayerUnitEvent(SpellTrigger, player, EVENT_PLAYER_UNIT_SPELL_CAST)
+
 	end
 	TriggerAddAction(SpellTrigger, function()
+
 		local caster           = GetTriggerUnit()
 		local target=GetSpellTargetUnit()
 		local casterX, casterY = GetUnitX(caster), GetUnitY(caster)
 		local spellId          = GetSpellAbilityId()
 		local ownplayer=GetOwningPlayer(caster)
 		local id=GetPlayerId(ownplayer)
+
+
 		if spellId == FourCC('A000') then -- Лезвия
 			--local eff=AddSpecialEffectTarget("war3mapImported/ArcaneGlaive_2.mdl",caster,"chest")
 			local eff                    = AddSpecialEffect("war3mapImported/ArcaneGlaive_2.mdl", casterX, casterY)
@@ -404,6 +646,7 @@ function InitSpellTrigger()
 			local longblades=1
 			local range=200*longblades
 			local ttk=0
+
 			BlzSetSpecialEffectScale(eff, 2*longblades)
 			--print("oldcd="..oldcd)
 			ttk=KillTreeInRange(casterX,casterY,range)
@@ -419,6 +662,7 @@ function InitSpellTrigger()
 					--print("damage")
 					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), range)
 				end
+
 				-- all duration
 				durAll = durAll - period
 				if durAll < 0 then
@@ -431,7 +675,9 @@ function InitSpellTrigger()
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
 				end
+
 			end)
+
 		elseif spellId == FourCC('A001') then -- Крюк
 			local MaxRange=700
 			local EffChain={}
@@ -440,6 +686,9 @@ function InitSpellTrigger()
 			local CurRange=0
 			local NewX,NewY=casterX,casterY
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD -- вот уже где реаьный разврат
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id] then
+				Angle=GetUnitFacing(caster)
+			end
 			local hook=AddSpecialEffect("war3mapImported/TimberChainHead.mdl", NewX, NewY)
 			local z=0
 			local revers=false
@@ -451,11 +700,13 @@ function InitSpellTrigger()
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
 			--нужны функции PointContainAnyTarget(x,y,range)
+
 			TimerStart(CreateTimer(), 0.03, true, function()
 				if revers==false and forces==false then
 					NewX=MoveX(casterX,CurRange,Angle)
 					NewY=MoveY(casterY,CurRange,Angle)
 					z=GetTerrainZ(NewX, NewY) + 60
+
 					PauseUnit(caster,true)
 					PauseUnit(caster,false)
 					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
@@ -478,8 +729,10 @@ function InitSpellTrigger()
 						revers=false
 						ChainCount=1
 					end
+
 				end
 				if forces then
+
 					DestroyEffect(EffChain[ChainCount])
 					--print("Уничтожение куска цепи "..ChainCount)
 					ChainCount=ChainCount+1
@@ -500,6 +753,7 @@ function InitSpellTrigger()
 						DestroyTimer(GetExpiredTimer())
 					end
 				end
+
 				if revers then
 					DestroyEffect(EffChain[ChainCount])
 					ChainCount=ChainCount-1
@@ -515,8 +769,11 @@ function InitSpellTrigger()
 					end
 				end
 			end)
+
+
 		elseif spellId == FourCC('A021') then -- Чакрам
 			SetUnitState(target,UNIT_STATE_MANA,GetUnitState(target,UNIT_STATE_MANA)+1)
+
 		end
 	end)
 end
@@ -549,6 +806,7 @@ function FlyTextTag(text, textSize, x, y, z, red, green, blue, alpha, xvel, yvel
 	end
 	return t
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -556,6 +814,7 @@ end
 function FlyTextTagGoldBounty(target, text, player)
 	return FlyTextTag(text, 0.024, GetWidgetX(target) - 16, GetWidgetY(target), 0, 255, 220, 0, 255, 0, 0.03, 2, 3, player)
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -563,6 +822,7 @@ end
 function FlyTextTagLumberBounty(target, text, player)
 	return FlyTextTag(text, 0.024, GetWidgetX(target) - 16, GetWidgetY(target), 0, 0, 200, 80, 255, 0, 0.03, 2, 3, player)
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -570,6 +830,7 @@ end
 function FlyTextTagMiss(target, text, player)
 	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 255, 0, 0, 255, 0, 0.03, 1, 3, player)
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -577,6 +838,7 @@ end
 function FlyTextTagCriticalStrike(target, text, player)
 	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 255, 0, 0, 255, 0, 0.04, 2, 5, player)
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -584,6 +846,7 @@ end
 function FlyTextTagManaBurn(target, text, player)
 	return FlyTextTag(text, 0.024, GetWidgetX(target), GetWidgetY(target), 0, 82, 82, 255, 255, 0, 0.04, 2, 5, player)
 end
+
 ---@param target widget
 ---@param text string
 ---@param player player
@@ -596,24 +859,29 @@ end
 --- Created by Bergi.
 --- DateTime: 17.01.2020 22:52
 ---
-SECOND=0
-group=CreateGroup()
+--FIXME
+--TODO
+SECOND = 0
 function InitTimers()
 	TimerStart(CreateTimer(), 1, true, function()
 		SECOND = SECOND + 1
-	end)
-	for index = BlzGroupGetSize(group) - 1, 0, -1 do
-		local target = BlzGroupUnitAt(group, index)
-		local data = HandleData[GetHandleId(target)]
-		local duration=10
-		if (data==nil) then data = {} HandleData[GetHandleId(target)] = data end
-		if data.chargeMinusTime < SECOND then
-			print("отнимаем заряд")
-			data.chargeMinusTime = SECOND + duration
-			data.stack=data.stack-1
-			AddUnitToStock(target,FourCC('n000'),data.stack,data.stack)
+		
+		-- ReactiveArmor
+		for _, data in pairs(HERO) do
+			local hero         = data.unit
+			local charges      = data.ReactiveArmorChargesTime
+			local chargesCount = 0
+			-- считаем количество активных зарядов
+			for i = 1, #charges do
+				if charges[i] >= SECOND then
+					chargesCount = chargesCount + 1
+				end
+			end
+			UnitSetBonus(hero,5,chargesCount)--армор
+			UnitSetBonus(hero,6,chargesCount)--Hpregen
+			AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 		end
-	end
+	end)
 end
 --CUSTOM_CODE
 function InitCustomPlayerSlots()
@@ -623,9 +891,11 @@ function InitCustomPlayerSlots()
     SetPlayerRaceSelectable(Player(0), true)
     SetPlayerController(Player(0), MAP_CONTROL_USER)
 end
+
 function InitCustomTeams()
     SetPlayerTeam(Player(0), 0)
 end
+
 function main()
     SetCameraBounds(-5376.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), -5632.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM), 5376.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), 5120.0 - GetCameraMargin(CAMERA_MARGIN_TOP), -5376.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), 5120.0 - GetCameraMargin(CAMERA_MARGIN_TOP), 5376.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), -5632.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM))
     SetDayNightModels("Environment\\DNC\\DNCAshenvale\\DNCAshenvaleTerrain\\DNCAshenvaleTerrain.mdl", "Environment\\DNC\\DNCAshenvale\\DNCAshenvaleUnit\\DNCAshenvaleUnit.mdl")
@@ -637,6 +907,7 @@ function main()
     InitBlizzard()
     InitGlobals()
 end
+
 function config()
     SetMapName("TRIGSTR_001")
     SetMapDescription("TRIGSTR_003")
@@ -648,3 +919,4 @@ function config()
     SetPlayerSlotAvailable(Player(0), MAP_CONTROL_USER)
     InitGenericPlayerSlots()
 end
+

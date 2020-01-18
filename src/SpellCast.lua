@@ -130,6 +130,9 @@ function InitSpellTrigger()
 			local CurRange=0
 			local NewX,NewY=casterX,casterY
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD -- вот уже где реаьный разврат
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id] then
+				Angle=GetUnitFacing(caster)
+			end
 			local hook=AddSpecialEffect("war3mapImported/TimberChainHead.mdl", NewX, NewY)
 			local z=0
 			local revers=false

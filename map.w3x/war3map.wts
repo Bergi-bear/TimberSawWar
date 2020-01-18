@@ -127,3 +127,627 @@ STRING 21
 Эффект при достижении максимального числа: нет
 }
 
+STRING 22
+// Способности: ZxA0 (BonusMod - Armor (+0001)), Name (Название)
+{
+BonusMod - Armor (+0001)
+}
+
+STRING 23
+// Способности: ZxB0 (BonusMod - Damage (+0001)), Name (Название)
+{
+BonusMod - Damage (+0001)
+}
+
+STRING 24
+// Способности: ZxC0 (BonusMod - Sight Range (+0001)), Name (Название)
+{
+BonusMod - Sight Range (+0001)
+}
+
+STRING 25
+// Способности: ZxD0 (BonusMod - Mana Regen (+0001)), Name (Название)
+{
+BonusMod - Mana Regen (+0001)
+}
+
+STRING 26
+// Способности: ZxE0 (BonusMod - Life Regen (+0001)), Name (Название)
+{
+BonusMod - Life Regen (+0001)
+}
+
+STRING 27
+// Способности: ZxF0 (BonusMod - Hero STR (+0001)), Name (Название)
+{
+BonusMod - Hero STR (+0001)
+}
+
+STRING 28
+// Способности: ZxG0 (BonusMod - Hero AGI (+0001)), Name (Название)
+{
+BonusMod - Hero AGI (+0001)
+}
+
+STRING 29
+// Способности: ZxH0 (BonusMod - Hero INT (+0001)), Name (Название)
+{
+BonusMod - Hero INT (+0001)
+}
+
+STRING 30
+// Способности: ZxA1 (BonusMod - Armor (+0002)), Name (Название)
+{
+BonusMod - Armor (+0002)
+}
+
+STRING 31
+// Способности: ZxB1 (BonusMod - Damage (+0002)), Name (Название)
+{
+BonusMod - Damage (+0002)
+}
+
+STRING 32
+// Способности: ZxC1 (BonusMod - Sight Range (+0002)), Name (Название)
+{
+BonusMod - Sight Range (+0002)
+}
+
+STRING 33
+// Способности: ZxD1 (BonusMod - Mana Regen (+0002)), Name (Название)
+{
+BonusMod - Mana Regen (+0002)
+}
+
+STRING 34
+// Способности: ZxE1 (BonusMod - Life Regen (+0002)), Name (Название)
+{
+BonusMod - Life Regen (+0002)
+}
+
+STRING 35
+// Способности: ZxF1 (BonusMod - Hero STR (+0002)), Name (Название)
+{
+BonusMod - Hero STR (+0002)
+}
+
+STRING 36
+// Способности: ZxG1 (BonusMod - Hero AGI (+0002)), Name (Название)
+{
+BonusMod - Hero AGI (+0002)
+}
+
+STRING 37
+// Способности: ZxH1 (BonusMod - Hero INT (+0002)), Name (Название)
+{
+BonusMod - Hero INT (+0002)
+}
+
+STRING 38
+// Способности: ZxA2 (BonusMod - Armor (+0004)), Name (Название)
+{
+BonusMod - Armor (+0004)
+}
+
+STRING 39
+// Способности: ZxB2 (BonusMod - Damage (+0004)), Name (Название)
+{
+BonusMod - Damage (+0004)
+}
+
+STRING 40
+// Способности: ZxC2 (BonusMod - Sight Range (+0004)), Name (Название)
+{
+BonusMod - Sight Range (+0004)
+}
+
+STRING 41
+// Способности: ZxD2 (BonusMod - Mana Regen (+0004)), Name (Название)
+{
+BonusMod - Mana Regen (+0004)
+}
+
+STRING 42
+// Способности: ZxE2 (BonusMod - Life Regen (+0004)), Name (Название)
+{
+BonusMod - Life Regen (+0004)
+}
+
+STRING 43
+// Способности: ZxF2 (BonusMod - Hero STR (+0004)), Name (Название)
+{
+BonusMod - Hero STR (+0004)
+}
+
+STRING 44
+// Способности: ZxG2 (BonusMod - Hero AGI (+0004)), Name (Название)
+{
+BonusMod - Hero AGI (+0004)
+}
+
+STRING 45
+// Способности: ZxH2 (BonusMod - Hero INT (+0004)), Name (Название)
+{
+BonusMod - Hero INT (+0004)
+}
+
+STRING 46
+// Способности: ZxA3 (BonusMod - Armor (+0008)), Name (Название)
+{
+BonusMod - Armor (+0008)
+}
+
+STRING 47
+// Способности: ZxB3 (BonusMod - Damage (+0008)), Name (Название)
+{
+BonusMod - Damage (+0008)
+}
+
+STRING 48
+// Способности: ZxC3 (BonusMod - Sight Range (+0008)), Name (Название)
+{
+BonusMod - Sight Range (+0008)
+}
+
+STRING 49
+// Способности: ZxD3 (BonusMod - Mana Regen (+0008)), Name (Название)
+{
+BonusMod - Mana Regen (+0008)
+}
+
+STRING 50
+// Способности: ZxE3 (BonusMod - Life Regen (+0008)), Name (Название)
+{
+BonusMod - Life Regen (+0008)
+}
+
+STRING 51
+// Способности: ZxF3 (BonusMod - Hero STR (+0008)), Name (Название)
+{
+BonusMod - Hero STR (+0008)
+}
+
+STRING 52
+// Способности: ZxG3 (BonusMod - Hero AGI (+0008)), Name (Название)
+{
+BonusMod - Hero AGI (+0008)
+}
+
+STRING 53
+// Способности: ZxH3 (BonusMod - Hero INT (+0008)), Name (Название)
+{
+BonusMod - Hero INT (+0008)
+}
+
+STRING 54
+// Способности: ZxA4 (BonusMod - Armor (+0016)), Name (Название)
+{
+BonusMod - Armor (+0016)
+}
+
+STRING 55
+// Способности: ZxB4 (BonusMod - Damage (+0016)), Name (Название)
+{
+BonusMod - Damage (+0016)
+}
+
+STRING 56
+// Способности: ZxC4 (BonusMod - Sight Range (+0016)), Name (Название)
+{
+BonusMod - Sight Range (+0016)
+}
+
+STRING 57
+// Способности: ZxD4 (BonusMod - Mana Regen (+0016)), Name (Название)
+{
+BonusMod - Mana Regen (+0016)
+}
+
+STRING 58
+// Способности: ZxE4 (BonusMod - Life Regen (+0016)), Name (Название)
+{
+BonusMod - Life Regen (+0016)
+}
+
+STRING 59
+// Способности: ZxF4 (BonusMod - Hero STR (+0016)), Name (Название)
+{
+BonusMod - Hero STR (+0016)
+}
+
+STRING 60
+// Способности: ZxG4 (BonusMod - Hero AGI (+0016)), Name (Название)
+{
+BonusMod - Hero AGI (+0016)
+}
+
+STRING 61
+// Способности: ZxH4 (BonusMod - Hero INT (+0016)), Name (Название)
+{
+BonusMod - Hero INT (+0016)
+}
+
+STRING 62
+// Способности: ZxA5 (BonusMod - Armor (+0032)), Name (Название)
+{
+BonusMod - Armor (+0032)
+}
+
+STRING 63
+// Способности: ZxB5 (BonusMod - Damage (+0032)), Name (Название)
+{
+BonusMod - Damage (+0032)
+}
+
+STRING 64
+// Способности: ZxC5 (BonusMod - Sight Range (+0032)), Name (Название)
+{
+BonusMod - Sight Range (+0032)
+}
+
+STRING 65
+// Способности: ZxD5 (BonusMod - Mana Regen (+0032)), Name (Название)
+{
+BonusMod - Mana Regen (+0032)
+}
+
+STRING 66
+// Способности: ZxE5 (BonusMod - Life Regen (+0032)), Name (Название)
+{
+BonusMod - Life Regen (+0032)
+}
+
+STRING 67
+// Способности: ZxF5 (BonusMod - Hero STR (+0032)), Name (Название)
+{
+BonusMod - Hero STR (+0032)
+}
+
+STRING 68
+// Способности: ZxG5 (BonusMod - Hero AGI (+0032)), Name (Название)
+{
+BonusMod - Hero AGI (+0032)
+}
+
+STRING 69
+// Способности: ZxH5 (BonusMod - Hero INT (+0032)), Name (Название)
+{
+BonusMod - Hero INT (+0032)
+}
+
+STRING 70
+// Способности: ZxA6 (BonusMod - Armor (+0064)), Name (Название)
+{
+BonusMod - Armor (+0064)
+}
+
+STRING 71
+// Способности: ZxB6 (BonusMod - Damage (+0064)), Name (Название)
+{
+BonusMod - Damage (+0064)
+}
+
+STRING 72
+// Способности: ZxC6 (BonusMod - Sight Range (+0064)), Name (Название)
+{
+BonusMod - Sight Range (+0064)
+}
+
+STRING 73
+// Способности: ZxD6 (BonusMod - Mana Regen (+0064)), Name (Название)
+{
+BonusMod - Mana Regen (+0064)
+}
+
+STRING 74
+// Способности: ZxE6 (BonusMod - Life Regen (+0064)), Name (Название)
+{
+BonusMod - Life Regen (+0064)
+}
+
+STRING 75
+// Способности: ZxF6 (BonusMod - Hero STR (+0064)), Name (Название)
+{
+BonusMod - Hero STR (+0064)
+}
+
+STRING 76
+// Способности: ZxG6 (BonusMod - Hero AGI (+0064)), Name (Название)
+{
+BonusMod - Hero AGI (+0064)
+}
+
+STRING 77
+// Способности: ZxH6 (BonusMod - Hero INT (+0064)), Name (Название)
+{
+BonusMod - Hero INT (+0064)
+}
+
+STRING 78
+// Способности: ZxA7 (BonusMod - Armor (+0128)), Name (Название)
+{
+BonusMod - Armor (+0128)
+}
+
+STRING 79
+// Способности: ZxB7 (BonusMod - Damage (+0128)), Name (Название)
+{
+BonusMod - Damage (+0128)
+}
+
+STRING 80
+// Способности: ZxC7 (BonusMod - Sight Range (+0128)), Name (Название)
+{
+BonusMod - Sight Range (+0128)
+}
+
+STRING 81
+// Способности: ZxD7 (BonusMod - Mana Regen (+0128)), Name (Название)
+{
+BonusMod - Mana Regen (+0128)
+}
+
+STRING 82
+// Способности: ZxE7 (BonusMod - Life Regen (+0128)), Name (Название)
+{
+BonusMod - Life Regen (+0128)
+}
+
+STRING 83
+// Способности: ZxF7 (BonusMod - Hero STR (+0128)), Name (Название)
+{
+BonusMod - Hero STR (+0128)
+}
+
+STRING 84
+// Способности: ZxG7 (BonusMod - Hero AGI (+0128)), Name (Название)
+{
+BonusMod - Hero AGI (+0128)
+}
+
+STRING 85
+// Способности: ZxH7 (BonusMod - Hero INT (+0128)), Name (Название)
+{
+BonusMod - Hero INT (+0128)
+}
+
+STRING 86
+// Способности: ZxA8 (BonusMod - Armor (+0256)), Name (Название)
+{
+BonusMod - Armor (+0256)
+}
+
+STRING 87
+// Способности: ZxB8 (BonusMod - Damage (+0256)), Name (Название)
+{
+BonusMod - Damage (+0256)
+}
+
+STRING 88
+// Способности: ZxC8 (BonusMod - Sight Range (+0256)), Name (Название)
+{
+BonusMod - Sight Range (+0256)
+}
+
+STRING 89
+// Способности: ZxD8 (BonusMod - Mana Regen (+0256)), Name (Название)
+{
+BonusMod - Mana Regen (+0256)
+}
+
+STRING 90
+// Способности: ZxE8 (BonusMod - Life Regen (+0256)), Name (Название)
+{
+BonusMod - Life Regen (+0256)
+}
+
+STRING 91
+// Способности: ZxF8 (BonusMod - Hero STR (+0256)), Name (Название)
+{
+BonusMod - Hero STR (+0256)
+}
+
+STRING 92
+// Способности: ZxG8 (BonusMod - Hero AGI (+0256)), Name (Название)
+{
+BonusMod - Hero AGI (+0256)
+}
+
+STRING 93
+// Способности: ZxH8 (BonusMod - Hero INT (+0256)), Name (Название)
+{
+BonusMod - Hero INT (+0256)
+}
+
+STRING 94
+// Способности: ZxA9 (BonusMod - Armor (+0512)), Name (Название)
+{
+BonusMod - Armor (+0512)
+}
+
+STRING 95
+// Способности: ZxB9 (BonusMod - Damage (+0512)), Name (Название)
+{
+BonusMod - Damage (+0512)
+}
+
+STRING 96
+// Способности: ZxC9 (BonusMod - Sight Range (+0512)), Name (Название)
+{
+BonusMod - Sight Range (+0512)
+}
+
+STRING 97
+// Способности: ZxD9 (BonusMod - Mana Regen (+0512)), Name (Название)
+{
+BonusMod - Mana Regen (+0512)
+}
+
+STRING 98
+// Способности: ZxE9 (BonusMod - Life Regen (+0512)), Name (Название)
+{
+BonusMod - Life Regen (+0512)
+}
+
+STRING 99
+// Способности: ZxF9 (BonusMod - Hero STR (+0512)), Name (Название)
+{
+BonusMod - Hero STR (+0512)
+}
+
+STRING 100
+// Способности: ZxG9 (BonusMod - Hero AGI (+0512)), Name (Название)
+{
+BonusMod - Hero AGI (+0512)
+}
+
+STRING 101
+// Способности: ZxH9 (BonusMod - Hero INT (+0512)), Name (Название)
+{
+BonusMod - Hero INT (+0512)
+}
+
+STRING 102
+// Способности: ZxAa (BonusMod - Armor (+1024)), Name (Название)
+{
+BonusMod - Armor (+1024)
+}
+
+STRING 103
+// Способности: ZxBa (BonusMod - Damage (+1024)), Name (Название)
+{
+BonusMod - Damage (+1024)
+}
+
+STRING 104
+// Способности: ZxCa (BonusMod - Sight Range (+1024)), Name (Название)
+{
+BonusMod - Sight Range (+1024)
+}
+
+STRING 105
+// Способности: ZxDa (BonusMod - Mana Regen (+1024)), Name (Название)
+{
+BonusMod - Mana Regen (+1024)
+}
+
+STRING 106
+// Способности: ZxEa (BonusMod - Life Regen (+1024)), Name (Название)
+{
+BonusMod - Life Regen (+1024)
+}
+
+STRING 107
+// Способности: ZxFa (BonusMod - Hero STR (+1024)), Name (Название)
+{
+BonusMod - Hero STR (+1024)
+}
+
+STRING 108
+// Способности: ZxGa (BonusMod - Hero AGI (+1024)), Name (Название)
+{
+BonusMod - Hero AGI (+1024)
+}
+
+STRING 109
+// Способности: ZxHa (BonusMod - Hero INT (+1024)), Name (Название)
+{
+BonusMod - Hero INT (+1024)
+}
+
+STRING 110
+// Способности: ZxAb (BonusMod - Armor (+2048)), Name (Название)
+{
+BonusMod - Armor (+2048)
+}
+
+STRING 111
+// Способности: ZxBb (BonusMod - Damage (+2048)), Name (Название)
+{
+BonusMod - Damage (+2048)
+}
+
+STRING 112
+// Способности: ZxCb (BonusMod - Sight Range (+2048)), Name (Название)
+{
+BonusMod - Sight Range (+2048)
+}
+
+STRING 113
+// Способности: ZxDb (BonusMod - Mana Regen (+2048)), Name (Название)
+{
+BonusMod - Mana Regen (+2048)
+}
+
+STRING 114
+// Способности: ZxEb (BonusMod - Life Regen (+2048)), Name (Название)
+{
+BonusMod - Life Regen (+2048)
+}
+
+STRING 115
+// Способности: ZxFb (BonusMod - Hero STR (+2048)), Name (Название)
+{
+BonusMod - Hero STR (+2048)
+}
+
+STRING 116
+// Способности: ZxGb (BonusMod - Hero AGI (+2048)), Name (Название)
+{
+BonusMod - Hero AGI (+2048)
+}
+
+STRING 117
+// Способности: ZxHb (BonusMod - Hero INT (+2048)), Name (Название)
+{
+BonusMod - Hero INT (+2048)
+}
+
+STRING 118
+// Способности: ZxAc (BonusMod - Armor (-4096)), Name (Название)
+{
+BonusMod - Armor (-4096)
+}
+
+STRING 119
+// Способности: ZxBc (BonusMod - Damage (-4096)), Name (Название)
+{
+BonusMod - Damage (-4096)
+}
+
+STRING 120
+// Способности: ZxCc (BonusMod - Sight Range (-4096)), Name (Название)
+{
+BonusMod - Sight Range (-4096)
+}
+
+STRING 121
+// Способности: ZxDc (BonusMod - Mana Regen (-4096)), Name (Название)
+{
+BonusMod - Mana Regen (-4096)
+}
+
+STRING 122
+// Способности: ZxEc (BonusMod - Life Regen (-4096)), Name (Название)
+{
+BonusMod - Life Regen (-4096)
+}
+
+STRING 123
+// Способности: ZxFc (BonusMod - Hero STR (-4096)), Name (Название)
+{
+BonusMod - Hero STR (-4096)
+}
+
+STRING 124
+// Способности: ZxGc (BonusMod - Hero AGI (-4096)), Name (Название)
+{
+BonusMod - Hero AGI (-4096)
+}
+
+STRING 125
+// Способности: ZxHc (BonusMod - Hero INT (-4096)), Name (Название)
+{
+BonusMod - Hero INT (-4096)
+}
+

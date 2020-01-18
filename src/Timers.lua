@@ -21,6 +21,8 @@ function InitTimers()
 					chargesCount = chargesCount + 1
 				end
 			end
+			UnitSetBonus(hero,5,chargesCount)--армор
+			UnitSetBonus(hero,6,chargesCount)--Hpregen
 			AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 		end
 	end)

@@ -42,7 +42,14 @@ do
 					for i = 1, #charges do
 						if charges[i] > SECOND then
 							chargeCount = chargeCount + 1
+							--UNIT_RF_HIT_POINTS_REGENERATION_RATE
 						end
+					end
+
+					UnitSetBonus(target,5,chargeCount)--армор
+					UnitSetBonus(target,6,chargeCount)--hpregen
+					if chargeCount>=#charges then
+						--print("получен урон при максимальных зарядах")
 					end
 					AddUnitToStock(data.unit, ReactiveArmorUnit, chargeCount, chargeCount)
 				end
