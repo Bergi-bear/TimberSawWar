@@ -298,6 +298,8 @@ function InitSpellTrigger()
 				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),40) then
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
+					UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
+					UnitRemoveAbility(caster,FourCC('B001'))--её аура
 					--print("Прибыл обратно к юниту")
 					KillUnit(chakrum)
 					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
