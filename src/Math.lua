@@ -135,7 +135,7 @@ function AngleDifference(a, b)
 	return c > d and d or c
 end
 
----@author xgm.guru/p/wc3/warden-math
+--@author xgm.guru/p/wc3/warden-math
 ---@param a real degrees
 ---@param b real degrees
 ---@return real degrees
@@ -153,7 +153,7 @@ function AngleDifferenceDeg(a, b)
 end
 
 -- Находит длину перпендикуляра от отрезка, заданного xa, ya, xb, yb к точке, заданной xc, yc
----@author https://xgm.guru/p/wc3/perpendicular
+--@author https://xgm.guru/p/wc3/perpendicular
 ---@param xa real
 ---@param ya real
 ---@param xb real
