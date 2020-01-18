@@ -55,7 +55,9 @@ function PointContainAnyDest(x,y,range)
 			GroupRemoveUnit(perebor,e)
 		end
 	end
-
+	if IsHooked==false and InMapXY(x,y)==false then
+		IsHooked=true
+	end
 	return IsHooked
 end
 
@@ -111,6 +113,7 @@ function InitSpellTrigger()
 				durAll = durAll - period
 				if durAll < 0 then
 					--print("Всего срублено деревьев "..ttk)
+
 					if ttk>0 then
 						FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 						AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
@@ -164,9 +167,10 @@ function InitSpellTrigger()
 						--print("revers")
 						revers=true
 					end
-					if PointContainAnyDest(NewX, NewY,TreeFinderRange) then
+					local WX,WY=MoveX(casterX,CurRange+speed,Angle), MoveY(casterY,CurRange+speed,Angle)
+					if PointContainAnyDest(WX,WY,TreeFinderRange) then --and InMapXY(MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle))==false then
 						--print("Попал в дерево")
-						ttk=KillTreeInRange(NewX, NewY,TreeFinderRange)
+						ttk=KillTreeInRange(WX, WY,TreeFinderRange)
 						forces=true
 						revers=false
 						ChainCount=1
@@ -213,23 +217,26 @@ function InitSpellTrigger()
 			end)
 
 
-		elseif spellId == FourCC('A002') then -- Первы чакрум 003 - возврат
+		elseif spellId == FourCC('A002') then -- Запуск пилы
 			local chakrum=CreateUnit(ownplayer,FourCC('e002'),casterX,casterY,0)
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD
 			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
 			local MaxDistance =1000
 			local CurrentDistance=DistanceBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])
 			if CurrentDistance>=MaxDistance then CurrentDistance=MaxDistance end
-			print("Текущая дистанция= "..CurrentDistance)
+			--print("Текущая дистанция= "..CurrentDistance)
 			local EndX,EndY=MoveX(casterX,CurrentDistance,Angle),MoveY(casterY,CurrentDistance,Angle)
 			local NewX,NewY,z = 0,0,0
 			local speed=15
 			local data = HERO[GetHandleId(caster)]
+			local damage=BlzGetUnitBaseDamage(caster, 0)/3
 			data.ChakrumUnit=chakrum
+			data.IsReturned=false
 			KillUnit(data.WaitReturnerUnit)
 			SetUnitPathing(chakrum,false)
 			BlzUnitHideAbility(caster,spellId,true)
-			UnitAddAbility(caster,FourCC('A003') )
+			UnitAddAbility(caster,FourCC('A003'))
+
 			--IssuePointOrder(chakram,"move",EndX,EndY)
 			TimerStart(CreateTimer(), 0.03, true, function()
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -238,21 +245,48 @@ function InitSpellTrigger()
 				SetUnitX(chakrum,NewX)
 				SetUnitY(chakrum,NewY)
 				SetUnitZ(chakrum,z)
-				if IsUnitInRangeXY(chakrum,EndX,EndY,100) then
+				if IsUnitInRangeXY(chakrum,EndX,EndY,100) or data.IsReturned then
+					UnitAddAbility(caster,FourCC('A005'))--дегенерация маны
+					BlzUnitHideAbility(caster,FourCC('A005'),true)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
-					print("Прибыл в конечную точку")
+					--print("Прибыл в конечную точку или оборван")
 				end
 			end)
-		elseif spellId == FourCC('A003') then
+			--Таймер урона
+			TimerStart(CreateTimer(), 0.1, true, function()
+				--print("попытка нанести урон")
+				if GetUnitState(caster,UNIT_STATE_MANA)<=1 then --закончилась мана
+					data.IsReturned=true
+					--print("закончилась мана")
+					IssueImmediateOrder(caster,"windwalk")
+				end
+
+				UnitDamageArea(caster,damage,GetUnitX(chakrum),GetUnitY(chakrum),150)
+				local ttk=KillTreeInRange(GetUnitX(chakrum), GetUnitY(chakrum),150)
+				if ttk>0 then
+					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+				end
+				if UnitAlive(chakrum)==false then
+				--	print("чакрум уничтожен")
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+				end
+			end)
+		elseif spellId == FourCC('A003') then -- возврат пилы
 			UnitRemoveAbility(caster,spellId)
+			UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
+			UnitRemoveAbility(caster,FourCC('B001'))--её аура
 			BlzUnitHideAbility(caster,FourCC('A002') ,false)
 			local data = HERO[GetHandleId(caster)]
 			local chakrum=data.ChakrumUnit
+			data.IsReturned=true
 			--print(GetUnitName(chakrum).." определён")
 			local NewX,NewY,z = 0,0,0
 			local Angle=0
 			local speed=20
+
 			TimerStart(CreateTimer(), 0.03, true, function()
 				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -261,12 +295,12 @@ function InitSpellTrigger()
 				SetUnitX(chakrum,NewX)
 				SetUnitY(chakrum,NewY)
 				SetUnitZ(chakrum,z)
-				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),50) then
+				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),40) then
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
-					print("Прибыл обратно к юниту")
+					--print("Прибыл обратно к юниту")
 					KillUnit(chakrum)
-					data.WaitReturner = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
+					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
 				end
 			end)
 

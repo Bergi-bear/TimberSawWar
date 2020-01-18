@@ -39,7 +39,8 @@ function InitGameCore()
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
-				ChakrumUnit=nil
+				ChakrumUnit=nil,
+				IsReturned=false
 			}
 		end
 	end

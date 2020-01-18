@@ -1,75 +1,56 @@
 function InitGlobals()
 end
 
-function CreateUnitsForPlayer0()
-    local p = Player(0)
+function CreateBuildingsForPlayer5()
+    local p = Player(5)
     local u
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("e002"), -4144.3, 4548.0, 331.630)
+    u = CreateUnit(p, FourCC("ogre"), -2880.0, 64.0, 270.000)
 end
 
-function CreateNeutralHostile()
-    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+function CreateUnitsForPlayer5()
+    local p = Player(5)
     local u
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("nwlt"), -4271.0, 3441.0, 91.827)
-    u = CreateUnit(p, FourCC("nwlt"), -4522.4, 4879.5, 250.309)
-    u = CreateUnit(p, FourCC("nwlt"), -4189.4, 3484.1, 214.262)
-    u = CreateUnit(p, FourCC("nwlt"), -4141.5, 3423.0, 250.309)
-    u = CreateUnit(p, FourCC("nwlt"), -4143.2, 3317.8, 294.168)
-    u = CreateUnit(p, FourCC("nwlt"), -4164.7, 3256.8, 104.077)
-    u = CreateUnit(p, FourCC("nwlt"), -4253.6, 3284.9, 60.064)
-    u = CreateUnit(p, FourCC("nwlt"), -4279.1, 3352.9, 288.345)
-    u = CreateUnit(p, FourCC("nwlt"), -4374.3, 3304.0, 338.268)
-    u = CreateUnit(p, FourCC("hpea"), -3635.8, 4183.7, 16.744)
-    u = CreateUnit(p, FourCC("hpea"), -3649.1, 4097.8, 320.635)
-    u = CreateUnit(p, FourCC("hpea"), -3627.9, 4053.6, 50.253)
-    u = CreateUnit(p, FourCC("hpea"), -3594.5, 4032.9, 125.270)
-    u = CreateUnit(p, FourCC("hpea"), -3525.5, 4080.3, 117.052)
-    u = CreateUnit(p, FourCC("hpea"), -3511.8, 4133.2, 342.180)
-    u = CreateUnit(p, FourCC("hpea"), -3509.6, 4177.5, 206.077)
-    u = CreateUnit(p, FourCC("hpea"), -3525.3, 4216.8, 323.810)
-    u = CreateUnit(p, FourCC("hpea"), -3569.1, 4202.2, 114.404)
-    u = CreateUnit(p, FourCC("hpea"), -3591.0, 4175.5, 173.424)
-    u = CreateUnit(p, FourCC("hpea"), -3602.4, 4123.3, 70.062)
-    u = CreateUnit(p, FourCC("hpea"), -5159.8, 3927.2, 25.069)
-    u = CreateUnit(p, FourCC("hpea"), -5155.1, 3876.4, 28.319)
-    u = CreateUnit(p, FourCC("hpea"), -5132.7, 3842.4, 31.064)
-    u = CreateUnit(p, FourCC("hpea"), -5107.0, 3822.7, 33.133)
-    u = CreateUnit(p, FourCC("hpea"), -5062.2, 3824.2, 34.807)
-    u = CreateUnit(p, FourCC("hpea"), -5037.2, 3860.8, 33.609)
-    u = CreateUnit(p, FourCC("hpea"), -5009.8, 3904.7, 31.875)
-    u = CreateUnit(p, FourCC("hpea"), -5047.9, 3954.9, 26.854)
-    u = CreateUnit(p, FourCC("hpea"), -5086.6, 3948.3, 25.969)
-    u = CreateUnit(p, FourCC("hpea"), -5099.5, 3909.5, 28.110)
-    u = CreateUnit(p, FourCC("nwlt"), -2447.9, 4100.8, 250.309)
-    u = CreateUnit(p, FourCC("nwlt"), -2420.4, 3922.0, 250.309)
+    u = CreateUnit(p, FourCC("Obla"), -3854.1, -395.7, 6.207)
 end
 
-function CreateNeutralPassiveBuildings()
-    local p = Player(PLAYER_NEUTRAL_PASSIVE)
+function CreateBuildingsForPlayer6()
+    local p = Player(6)
     local u
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("nef1"), -4256.0, 4832.0, 270.000)
+    u = CreateUnit(p, FourCC("etol"), 1728.0, 1984.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1184.0, 3616.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1568.0, 2976.0, 270.000)
+end
+
+function CreateUnitsForPlayer6()
+    local p = Player(6)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("Ewar"), 1899.3, 1451.3, 276.073)
 end
 
 function CreatePlayerBuildings()
+    CreateBuildingsForPlayer5()
+    CreateBuildingsForPlayer6()
 end
 
 function CreatePlayerUnits()
-    CreateUnitsForPlayer0()
+    CreateUnitsForPlayer5()
+    CreateUnitsForPlayer6()
 end
 
 function CreateAllUnits()
-    CreateNeutralPassiveBuildings()
     CreatePlayerBuildings()
-    CreateNeutralHostile()
     CreatePlayerUnits()
 end
 
@@ -397,7 +378,8 @@ function InitGameCore()
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
-				ChakrumUnit=nil
+				ChakrumUnit=nil,
+				IsReturned=false
 			}
 		end
 	end
@@ -627,7 +609,9 @@ function PointContainAnyDest(x,y,range)
 			GroupRemoveUnit(perebor,e)
 		end
 	end
-
+	if IsHooked==false and InMapXY(x,y)==false then
+		IsHooked=true
+	end
 	return IsHooked
 end
 
@@ -683,6 +667,7 @@ function InitSpellTrigger()
 				durAll = durAll - period
 				if durAll < 0 then
 					--print("Всего срублено деревьев "..ttk)
+
 					if ttk>0 then
 						FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 						AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
@@ -736,9 +721,10 @@ function InitSpellTrigger()
 						--print("revers")
 						revers=true
 					end
-					if PointContainAnyDest(NewX, NewY,TreeFinderRange) then
+					local WX,WY=MoveX(casterX,CurRange+speed,Angle), MoveY(casterY,CurRange+speed,Angle)
+					if PointContainAnyDest(WX,WY,TreeFinderRange) then --and InMapXY(MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle))==false then
 						--print("Попал в дерево")
-						ttk=KillTreeInRange(NewX, NewY,TreeFinderRange)
+						ttk=KillTreeInRange(WX, WY,TreeFinderRange)
 						forces=true
 						revers=false
 						ChainCount=1
@@ -785,23 +771,26 @@ function InitSpellTrigger()
 			end)
 
 
-		elseif spellId == FourCC('A002') then -- Первы чакрум 003 - возврат
+		elseif spellId == FourCC('A002') then -- Запуск пилы
 			local chakrum=CreateUnit(ownplayer,FourCC('e002'),casterX,casterY,0)
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD
 			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
 			local MaxDistance =1000
 			local CurrentDistance=DistanceBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])
 			if CurrentDistance>=MaxDistance then CurrentDistance=MaxDistance end
-			print("Текущая дистанция= "..CurrentDistance)
+			--print("Текущая дистанция= "..CurrentDistance)
 			local EndX,EndY=MoveX(casterX,CurrentDistance,Angle),MoveY(casterY,CurrentDistance,Angle)
 			local NewX,NewY,z = 0,0,0
 			local speed=15
 			local data = HERO[GetHandleId(caster)]
+			local damage=BlzGetUnitBaseDamage(caster, 0)/3
 			data.ChakrumUnit=chakrum
+			data.IsReturned=false
 			KillUnit(data.WaitReturnerUnit)
 			SetUnitPathing(chakrum,false)
 			BlzUnitHideAbility(caster,spellId,true)
-			UnitAddAbility(caster,FourCC('A003') )
+			UnitAddAbility(caster,FourCC('A003'))
+
 			--IssuePointOrder(chakram,"move",EndX,EndY)
 			TimerStart(CreateTimer(), 0.03, true, function()
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -810,21 +799,48 @@ function InitSpellTrigger()
 				SetUnitX(chakrum,NewX)
 				SetUnitY(chakrum,NewY)
 				SetUnitZ(chakrum,z)
-				if IsUnitInRangeXY(chakrum,EndX,EndY,100) then
+				if IsUnitInRangeXY(chakrum,EndX,EndY,100) or data.IsReturned then
+					UnitAddAbility(caster,FourCC('A005'))--дегенерация маны
+					BlzUnitHideAbility(caster,FourCC('A005'),true)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
-					print("Прибыл в конечную точку")
+					--print("Прибыл в конечную точку или оборван")
 				end
 			end)
-		elseif spellId == FourCC('A003') then
+			--Таймер урона
+			TimerStart(CreateTimer(), 0.1, true, function()
+				--print("попытка нанести урон")
+				if GetUnitState(caster,UNIT_STATE_MANA)<=1 then --закончилась мана
+					data.IsReturned=true
+					--print("закончилась мана")
+					IssueImmediateOrder(caster,"windwalk")
+				end
+
+				UnitDamageArea(caster,damage,GetUnitX(chakrum),GetUnitY(chakrum),150)
+				local ttk=KillTreeInRange(GetUnitX(chakrum), GetUnitY(chakrum),150)
+				if ttk>0 then
+					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+				end
+				if UnitAlive(chakrum)==false then
+				--	print("чакрум уничтожен")
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+				end
+			end)
+		elseif spellId == FourCC('A003') then -- возврат пилы
 			UnitRemoveAbility(caster,spellId)
+			UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
+			UnitRemoveAbility(caster,FourCC('B001'))--её аура
 			BlzUnitHideAbility(caster,FourCC('A002') ,false)
 			local data = HERO[GetHandleId(caster)]
 			local chakrum=data.ChakrumUnit
+			data.IsReturned=true
 			--print(GetUnitName(chakrum).." определён")
 			local NewX,NewY,z = 0,0,0
 			local Angle=0
 			local speed=20
+
 			TimerStart(CreateTimer(), 0.03, true, function()
 				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -833,12 +849,12 @@ function InitSpellTrigger()
 				SetUnitX(chakrum,NewX)
 				SetUnitY(chakrum,NewY)
 				SetUnitZ(chakrum,z)
-				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),50) then
+				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),40) then
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
-					print("Прибыл обратно к юниту")
+					--print("Прибыл обратно к юниту")
 					KillUnit(chakrum)
-					data.WaitReturner = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
+					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
 				end
 			end)
 
@@ -954,18 +970,83 @@ end
 --CUSTOM_CODE
 function InitCustomPlayerSlots()
     SetPlayerStartLocation(Player(0), 0)
+    ForcePlayerStartLocation(Player(0), 0)
     SetPlayerColor(Player(0), ConvertPlayerColor(0))
-    SetPlayerRacePreference(Player(0), RACE_PREF_HUMAN)
+    SetPlayerRacePreference(Player(0), RACE_PREF_ORC)
     SetPlayerRaceSelectable(Player(0), true)
     SetPlayerController(Player(0), MAP_CONTROL_USER)
+    SetPlayerStartLocation(Player(1), 1)
+    ForcePlayerStartLocation(Player(1), 1)
+    SetPlayerColor(Player(1), ConvertPlayerColor(1))
+    SetPlayerRacePreference(Player(1), RACE_PREF_ORC)
+    SetPlayerRaceSelectable(Player(1), true)
+    SetPlayerController(Player(1), MAP_CONTROL_USER)
+    SetPlayerStartLocation(Player(2), 2)
+    ForcePlayerStartLocation(Player(2), 2)
+    SetPlayerColor(Player(2), ConvertPlayerColor(2))
+    SetPlayerRacePreference(Player(2), RACE_PREF_ORC)
+    SetPlayerRaceSelectable(Player(2), true)
+    SetPlayerController(Player(2), MAP_CONTROL_USER)
+    SetPlayerStartLocation(Player(3), 3)
+    ForcePlayerStartLocation(Player(3), 3)
+    SetPlayerColor(Player(3), ConvertPlayerColor(3))
+    SetPlayerRacePreference(Player(3), RACE_PREF_ORC)
+    SetPlayerRaceSelectable(Player(3), true)
+    SetPlayerController(Player(3), MAP_CONTROL_USER)
+    SetPlayerStartLocation(Player(4), 4)
+    ForcePlayerStartLocation(Player(4), 4)
+    SetPlayerColor(Player(4), ConvertPlayerColor(4))
+    SetPlayerRacePreference(Player(4), RACE_PREF_HUMAN)
+    SetPlayerRaceSelectable(Player(4), true)
+    SetPlayerController(Player(4), MAP_CONTROL_COMPUTER)
+    SetPlayerStartLocation(Player(5), 5)
+    ForcePlayerStartLocation(Player(5), 5)
+    SetPlayerColor(Player(5), ConvertPlayerColor(5))
+    SetPlayerRacePreference(Player(5), RACE_PREF_ORC)
+    SetPlayerRaceSelectable(Player(5), true)
+    SetPlayerController(Player(5), MAP_CONTROL_COMPUTER)
+    SetPlayerStartLocation(Player(6), 6)
+    ForcePlayerStartLocation(Player(6), 6)
+    SetPlayerColor(Player(6), ConvertPlayerColor(6))
+    SetPlayerRacePreference(Player(6), RACE_PREF_NIGHTELF)
+    SetPlayerRaceSelectable(Player(6), true)
+    SetPlayerController(Player(6), MAP_CONTROL_COMPUTER)
+    SetPlayerStartLocation(Player(7), 7)
+    ForcePlayerStartLocation(Player(7), 7)
+    SetPlayerColor(Player(7), ConvertPlayerColor(7))
+    SetPlayerRacePreference(Player(7), RACE_PREF_UNDEAD)
+    SetPlayerRaceSelectable(Player(7), true)
+    SetPlayerController(Player(7), MAP_CONTROL_COMPUTER)
 end
 
 function InitCustomTeams()
     SetPlayerTeam(Player(0), 0)
+    SetPlayerTeam(Player(1), 0)
+    SetPlayerTeam(Player(2), 0)
+    SetPlayerTeam(Player(3), 0)
+    SetPlayerTeam(Player(4), 0)
+    SetPlayerTeam(Player(5), 0)
+    SetPlayerTeam(Player(6), 0)
+    SetPlayerTeam(Player(7), 0)
+end
+
+function InitAllyPriorities()
+    SetStartLocPrioCount(0, 2)
+    SetStartLocPrio(0, 0, 1, MAP_LOC_PRIO_LOW)
+    SetStartLocPrio(0, 1, 3, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrioCount(1, 2)
+    SetStartLocPrio(1, 0, 2, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrio(1, 1, 3, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrioCount(2, 2)
+    SetStartLocPrio(2, 0, 1, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrio(2, 1, 3, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrioCount(3, 2)
+    SetStartLocPrio(3, 0, 1, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrio(3, 1, 2, MAP_LOC_PRIO_HIGH)
 end
 
 function main()
-    SetCameraBounds(-5376.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), -5632.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM), 5376.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), 5120.0 - GetCameraMargin(CAMERA_MARGIN_TOP), -5376.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), 5120.0 - GetCameraMargin(CAMERA_MARGIN_TOP), 5376.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), -5632.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM))
+    SetCameraBounds(-7424.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), -7680.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM), 7424.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), 7168.0 - GetCameraMargin(CAMERA_MARGIN_TOP), -7424.0 + GetCameraMargin(CAMERA_MARGIN_LEFT), 7168.0 - GetCameraMargin(CAMERA_MARGIN_TOP), 7424.0 - GetCameraMargin(CAMERA_MARGIN_RIGHT), -7680.0 + GetCameraMargin(CAMERA_MARGIN_BOTTOM))
     SetDayNightModels("Environment\\DNC\\DNCAshenvale\\DNCAshenvaleTerrain\\DNCAshenvaleTerrain.mdl", "Environment\\DNC\\DNCAshenvale\\DNCAshenvaleUnit\\DNCAshenvaleUnit.mdl")
     NewSoundEnvironment("Default")
     SetAmbientDaySound("AshenvaleDay")
@@ -979,12 +1060,27 @@ end
 function config()
     SetMapName("TRIGSTR_001")
     SetMapDescription("TRIGSTR_003")
-    SetPlayers(1)
-    SetTeams(1)
-    SetGamePlacement(MAP_PLACEMENT_USE_MAP_SETTINGS)
-    DefineStartLocation(0, -4224.0, 4032.0)
+    SetPlayers(8)
+    SetTeams(8)
+    SetGamePlacement(MAP_PLACEMENT_TEAMS_TOGETHER)
+    DefineStartLocation(0, -4416.0, 4352.0)
+    DefineStartLocation(1, 1280.0, -1408.0)
+    DefineStartLocation(2, 4352.0, 1216.0)
+    DefineStartLocation(3, 448.0, 1920.0)
+    DefineStartLocation(4, 2240.0, 384.0)
+    DefineStartLocation(5, -3264.0, 256.0)
+    DefineStartLocation(6, 1152.0, 1664.0)
+    DefineStartLocation(7, 4224.0, -1728.0)
     InitCustomPlayerSlots()
     SetPlayerSlotAvailable(Player(0), MAP_CONTROL_USER)
+    SetPlayerSlotAvailable(Player(1), MAP_CONTROL_USER)
+    SetPlayerSlotAvailable(Player(2), MAP_CONTROL_USER)
+    SetPlayerSlotAvailable(Player(3), MAP_CONTROL_USER)
+    SetPlayerSlotAvailable(Player(4), MAP_CONTROL_COMPUTER)
+    SetPlayerSlotAvailable(Player(5), MAP_CONTROL_COMPUTER)
+    SetPlayerSlotAvailable(Player(6), MAP_CONTROL_COMPUTER)
+    SetPlayerSlotAvailable(Player(7), MAP_CONTROL_COMPUTER)
     InitGenericPlayerSlots()
+    InitAllyPriorities()
 end
 
