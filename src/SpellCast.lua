@@ -5,7 +5,8 @@ function KillTreeInRange (x,y,range)
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
-			if GetDestructableLife(d)>0 then --GetDestructableTypeId
+		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
+			if GetDestructableLife(d)>0 and GetDestructableTypeId(d)~=(FourCC('YTfc')) then --
 				k=k+1
 				--print("найдено дерево")
 			KillDestructable(d)
@@ -24,7 +25,6 @@ function UnitDamageArea(u,damage,x,y,range,type)
 		if e == nil then break end
 
 		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
-
 			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
 		end
 		GroupRemoveUnit(perebor,e)
@@ -130,9 +130,7 @@ function InitSpellTrigger()
 			local CurRange=0
 			local NewX,NewY=casterX,casterY
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD -- вот уже где реаьный разврат
-			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id] then
-				Angle=GetUnitFacing(caster)
-			end
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
 			local hook=AddSpecialEffect("war3mapImported/TimberChainHead.mdl", NewX, NewY)
 			local z=0
 			local revers=false
@@ -215,8 +213,62 @@ function InitSpellTrigger()
 			end)
 
 
-		elseif spellId == FourCC('A021') then -- Чакрам
-			SetUnitState(target,UNIT_STATE_MANA,GetUnitState(target,UNIT_STATE_MANA)+1)
+		elseif spellId == FourCC('A002') then -- Первы чакрум 003 - возврат
+			local chakrum=CreateUnit(ownplayer,FourCC('e002'),casterX,casterY,0)
+			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
+			local MaxDistance =1000
+			local CurrentDistance=DistanceBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])
+			if CurrentDistance>=MaxDistance then CurrentDistance=MaxDistance end
+			print("Текущая дистанция= "..CurrentDistance)
+			local EndX,EndY=MoveX(casterX,CurrentDistance,Angle),MoveY(casterY,CurrentDistance,Angle)
+			local NewX,NewY,z = 0,0,0
+			local speed=15
+			local data = HERO[GetHandleId(caster)]
+			data.ChakrumUnit=chakrum
+			KillUnit(data.WaitReturnerUnit)
+			SetUnitPathing(chakrum,false)
+			BlzUnitHideAbility(caster,spellId,true)
+			UnitAddAbility(caster,FourCC('A003') )
+			--IssuePointOrder(chakram,"move",EndX,EndY)
+			TimerStart(CreateTimer(), 0.03, true, function()
+				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
+				NewY=MoveY(GetUnitY(chakrum),speed,Angle)
+				z=GetTerrainZ(NewX, NewY) + 60
+				SetUnitX(chakrum,NewX)
+				SetUnitY(chakrum,NewY)
+				SetUnitZ(chakrum,z)
+				if IsUnitInRangeXY(chakrum,EndX,EndY,100) then
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+					print("Прибыл в конечную точку")
+				end
+			end)
+		elseif spellId == FourCC('A003') then
+			UnitRemoveAbility(caster,spellId)
+			BlzUnitHideAbility(caster,FourCC('A002') ,false)
+			local data = HERO[GetHandleId(caster)]
+			local chakrum=data.ChakrumUnit
+			--print(GetUnitName(chakrum).." определён")
+			local NewX,NewY,z = 0,0,0
+			local Angle=0
+			local speed=20
+			TimerStart(CreateTimer(), 0.03, true, function()
+				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
+				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
+				NewY=MoveY(GetUnitY(chakrum),speed,Angle)
+				z=GetTerrainZ(NewX, NewY) + 60
+				SetUnitX(chakrum,NewX)
+				SetUnitY(chakrum,NewY)
+				SetUnitZ(chakrum,z)
+				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),50) then
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+					print("Прибыл обратно к юниту")
+					KillUnit(chakrum)
+					data.WaitReturner = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
+				end
+			end)
 
 		end
 	end)

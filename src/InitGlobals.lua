@@ -30,13 +30,16 @@ function InitGameCore()
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -4300, 4200, 0)
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
-			
+			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
+
 			-- ReactiveArmor
 			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			HERO[GetHandleId(hero)] = {
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
-				ReactiveArmorLimit   = true -- ограниченное количество зарядов
+				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
+				WaitReturnerUnit = WaitReturner,
+				ChakrumUnit=nil
 			}
 		end
 	end

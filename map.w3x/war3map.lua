@@ -1,20 +1,30 @@
 function InitGlobals()
 end
 
+function CreateUnitsForPlayer0()
+    local p = Player(0)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("e002"), -4144.3, 4548.0, 331.630)
+end
+
 function CreateNeutralHostile()
     local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
     local u
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("nwlt"), -3995.3, 3630.1, 91.827)
-    u = CreateUnit(p, FourCC("nwlt"), -3913.7, 3673.2, 214.262)
-    u = CreateUnit(p, FourCC("nwlt"), -3865.7, 3612.1, 250.309)
-    u = CreateUnit(p, FourCC("nwlt"), -3867.5, 3506.9, 294.168)
-    u = CreateUnit(p, FourCC("nwlt"), -3889.0, 3445.9, 104.077)
-    u = CreateUnit(p, FourCC("nwlt"), -3977.9, 3474.0, 60.064)
-    u = CreateUnit(p, FourCC("nwlt"), -4003.3, 3542.0, 288.345)
-    u = CreateUnit(p, FourCC("nwlt"), -4098.6, 3493.1, 338.268)
+    u = CreateUnit(p, FourCC("nwlt"), -4271.0, 3441.0, 91.827)
+    u = CreateUnit(p, FourCC("nwlt"), -4522.4, 4879.5, 250.309)
+    u = CreateUnit(p, FourCC("nwlt"), -4189.4, 3484.1, 214.262)
+    u = CreateUnit(p, FourCC("nwlt"), -4141.5, 3423.0, 250.309)
+    u = CreateUnit(p, FourCC("nwlt"), -4143.2, 3317.8, 294.168)
+    u = CreateUnit(p, FourCC("nwlt"), -4164.7, 3256.8, 104.077)
+    u = CreateUnit(p, FourCC("nwlt"), -4253.6, 3284.9, 60.064)
+    u = CreateUnit(p, FourCC("nwlt"), -4279.1, 3352.9, 288.345)
+    u = CreateUnit(p, FourCC("nwlt"), -4374.3, 3304.0, 338.268)
     u = CreateUnit(p, FourCC("hpea"), -3635.8, 4183.7, 16.744)
     u = CreateUnit(p, FourCC("hpea"), -3649.1, 4097.8, 320.635)
     u = CreateUnit(p, FourCC("hpea"), -3627.9, 4053.6, 50.253)
@@ -26,16 +36,18 @@ function CreateNeutralHostile()
     u = CreateUnit(p, FourCC("hpea"), -3569.1, 4202.2, 114.404)
     u = CreateUnit(p, FourCC("hpea"), -3591.0, 4175.5, 173.424)
     u = CreateUnit(p, FourCC("hpea"), -3602.4, 4123.3, 70.062)
-    u = CreateUnit(p, FourCC("hpea"), -5022.5, 4138.7, 25.069)
-    u = CreateUnit(p, FourCC("hpea"), -5017.7, 4087.9, 28.319)
-    u = CreateUnit(p, FourCC("hpea"), -4995.3, 4053.9, 31.064)
-    u = CreateUnit(p, FourCC("hpea"), -4969.7, 4034.3, 33.133)
-    u = CreateUnit(p, FourCC("hpea"), -4924.8, 4035.8, 34.807)
-    u = CreateUnit(p, FourCC("hpea"), -4899.8, 4072.4, 33.609)
-    u = CreateUnit(p, FourCC("hpea"), -4872.5, 4116.3, 31.875)
-    u = CreateUnit(p, FourCC("hpea"), -4910.5, 4166.5, 26.854)
-    u = CreateUnit(p, FourCC("hpea"), -4949.3, 4159.9, 25.969)
-    u = CreateUnit(p, FourCC("hpea"), -4962.2, 4121.0, 28.110)
+    u = CreateUnit(p, FourCC("hpea"), -5159.8, 3927.2, 25.069)
+    u = CreateUnit(p, FourCC("hpea"), -5155.1, 3876.4, 28.319)
+    u = CreateUnit(p, FourCC("hpea"), -5132.7, 3842.4, 31.064)
+    u = CreateUnit(p, FourCC("hpea"), -5107.0, 3822.7, 33.133)
+    u = CreateUnit(p, FourCC("hpea"), -5062.2, 3824.2, 34.807)
+    u = CreateUnit(p, FourCC("hpea"), -5037.2, 3860.8, 33.609)
+    u = CreateUnit(p, FourCC("hpea"), -5009.8, 3904.7, 31.875)
+    u = CreateUnit(p, FourCC("hpea"), -5047.9, 3954.9, 26.854)
+    u = CreateUnit(p, FourCC("hpea"), -5086.6, 3948.3, 25.969)
+    u = CreateUnit(p, FourCC("hpea"), -5099.5, 3909.5, 28.110)
+    u = CreateUnit(p, FourCC("nwlt"), -2447.9, 4100.8, 250.309)
+    u = CreateUnit(p, FourCC("nwlt"), -2420.4, 3922.0, 250.309)
 end
 
 function CreateNeutralPassiveBuildings()
@@ -51,6 +63,7 @@ function CreatePlayerBuildings()
 end
 
 function CreatePlayerUnits()
+    CreateUnitsForPlayer0()
 end
 
 function CreateAllUnits()
@@ -375,13 +388,16 @@ function InitGameCore()
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -4300, 4200, 0)
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
-			
+			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
+
 			-- ReactiveArmor
 			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			HERO[GetHandleId(hero)] = {
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
-				ReactiveArmorLimit   = true -- ограниченное количество зарядов
+				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
+				WaitReturnerUnit = WaitReturner,
+				ChakrumUnit=nil
 			}
 		end
 	end
@@ -561,7 +577,8 @@ function KillTreeInRange (x,y,range)
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
-			if GetDestructableLife(d)>0 then --GetDestructableTypeId
+		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
+			if GetDestructableLife(d)>0 and GetDestructableTypeId(d)~=(FourCC('YTfc')) then --
 				k=k+1
 				--print("найдено дерево")
 			KillDestructable(d)
@@ -580,7 +597,6 @@ function UnitDamageArea(u,damage,x,y,range,type)
 		if e == nil then break end
 
 		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
-
 			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
 		end
 		GroupRemoveUnit(perebor,e)
@@ -686,9 +702,7 @@ function InitSpellTrigger()
 			local CurRange=0
 			local NewX,NewY=casterX,casterY
 			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD -- вот уже где реаьный разврат
-			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id] then
-				Angle=GetUnitFacing(caster)
-			end
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
 			local hook=AddSpecialEffect("war3mapImported/TimberChainHead.mdl", NewX, NewY)
 			local z=0
 			local revers=false
@@ -771,8 +785,62 @@ function InitSpellTrigger()
 			end)
 
 
-		elseif spellId == FourCC('A021') then -- Чакрам
-			SetUnitState(target,UNIT_STATE_MANA,GetUnitState(target,UNIT_STATE_MANA)+1)
+		elseif spellId == FourCC('A002') then -- Первы чакрум 003 - возврат
+			local chakrum=CreateUnit(ownplayer,FourCC('e002'),casterX,casterY,0)
+			local Angle=AngleBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])/bj_DEGTORAD
+			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
+			local MaxDistance =1000
+			local CurrentDistance=DistanceBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])
+			if CurrentDistance>=MaxDistance then CurrentDistance=MaxDistance end
+			print("Текущая дистанция= "..CurrentDistance)
+			local EndX,EndY=MoveX(casterX,CurrentDistance,Angle),MoveY(casterY,CurrentDistance,Angle)
+			local NewX,NewY,z = 0,0,0
+			local speed=15
+			local data = HERO[GetHandleId(caster)]
+			data.ChakrumUnit=chakrum
+			KillUnit(data.WaitReturnerUnit)
+			SetUnitPathing(chakrum,false)
+			BlzUnitHideAbility(caster,spellId,true)
+			UnitAddAbility(caster,FourCC('A003') )
+			--IssuePointOrder(chakram,"move",EndX,EndY)
+			TimerStart(CreateTimer(), 0.03, true, function()
+				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
+				NewY=MoveY(GetUnitY(chakrum),speed,Angle)
+				z=GetTerrainZ(NewX, NewY) + 60
+				SetUnitX(chakrum,NewX)
+				SetUnitY(chakrum,NewY)
+				SetUnitZ(chakrum,z)
+				if IsUnitInRangeXY(chakrum,EndX,EndY,100) then
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+					print("Прибыл в конечную точку")
+				end
+			end)
+		elseif spellId == FourCC('A003') then
+			UnitRemoveAbility(caster,spellId)
+			BlzUnitHideAbility(caster,FourCC('A002') ,false)
+			local data = HERO[GetHandleId(caster)]
+			local chakrum=data.ChakrumUnit
+			--print(GetUnitName(chakrum).." определён")
+			local NewX,NewY,z = 0,0,0
+			local Angle=0
+			local speed=20
+			TimerStart(CreateTimer(), 0.03, true, function()
+				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
+				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
+				NewY=MoveY(GetUnitY(chakrum),speed,Angle)
+				z=GetTerrainZ(NewX, NewY) + 60
+				SetUnitX(chakrum,NewX)
+				SetUnitY(chakrum,NewY)
+				SetUnitZ(chakrum,z)
+				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),50) then
+					PauseTimer(GetExpiredTimer())
+					DestroyTimer(GetExpiredTimer())
+					print("Прибыл обратно к юниту")
+					KillUnit(chakrum)
+					data.WaitReturner = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
+				end
+			end)
 
 		end
 	end)
