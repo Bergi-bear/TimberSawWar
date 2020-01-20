@@ -18,6 +18,5 @@ function InitMouseMoveTrigger()
 			local id=GetPlayerId(GetTriggerPlayer())
 			GetPlayerMouseX[id]=BlzGetTriggerPlayerMouseX()
 			GetPlayerMouseY[id]=BlzGetTriggerPlayerMouseY()
-
 		end)
 end

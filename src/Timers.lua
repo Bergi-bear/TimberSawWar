@@ -3,8 +3,6 @@
 --- Created by Bergi.
 --- DateTime: 17.01.2020 22:52
 ---
---FIXME
---TODO
 SECOND = 0
 function InitTimers()
 	TimerStart(CreateTimer(), 1, true, function()

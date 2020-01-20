@@ -620,7 +620,6 @@ function InitMouseMoveTrigger()
 			local id=GetPlayerId(GetTriggerPlayer())
 			GetPlayerMouseX[id]=BlzGetTriggerPlayerMouseX()
 			GetPlayerMouseY[id]=BlzGetTriggerPlayerMouseY()
-
 		end)
 end
 ---
@@ -640,6 +639,7 @@ do
 		InitGameCore()
 		InitDamage()
 		InitTimers()
+		InitDestructablesActions()
 	end
 
 end
@@ -647,6 +647,10 @@ HERO                  = {} -- таблица героев
 HERO_ID               = FourCC('H000') -- ид единственного героя
 ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
 ReactiveArmorUnit     = FourCC('n000')
+HEROSimple            = {} -- упрощённая таблица
+
+
+
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
@@ -656,7 +660,7 @@ function InitGameCore()
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
 			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
-
+			HEROSimple[GetPlayerId(GetOwningPlayer(hero))+1]=hero
 			-- ReactiveArmor
 			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
@@ -673,6 +677,49 @@ function InitGameCore()
 			}
 		end
 	end
+end
+
+DestructableState={}
+function InitDestructablesActions()
+	AnyDeathDestructEnum = CreateTrigger()
+	--AnyDeathDestruct = CreateTrigger()
+	EnumDestructablesInRect(bj_mapInitialPlayableArea,nil, function()
+		TriggerRegisterDeathEvent(AnyDeathDestructEnum, GetEnumDestructable())
+	end)
+	TriggerAddAction(AnyDeathDestructEnum, function()
+		local d=GetTriggerDestructable()
+		--print("умер"..GetDestructableName(d))
+		local SpawnTime=GetRandomInt(30,60)
+		if DestructableState[GetHandleId(d)]==nil then
+			print("убит с руки")
+			local data={}
+			local KillerID=99
+			for i = 0, 3 do
+
+				local id=GetPlayerId(Player(i))
+				data[i+1]=R2I(DistanceBetweenXY(GetDestructableX(d),GetDestructableY(d),GetUnitX(HEROSimple[id+1]),GetUnitY(HEROSimple[id+1])))
+				print("назначаем"..data[i+1])
+			end
+			local min=math.min (data[1],data[2],data[3],data[4])
+			print("определена"..min)
+			for i = 1, 4 do
+				print("сравниваем")
+				if data[i]==min then
+					KillerID=i-1
+					print("сравнили")
+				end
+			end
+			--print("убийца дерева- "..GetunitHEROSimple[KillerID])
+			FlyTextTagLumberBounty(HEROSimple[KillerID+1],"+"..1,Player(KillerID))
+			AdjustPlayerStateBJ(1, Player(KillerID), PLAYER_STATE_RESOURCE_LUMBER )
+		end
+		DestructableState[GetHandleId(d)]=nil
+		TimerStart(CreateTimer(), SpawnTime, false, function()
+			DestructableRestoreLife(d, GetDestructableMaxLife(d), true)
+			PauseTimer(GetExpiredTimer())
+			DestroyTimer(GetExpiredTimer())
+		end)
+	end)
 end
 
 
@@ -849,9 +896,9 @@ function KillTreeInRange (x,y,range)
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
-		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
-			if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
-				k=k+1
+		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
+			k=k+1
+			DestructableState[GetHandleId(d)]=1-- параметр означает, что дерево уничтожено способностью
 				--print("найдено дерево")
 			KillDestructable(d)
 			end
@@ -1235,8 +1282,6 @@ end
 --- Created by Bergi.
 --- DateTime: 17.01.2020 22:52
 ---
---FIXME
---TODO
 SECOND = 0
 function InitTimers()
 	TimerStart(CreateTimer(), 1, true, function()
@@ -1260,44 +1305,6 @@ function InitTimers()
 	end)
 end
 --CUSTOM_CODE
-function Trig_TreeDeadTimer_Actions()
-    TriggerSleepAction(GetRandomReal(30.00, 60.00))
-    DestructableRestoreLife(GetDyingDestructable(), GetDestructableMaxLife(GetDyingDestructable()), true)
-end
-
-function InitTrig_TreeDeadTimer()
-    gg_trg_TreeDeadTimer = CreateTrigger()
-    TriggerAddAction(gg_trg_TreeDeadTimer, Trig_TreeDeadTimer_Actions)
-end
-
-function Trig_Init_Func002A()
-    TriggerRegisterDeathEvent(gg_trg_TreeDeadTimer, GetEnumDestructable())
-end
-
-function Trig_Init_Actions()
-    EnumDestructablesInRectAll(GetPlayableMapRect(), Trig_Init_Func002A)
-    SetPlayerAllianceStateBJ(Player(0), Player(5), bj_ALLIANCE_NEUTRAL)
-    SetPlayerAllianceStateBJ(Player(5), Player(0), bj_ALLIANCE_NEUTRAL)
-    SetPlayerAllianceStateBJ(Player(0), Player(4), bj_ALLIANCE_UNALLIED)
-    SetPlayerAllianceStateBJ(Player(0), Player(7), bj_ALLIANCE_NEUTRAL)
-    SetPlayerAllianceStateBJ(Player(7), Player(0), bj_ALLIANCE_NEUTRAL)
-    SetPlayerAllianceStateBJ(Player(0), Player(6), bj_ALLIANCE_UNALLIED)
-end
-
-function InitTrig_Init()
-    gg_trg_Init = CreateTrigger()
-    TriggerAddAction(gg_trg_Init, Trig_Init_Actions)
-end
-
-function InitCustomTriggers()
-    InitTrig_TreeDeadTimer()
-    InitTrig_Init()
-end
-
-function RunInitializationTriggers()
-    ConditionalTriggerExecute(gg_trg_Init)
-end
-
 function InitCustomPlayerSlots()
     SetPlayerStartLocation(Player(0), 0)
     ForcePlayerStartLocation(Player(0), 0)
@@ -1387,8 +1394,6 @@ function main()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
-    InitCustomTriggers()
-    RunInitializationTriggers()
 end
 
 function config()

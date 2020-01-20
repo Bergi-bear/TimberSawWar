@@ -15,6 +15,7 @@ do
 		InitGameCore()
 		InitDamage()
 		InitTimers()
+		InitDestructablesActions()
 	end
 
 end
@@ -22,6 +23,9 @@ HERO                  = {} -- таблица героев
 HERO_ID               = FourCC('H000') -- ид единственного героя
 ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
 ReactiveArmorUnit     = FourCC('n000')
+HEROSimple            = {} -- упрощённая таблица
+
+
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
@@ -31,7 +35,7 @@ function InitGameCore()
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
 			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
-
+			HEROSimple[GetPlayerId(GetOwningPlayer(hero))+1]=hero
 			-- ReactiveArmor
 			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
@@ -49,4 +53,6 @@ function InitGameCore()
 		end
 	end
 end
+
+
 

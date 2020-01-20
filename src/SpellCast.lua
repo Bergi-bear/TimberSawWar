@@ -5,9 +5,9 @@ function KillTreeInRange (x,y,range)
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
-		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
-			if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
-				k=k+1
+		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
+			k=k+1
+			DestructableState[GetHandleId(d)]=1-- параметр означает, что дерево уничтожено способностью
 				--print("найдено дерево")
 			KillDestructable(d)
 			end
