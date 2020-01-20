@@ -1,4 +1,64 @@
+gg_rct________________000 = nil
+gg_trg_TreeDeadTimer = nil
+gg_trg_Init = nil
 function InitGlobals()
+end
+
+function CreateBuildingsForPlayer4()
+    local p = Player(4)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("hgtw"), -192.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hctw"), 0.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), 192.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -1216.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -1600.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hctw"), -1408.0, -4288.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), -2048.0, -4224.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), -2048.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), -1408.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), -128.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), 640.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hatw"), 640.0, -4224.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), 256.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -1728.0, -2560.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -704.0, -2304.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), 640.0, -3712.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -2048.0, -3712.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), -2048.0, -3072.0, 270.000)
+    u = CreateUnit(p, FourCC("hgtw"), 640.0, -3072.0, 270.000)
+    u = CreateUnit(p, FourCC("hlum"), -2848.0, -4896.0, 270.000)
+    u = CreateUnit(p, FourCC("hbla"), 128.0, -4736.0, 270.000)
+end
+
+function CreateUnitsForPlayer4()
+    local p = Player(4)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("Hapm"), -699.7, -2928.7, 263.790)
+    u = CreateUnit(p, FourCC("hcth"), -560.1, -2915.2, 260.867)
+    u = CreateUnit(p, FourCC("hcth"), -838.4, -2923.7, 258.274)
+    u = CreateUnit(p, FourCC("nemi"), 135.2, -3646.4, 330.874)
+    u = CreateUnit(p, FourCC("nemi"), 218.4, -3769.6, 83.279)
+    u = CreateUnit(p, FourCC("nhef"), 248.6, -3646.2, 213.981)
+    u = CreateUnit(p, FourCC("nhea"), -1478.0, -3647.1, 66.612)
+    u = CreateUnit(p, FourCC("nhea"), -1610.9, -3774.5, 313.977)
+    u = CreateUnit(p, FourCC("nhym"), -1614.6, -3632.8, 321.349)
+    u = CreateUnit(p, FourCC("hhdl"), -1152.2, -3177.3, 40.717)
+    u = CreateUnit(p, FourCC("hhdl"), -237.7, -3116.9, 127.484)
+    u = CreateUnit(p, FourCC("hhes"), -938.5, -4828.3, 270.076)
+    u = CreateUnit(p, FourCC("hhes"), -470.8, -4838.9, 270.876)
+    u = CreateUnit(p, FourCC("hpea"), 795.8, -5305.3, 216.235)
+    u = CreateUnit(p, FourCC("nhea"), 855.2, -5398.9, 227.962)
+    u = CreateUnit(p, FourCC("nhea"), 659.9, -5281.0, 223.172)
+    u = CreateUnit(p, FourCC("hpea"), -2670.5, -5013.6, 299.945)
+    u = CreateUnit(p, FourCC("hmtt"), -156.3, -4690.9, 263.315)
+    u = CreateUnit(p, FourCC("hrif"), 19.7, -4903.6, 259.857)
+    u = CreateUnit(p, FourCC("hpea"), -2875.8, -5112.8, 271.627)
 end
 
 function CreateBuildingsForPlayer5()
@@ -7,7 +67,22 @@ function CreateBuildingsForPlayer5()
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("ogre"), -2880.0, 64.0, 270.000)
+    u = CreateUnit(p, FourCC("ofor"), -7136.0, -2336.0, 270.000)
+    u = CreateUnit(p, FourCC("npgf"), -2912.0, -800.0, 270.000)
+    u = CreateUnit(p, FourCC("npgf"), -4128.0, 544.0, 270.000)
+    u = CreateUnit(p, FourCC("npgf"), -4512.0, -32.0, 270.000)
+    u = CreateUnit(p, FourCC("npgf"), -3744.0, -1120.0, 270.000)
+    u = CreateUnit(p, FourCC("npgf"), -3360.0, -736.0, 270.000)
+    u = CreateUnit(p, FourCC("npgr"), -2368.0, -512.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4864.0, -512.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4288.0, -1216.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4032.0, -960.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4608.0, -320.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4608.0, 576.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -4352.0, 896.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -3264.0, -1280.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -3264.0, 832.0, 270.000)
+    u = CreateUnit(p, FourCC("owtw"), -3712.0, -1344.0, 270.000)
 end
 
 function CreateUnitsForPlayer5()
@@ -16,7 +91,19 @@ function CreateUnitsForPlayer5()
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("Obla"), -3854.1, -395.7, 6.207)
+    u = CreateUnit(p, FourCC("opeo"), -6902.1, -2337.1, 185.521)
+    u = CreateUnit(p, FourCC("Obla"), -3524.8, -69.4, 227.642)
+    u = CreateUnit(p, FourCC("opeo"), -6983.0, -2513.7, 300.683)
+    u = CreateUnit(p, FourCC("Nsjs"), -6796.6, 3735.0, 303.583)
+    u = CreateUnit(p, FourCC("odkt"), -2608.9, -453.5, 168.836)
+    u = CreateUnit(p, FourCC("owar"), -3388.1, -110.9, 225.434)
+    u = CreateUnit(p, FourCC("owar"), -3601.4, 38.4, 231.982)
+    u = CreateUnit(p, FourCC("nw2w"), -2545.7, -388.5, 172.253)
+    u = CreateUnit(p, FourCC("nw2w"), -2580.9, -543.5, 169.868)
+    u = CreateUnit(p, FourCC("oosc"), -3929.0, 530.9, 225.457)
+    u = CreateUnit(p, FourCC("oosc"), -4430.9, 147.5, 109.625)
+    u = CreateUnit(p, FourCC("oosc"), -3525.6, -1132.2, 27.609)
+    u = CreateUnit(p, FourCC("oosc"), -3019.6, -953.7, 326.645)
 end
 
 function CreateBuildingsForPlayer6()
@@ -25,9 +112,31 @@ function CreateBuildingsForPlayer6()
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("etol"), 1728.0, 1984.0, 270.000)
-    u = CreateUnit(p, FourCC("etrp"), 1184.0, 3616.0, 270.000)
-    u = CreateUnit(p, FourCC("etrp"), 1568.0, 2976.0, 270.000)
+    u = CreateUnit(p, FourCC("emow"), 6304.0, 5216.0, 270.000)
+    u = CreateUnit(p, FourCC("emow"), 1952.0, 2208.0, 270.000)
+    u = CreateUnit(p, FourCC("emow"), 672.0, 2464.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 5920.0, 5024.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 6368.0, 4640.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 2016.0, 2464.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 2080.0, 2976.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 544.0, 2720.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 928.0, 3808.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 864.0, 3168.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 2528.0, 3104.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1248.0, 928.0, 270.000)
+    u = CreateUnit(p, FourCC("edob"), 1280.0, 2560.0, 270.000)
+    u = CreateUnit(p, FourCC("edob"), 1152.0, 6912.0, 270.000)
+    u = CreateUnit(p, FourCC("emow"), 1376.0, 7008.0, 270.000)
+    u = CreateUnit(p, FourCC("emow"), 1056.0, 6560.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1632.0, 7008.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1056.0, 6304.0, 270.000)
+    u = CreateUnit(p, FourCC("etrp"), 1696.0, 6368.0, 270.000)
+    u = CreateUnit(p, FourCC("nfv2"), 800.0, 1376.0, 270.000)
+    u = CreateUnit(p, FourCC("nfv2"), 928.0, 1184.0, 270.000)
+    u = CreateUnit(p, FourCC("nfv4"), 1568.0, 1056.0, 270.000)
+    u = CreateUnit(p, FourCC("edos"), 1216.0, 1152.0, 270.000)
+    u = CreateUnit(p, FourCC("eaoe"), 768.0, 2048.0, 270.000)
+    u = CreateUnit(p, FourCC("eaom"), 1472.0, 3072.0, 270.000)
 end
 
 function CreateUnitsForPlayer6()
@@ -36,22 +145,199 @@ function CreateUnitsForPlayer6()
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("Ewar"), 1899.3, 1451.3, 276.073)
+    u = CreateUnit(p, FourCC("Ewar"), 1681.4, 1664.6, 144.401)
+    u = CreateUnit(p, FourCC("edry"), 6111.8, 5104.0, 322.404)
+    u = CreateUnit(p, FourCC("edry"), 6412.8, 4998.4, 190.882)
+    u = CreateUnit(p, FourCC("edot"), 6266.4, 5019.8, 16.865)
+    u = CreateUnit(p, FourCC("earc"), 1194.5, 6318.8, 107.120)
+    u = CreateUnit(p, FourCC("earc"), 1522.3, 6332.3, 207.088)
+    u = CreateUnit(p, FourCC("earc"), 1672.8, 6519.3, 315.812)
+    u = CreateUnit(p, FourCC("earc"), 1664.0, 6844.3, 173.183)
+    u = CreateUnit(p, FourCC("edoc"), 1317.7, 6692.9, 116.667)
+    u = CreateUnit(p, FourCC("esen"), 1231.9, 6598.1, 178.786)
+    u = CreateUnit(p, FourCC("esen"), 1429.6, 6765.5, 183.301)
+    u = CreateUnit(p, FourCC("earc"), 441.8, 3830.9, 206.758)
+    u = CreateUnit(p, FourCC("earc"), 373.6, 2894.0, 93.189)
+    u = CreateUnit(p, FourCC("earc"), 759.3, 3336.3, 48.957)
+    u = CreateUnit(p, FourCC("esen"), -292.4, 3679.8, 86.714)
+    u = CreateUnit(p, FourCC("nssn"), 18.4, 4338.3, 175.702)
+    u = CreateUnit(p, FourCC("eshd"), 566.9, 3072.7, 114.756)
+    u = CreateUnit(p, FourCC("Ecen"), 2670.0, 5841.7, 315.120)
+    u = CreateUnit(p, FourCC("nwat"), 19.0, 4238.5, 169.013)
+    u = CreateUnit(p, FourCC("earc"), 669.8, 1683.9, 355.496)
+    u = CreateUnit(p, FourCC("earc"), 1700.8, 1790.7, 335.093)
+    u = CreateUnit(p, FourCC("earc"), 1054.4, 1328.0, 219.579)
+    u = CreateUnit(p, FourCC("earc"), 902.9, 2245.8, 254.264)
+    u = CreateUnit(p, FourCC("earc"), 1740.4, 2117.9, 262.010)
+    u = CreateUnit(p, FourCC("emtg"), 1943.7, 2677.9, 3.024)
+    u = CreateUnit(p, FourCC("emtg"), 764.3, 2896.8, 147.723)
+    u = CreateUnit(p, FourCC("edry"), 1023.9, 2600.4, 268.888)
+    u = CreateUnit(p, FourCC("edry"), 1257.0, 2816.2, 355.320)
+    u = CreateUnit(p, FourCC("edry"), 1471.9, 2596.1, 37.761)
+end
+
+function CreateBuildingsForPlayer7()
+    local p = Player(7)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("ugrv"), 6272.0, -1280.0, 270.000)
+    u = CreateUnit(p, FourCC("uzg2"), 5280.0, -1376.0, 270.000)
+    u = CreateUnit(p, FourCC("uzg2"), 4640.0, -1632.0, 270.000)
+    u = CreateUnit(p, FourCC("uzg2"), 5920.0, -2400.0, 270.000)
+    u = CreateUnit(p, FourCC("uzg2"), 5024.0, -2848.0, 270.000)
+end
+
+function CreateUnitsForPlayer7()
+    local p = Player(7)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("uktg"), 6085.8, -1485.1, 235.290)
+    u = CreateUnit(p, FourCC("ugho"), 6402.1, -1654.1, 284.049)
+    u = CreateUnit(p, FourCC("ugho"), 5913.9, -1229.3, 185.839)
+    u = CreateUnit(p, FourCC("ushd"), 4845.6, -2081.4, 317.075)
+    u = CreateUnit(p, FourCC("ushd"), 5701.1, -2125.3, 222.249)
+    u = CreateUnit(p, FourCC("ushd"), 5789.4, -3261.6, 64.744)
+    u = CreateUnit(p, FourCC("ushd"), 4652.1, -899.1, 238.531)
+    u = CreateUnit(p, FourCC("uske"), 5105.2, -1433.8, 9.646)
+    u = CreateUnit(p, FourCC("uske"), 4841.7, -1559.2, 42.870)
+    u = CreateUnit(p, FourCC("uske"), 5757.6, -2541.9, 76.127)
+    u = CreateUnit(p, FourCC("uske"), 5194.2, -2844.2, 124.830)
+    u = CreateUnit(p, FourCC("Uclc"), 5396.3, -2469.5, 107.032)
+    u = CreateUnit(p, FourCC("uswb"), 3367.9, -1916.6, 309.027)
+end
+
+function CreateNeutralHostileBuildings()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("nfgo"), 7040.0, 6656.0, 270.000)
+end
+
+function CreateNeutralHostile()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("nslf"), 6509.4, 6610.7, 92.925)
+    u = CreateUnit(p, FourCC("nslf"), 6486.7, 6100.3, 112.657)
+    u = CreateUnit(p, FourCC("nslf"), 7022.6, 5931.8, 65.557)
+    u = CreateUnit(p, FourCC("nsln"), 6767.3, 6268.4, 63.898)
+    u = CreateUnit(p, FourCC("nslm"), 6807.7, 6018.4, 30.763)
+    u = CreateUnit(p, FourCC("nslm"), 6563.5, 6366.2, 163.888)
+    u = CreateUnit(p, FourCC("nmfs"), 4138.4, 6660.8, 140.508)
+    u = CreateUnit(p, FourCC("nmpg"), 4285.3, 6577.3, 339.664)
+    u = CreateUnit(p, FourCC("nmpg"), 3961.5, 6589.0, 259.835)
+    u = CreateUnit(p, FourCC("nmmu"), 4118.3, 6472.0, 83.389)
+end
+
+function CreateNeutralPassiveBuildings()
+    local p = Player(PLAYER_NEUTRAL_PASSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("ntav"), -6848.0, 3968.0, 270.000)
+    SetUnitColor(u, ConvertPlayerColor(0))
+    u = CreateUnit(p, FourCC("nten"), -992.0, -7520.0, 270.000)
+    u = CreateUnit(p, FourCC("ntn2"), -7072.0, -224.0, 270.000)
+    u = CreateUnit(p, FourCC("ntn2"), -7072.0, 2336.0, 270.000)
+    u = CreateUnit(p, FourCC("ntn2"), -288.0, 6944.0, 270.000)
+    u = CreateUnit(p, FourCC("ntn2"), -7072.0, -6304.0, 270.000)
+    u = CreateUnit(p, FourCC("ntn2"), -2016.0, 3616.0, 270.000)
+end
+
+function CreateNeutralPassive()
+    local p = Player(PLAYER_NEUTRAL_PASSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("npig"), -4325.3, 578.0, 92.716)
+    u = CreateUnit(p, FourCC("npig"), -4188.6, 705.0, 301.606)
+    u = CreateUnit(p, FourCC("npig"), -4472.4, 504.6, 26.829)
+    u = CreateUnit(p, FourCC("npig"), -4422.3, 704.2, 285.203)
+    u = CreateUnit(p, FourCC("npig"), -4589.1, 106.2, 138.377)
+    u = CreateUnit(p, FourCC("npig"), -4649.3, -72.6, 247.925)
+    u = CreateUnit(p, FourCC("npig"), -3919.1, -1125.0, 293.509)
+    u = CreateUnit(p, FourCC("npig"), -3417.1, -1179.3, 250.232)
+    u = CreateUnit(p, FourCC("npig"), -3267.6, -1020.4, 97.474)
+    u = CreateUnit(p, FourCC("npig"), -3115.2, -1110.5, 120.568)
+    u = CreateUnit(p, FourCC("npig"), -3097.5, -805.1, 111.910)
+    u = CreateUnit(p, FourCC("nrac"), -7265.2, 4647.8, 173.139)
+    u = CreateUnit(p, FourCC("nrac"), -6827.8, 6905.3, 145.826)
+    u = CreateUnit(p, FourCC("nrac"), -5605.6, 4981.8, 134.191)
+    u = CreateUnit(p, FourCC("nrac"), -3957.9, 6882.6, 154.516)
+    u = CreateUnit(p, FourCC("nrac"), -1987.2, 6861.4, 217.305)
+    u = CreateUnit(p, FourCC("nrac"), -2824.2, 2989.4, 146.749)
+    u = CreateUnit(p, FourCC("nrac"), -6574.3, -2482.9, 54.900)
+    u = CreateUnit(p, FourCC("nrac"), -6250.9, -4340.5, 33.235)
+    u = CreateUnit(p, FourCC("nrac"), -5758.8, -5148.0, 35.992)
+    u = CreateUnit(p, FourCC("nfro"), -5601.3, -5292.5, 313.867)
+    u = CreateUnit(p, FourCC("nfro"), -2819.1, 3386.6, 316.449)
+    u = CreateUnit(p, FourCC("nfro"), -1569.2, 3308.0, 177.544)
+    u = CreateUnit(p, FourCC("nfro"), -3524.3, 2838.2, 51.011)
+    u = CreateUnit(p, FourCC("nfro"), -5947.6, 4880.2, 42.255)
+    u = CreateUnit(p, FourCC("nfro"), -6416.9, 6706.9, 60.822)
+    u = CreateUnit(p, FourCC("necr"), -7120.2, 3121.8, 224.370)
+    u = CreateUnit(p, FourCC("necr"), -6723.0, -3047.5, 137.982)
+    u = CreateUnit(p, FourCC("necr"), -6930.0, -6603.8, 302.320)
+    u = CreateUnit(p, FourCC("necr"), -2674.9, 3670.7, 300.068)
+    u = CreateUnit(p, FourCC("necr"), -1578.4, 6861.8, 263.284)
+    u = CreateUnit(p, FourCC("nrac"), 2155.9, 686.0, 162.570)
+    u = CreateUnit(p, FourCC("nrac"), 109.8, 1735.3, 224.666)
+    u = CreateUnit(p, FourCC("nrac"), 149.7, 1823.5, 293.091)
+    u = CreateUnit(p, FourCC("nfro"), 1320.8, 96.2, 83.762)
+    u = CreateUnit(p, FourCC("nfro"), 682.7, -152.2, 116.316)
+    u = CreateUnit(p, FourCC("nfro"), -178.4, 714.5, 182.137)
+    u = CreateUnit(p, FourCC("nfro"), 59.2, 2200.5, 112.778)
+    u = CreateUnit(p, FourCC("nfro"), -2452.8, 1052.5, 227.666)
+    u = CreateUnit(p, FourCC("nfro"), -2097.1, 1426.9, 194.651)
+    u = CreateUnit(p, FourCC("nfro"), -2170.7, 214.3, 237.477)
+    u = CreateUnit(p, FourCC("nfro"), -2283.1, 2135.5, 122.611)
+    u = CreateUnit(p, FourCC("nfro"), -3214.9, 1572.6, 81.169)
+    u = CreateUnit(p, FourCC("nshe"), 1019.0, -5305.1, 247.991)
+    u = CreateUnit(p, FourCC("nshe"), 900.2, -5166.2, 303.485)
+    u = CreateUnit(p, FourCC("nshe"), 784.9, -5095.5, 201.506)
+    u = CreateUnit(p, FourCC("nshe"), 911.4, -4976.3, 17.853)
+    u = CreateUnit(p, FourCC("nshe"), 1116.3, -5082.0, 111.800)
+    u = CreateUnit(p, FourCC("nshe"), 1003.9, -5088.6, 306.385)
+    u = CreateUnit(p, FourCC("nshe"), 1141.2, -5290.0, 118.227)
+    u = CreateUnit(p, FourCC("nshe"), 1068.6, -5201.1, 292.344)
 end
 
 function CreatePlayerBuildings()
+    CreateBuildingsForPlayer4()
     CreateBuildingsForPlayer5()
     CreateBuildingsForPlayer6()
+    CreateBuildingsForPlayer7()
 end
 
 function CreatePlayerUnits()
+    CreateUnitsForPlayer4()
     CreateUnitsForPlayer5()
     CreateUnitsForPlayer6()
+    CreateUnitsForPlayer7()
 end
 
 function CreateAllUnits()
+    CreateNeutralHostileBuildings()
+    CreateNeutralPassiveBuildings()
     CreatePlayerBuildings()
+    CreateNeutralHostile()
+    CreateNeutralPassive()
     CreatePlayerUnits()
+end
+
+function CreateRegions()
+    local we
+    gg_rct________________000 = Rect(-7552.0, -2176.0, -6624.0, -672.0)
 end
 
 --CUSTOM_CODE
@@ -367,19 +653,23 @@ function InitGameCore()
 		local player = Player(i)
 		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
 			--FIXME сделать нормальное появление героя
-			local hero = CreateUnit(player, HERO_ID, -4300, 4200, 0)
-			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
+			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
+			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
 
 			-- ReactiveArmor
-			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
+			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
+
 			HERO[GetHandleId(hero)] = {
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
 				ChakrumUnit=nil,
-				IsReturned=false
+				IsReturned=false,
+				FirstDamage=false
 			}
 		end
 	end
@@ -523,7 +813,7 @@ function AngleDifference(a, b)
 	return c > d and d or c
 end
 
----@author xgm.guru/p/wc3/warden-math
+--@author xgm.guru/p/wc3/warden-math
 ---@param a real degrees
 ---@param b real degrees
 ---@return real degrees
@@ -541,7 +831,7 @@ function AngleDifferenceDeg(a, b)
 end
 
 -- Находит длину перпендикуляра от отрезка, заданного xa, ya, xb, yb к точке, заданной xc, yc
----@author https://xgm.guru/p/wc3/perpendicular
+--@author https://xgm.guru/p/wc3/perpendicular
 ---@param xa real
 ---@param ya real
 ---@param xb real
@@ -560,7 +850,7 @@ function KillTreeInRange (x,y,range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
 		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
-			if GetDestructableLife(d)>0 and GetDestructableTypeId(d)~=(FourCC('YTfc')) then --
+			if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
 				k=k+1
 				--print("найдено дерево")
 			KillDestructable(d)
@@ -577,7 +867,6 @@ function UnitDamageArea(u,damage,x,y,range,type)
 	while true do
 		e = FirstOfGroup(perebor)
 		if e == nil then break end
-
 		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
 			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
 		end
@@ -693,21 +982,19 @@ function InitSpellTrigger()
 			local revers=false
 			local forces=false
 			local CasterRange=0
-			local TreeFinderRange=95
+			local TreeFinderRange=70
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
-			--нужны функции PointContainAnyTarget(x,y,range)
-
 			TimerStart(CreateTimer(), 0.03, true, function()
 				if revers==false and forces==false then
 					NewX=MoveX(casterX,CurRange,Angle)
 					NewY=MoveY(casterY,CurRange,Angle)
 					z=GetTerrainZ(NewX, NewY) + 60
 
-					PauseUnit(caster,true)
-					PauseUnit(caster,false)
+					--BlzPauseUnitEx(caster,true)
+					--BlzPauseUnitEx(caster,false)
 					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
 					if ChainCount>=2 then
 						EffChain[ChainCount]=AddSpecialEffect("war3mapImported/ChainElement.mdl", NewX, NewY)
@@ -739,16 +1026,17 @@ function InitSpellTrigger()
 					CasterRange=CasterRange+speed
 					SetUnitX(caster,MoveX(casterX,CasterRange,Angle))
 					SetUnitY(caster,MoveY(casterY,CasterRange,Angle))
-					PauseUnit(caster,true)
+					--BlzPauseUnitEx(caster,true)
 					--PauseUnit(caster,false)
 					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 150)
 					if CasterRange>=CurRange then
-						PauseUnit(caster,false)
+						--BlzPauseUnitEx(caster,false)
 						if ttk>0 then
 							FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 							AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
 						end
 						DestroyEffect(hook)
+						IssueImmediateOrder(caster,"stop")
 						PauseTimer(GetExpiredTimer())
 						DestroyTimer(GetExpiredTimer())
 					end
@@ -758,11 +1046,13 @@ function InitSpellTrigger()
 					DestroyEffect(EffChain[ChainCount])
 					ChainCount=ChainCount-1
 					CurRange=CurRange-speed
-					PauseUnit(caster,true)
+					--BlzPauseUnitEx(caster,true)
 					--PauseUnit(caster,false)
 					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
 					if ChainCount<=0 then
-						PauseUnit(caster,false)
+						--print("полная остановка")
+						--BlzPauseUnitEx(caster,false)
+						IssueImmediateOrder(caster,"stop")
 						DestroyEffect(hook)
 						PauseTimer(GetExpiredTimer())
 						DestroyTimer(GetExpiredTimer())
@@ -789,7 +1079,8 @@ function InitSpellTrigger()
 			KillUnit(data.WaitReturnerUnit)
 			SetUnitPathing(chakrum,false)
 			BlzUnitHideAbility(caster,spellId,true)
-			UnitAddAbility(caster,FourCC('A003'))
+			--UnitAddAbility(caster,FourCC('A003'))
+			BlzUnitHideAbility(caster,FourCC('A003') ,false)
 
 			--IssuePointOrder(chakram,"move",EndX,EndY)
 			TimerStart(CreateTimer(), 0.03, true, function()
@@ -829,18 +1120,18 @@ function InitSpellTrigger()
 				end
 			end)
 		elseif spellId == FourCC('A003') then -- возврат пилы
-			UnitRemoveAbility(caster,spellId)
+			--UnitRemoveAbility(caster,spellId)
+			BlzUnitHideAbility(caster,FourCC('A003'),true)
 			UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
 			UnitRemoveAbility(caster,FourCC('B001'))--её аура
 			BlzUnitHideAbility(caster,FourCC('A002') ,false)
 			local data = HERO[GetHandleId(caster)]
 			local chakrum=data.ChakrumUnit
 			data.IsReturned=true
-			--print(GetUnitName(chakrum).." определён")
 			local NewX,NewY,z = 0,0,0
 			local Angle=0
 			local speed=20
-
+			--активаця возврата
 			TimerStart(CreateTimer(), 0.03, true, function()
 				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -852,12 +1143,13 @@ function InitSpellTrigger()
 				if IsUnitInRangeXY(chakrum,GetUnitX(caster),GetUnitY(caster),40) then
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
+					UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
+					UnitRemoveAbility(caster,FourCC('B001'))--её аура
 					--print("Прибыл обратно к юниту")
 					KillUnit(chakrum)
 					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
 				end
 			end)
-
 		end
 	end)
 end
@@ -968,6 +1260,44 @@ function InitTimers()
 	end)
 end
 --CUSTOM_CODE
+function Trig_TreeDeadTimer_Actions()
+    TriggerSleepAction(GetRandomReal(30.00, 60.00))
+    DestructableRestoreLife(GetDyingDestructable(), GetDestructableMaxLife(GetDyingDestructable()), true)
+end
+
+function InitTrig_TreeDeadTimer()
+    gg_trg_TreeDeadTimer = CreateTrigger()
+    TriggerAddAction(gg_trg_TreeDeadTimer, Trig_TreeDeadTimer_Actions)
+end
+
+function Trig_Init_Func002A()
+    TriggerRegisterDeathEvent(gg_trg_TreeDeadTimer, GetEnumDestructable())
+end
+
+function Trig_Init_Actions()
+    EnumDestructablesInRectAll(GetPlayableMapRect(), Trig_Init_Func002A)
+    SetPlayerAllianceStateBJ(Player(0), Player(5), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(5), Player(0), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(0), Player(4), bj_ALLIANCE_UNALLIED)
+    SetPlayerAllianceStateBJ(Player(0), Player(7), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(7), Player(0), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(0), Player(6), bj_ALLIANCE_UNALLIED)
+end
+
+function InitTrig_Init()
+    gg_trg_Init = CreateTrigger()
+    TriggerAddAction(gg_trg_Init, Trig_Init_Actions)
+end
+
+function InitCustomTriggers()
+    InitTrig_TreeDeadTimer()
+    InitTrig_Init()
+end
+
+function RunInitializationTriggers()
+    ConditionalTriggerExecute(gg_trg_Init)
+end
+
 function InitCustomPlayerSlots()
     SetPlayerStartLocation(Player(0), 0)
     ForcePlayerStartLocation(Player(0), 0)
@@ -1031,9 +1361,10 @@ function InitCustomTeams()
 end
 
 function InitAllyPriorities()
-    SetStartLocPrioCount(0, 2)
+    SetStartLocPrioCount(0, 3)
     SetStartLocPrio(0, 0, 1, MAP_LOC_PRIO_LOW)
-    SetStartLocPrio(0, 1, 3, MAP_LOC_PRIO_HIGH)
+    SetStartLocPrio(0, 1, 2, MAP_LOC_PRIO_LOW)
+    SetStartLocPrio(0, 2, 3, MAP_LOC_PRIO_HIGH)
     SetStartLocPrioCount(1, 2)
     SetStartLocPrio(1, 0, 2, MAP_LOC_PRIO_HIGH)
     SetStartLocPrio(1, 1, 3, MAP_LOC_PRIO_HIGH)
@@ -1052,25 +1383,28 @@ function main()
     SetAmbientDaySound("AshenvaleDay")
     SetAmbientNightSound("AshenvaleNight")
     SetMapMusic("Music", true, 0)
+    CreateRegions()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
+    InitCustomTriggers()
+    RunInitializationTriggers()
 end
 
 function config()
-    SetMapName("TRIGSTR_001")
-    SetMapDescription("TRIGSTR_003")
+    SetMapName("TRIGSTR_147")
+    SetMapDescription("TRIGSTR_149")
     SetPlayers(8)
     SetTeams(8)
     SetGamePlacement(MAP_PLACEMENT_TEAMS_TOGETHER)
-    DefineStartLocation(0, -4416.0, 4352.0)
+    DefineStartLocation(0, -7040.0, 6848.0)
     DefineStartLocation(1, 1280.0, -1408.0)
     DefineStartLocation(2, 4352.0, 1216.0)
     DefineStartLocation(3, 448.0, 1920.0)
-    DefineStartLocation(4, 2240.0, 384.0)
+    DefineStartLocation(4, -704.0, -3456.0)
     DefineStartLocation(5, -3264.0, 256.0)
-    DefineStartLocation(6, 1152.0, 1664.0)
-    DefineStartLocation(7, 4224.0, -1728.0)
+    DefineStartLocation(6, 1216.0, 1664.0)
+    DefineStartLocation(7, 5248.0, -2112.0)
     InitCustomPlayerSlots()
     SetPlayerSlotAvailable(Player(0), MAP_CONTROL_USER)
     SetPlayerSlotAvailable(Player(1), MAP_CONTROL_USER)

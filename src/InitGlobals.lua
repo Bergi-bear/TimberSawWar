@@ -28,19 +28,23 @@ function InitGameCore()
 		local player = Player(i)
 		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
 			--FIXME сделать нормальное появление героя
-			local hero = CreateUnit(player, HERO_ID, -4300, 4200, 0)
-			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
+			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
+			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
 
 			-- ReactiveArmor
-			AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
+			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
+
 			HERO[GetHandleId(hero)] = {
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
 				ChakrumUnit=nil,
-				IsReturned=false
+				IsReturned=false,
+				FirstDamage=false
 			}
 		end
 	end

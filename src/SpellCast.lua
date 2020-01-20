@@ -6,7 +6,7 @@ function KillTreeInRange (x,y,range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
 		--ToDo нужно перечислить все типы разрушаемых, которые можно уничтожить и получить за них древесину
-			if GetDestructableLife(d)>0 and GetDestructableTypeId(d)~=(FourCC('YTfc')) then --
+			if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
 				k=k+1
 				--print("найдено дерево")
 			KillDestructable(d)
@@ -23,7 +23,6 @@ function UnitDamageArea(u,damage,x,y,range,type)
 	while true do
 		e = FirstOfGroup(perebor)
 		if e == nil then break end
-
 		if UnitAlive(e) and IsUnitEnemy(e,GetOwningPlayer(u)) then -- and GetUnitCurrentOrder(unit)~="attack" then
 			UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
 		end
@@ -139,21 +138,19 @@ function InitSpellTrigger()
 			local revers=false
 			local forces=false
 			local CasterRange=0
-			local TreeFinderRange=95
+			local TreeFinderRange=70
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
-			--нужны функции PointContainAnyTarget(x,y,range)
-
 			TimerStart(CreateTimer(), 0.03, true, function()
 				if revers==false and forces==false then
 					NewX=MoveX(casterX,CurRange,Angle)
 					NewY=MoveY(casterY,CurRange,Angle)
 					z=GetTerrainZ(NewX, NewY) + 60
 
-					PauseUnit(caster,true)
-					PauseUnit(caster,false)
+					--BlzPauseUnitEx(caster,true)
+					--BlzPauseUnitEx(caster,false)
 					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
 					if ChainCount>=2 then
 						EffChain[ChainCount]=AddSpecialEffect("war3mapImported/ChainElement.mdl", NewX, NewY)
@@ -185,16 +182,17 @@ function InitSpellTrigger()
 					CasterRange=CasterRange+speed
 					SetUnitX(caster,MoveX(casterX,CasterRange,Angle))
 					SetUnitY(caster,MoveY(casterY,CasterRange,Angle))
-					PauseUnit(caster,true)
+					--BlzPauseUnitEx(caster,true)
 					--PauseUnit(caster,false)
 					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 150)
 					if CasterRange>=CurRange then
-						PauseUnit(caster,false)
+						--BlzPauseUnitEx(caster,false)
 						if ttk>0 then
 							FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 							AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
 						end
 						DestroyEffect(hook)
+						IssueImmediateOrder(caster,"stop")
 						PauseTimer(GetExpiredTimer())
 						DestroyTimer(GetExpiredTimer())
 					end
@@ -204,11 +202,13 @@ function InitSpellTrigger()
 					DestroyEffect(EffChain[ChainCount])
 					ChainCount=ChainCount-1
 					CurRange=CurRange-speed
-					PauseUnit(caster,true)
+					--BlzPauseUnitEx(caster,true)
 					--PauseUnit(caster,false)
 					BlzSetSpecialEffectPosition(hook,MoveX(casterX,CurRange+speed,Angle),MoveY(casterY,CurRange+speed,Angle),z)
 					if ChainCount<=0 then
-						PauseUnit(caster,false)
+						--print("полная остановка")
+						--BlzPauseUnitEx(caster,false)
+						IssueImmediateOrder(caster,"stop")
 						DestroyEffect(hook)
 						PauseTimer(GetExpiredTimer())
 						DestroyTimer(GetExpiredTimer())
@@ -235,7 +235,8 @@ function InitSpellTrigger()
 			KillUnit(data.WaitReturnerUnit)
 			SetUnitPathing(chakrum,false)
 			BlzUnitHideAbility(caster,spellId,true)
-			UnitAddAbility(caster,FourCC('A003'))
+			--UnitAddAbility(caster,FourCC('A003'))
+			BlzUnitHideAbility(caster,FourCC('A003') ,false)
 
 			--IssuePointOrder(chakram,"move",EndX,EndY)
 			TimerStart(CreateTimer(), 0.03, true, function()
@@ -275,18 +276,18 @@ function InitSpellTrigger()
 				end
 			end)
 		elseif spellId == FourCC('A003') then -- возврат пилы
-			UnitRemoveAbility(caster,spellId)
+			--UnitRemoveAbility(caster,spellId)
+			BlzUnitHideAbility(caster,FourCC('A003'),true)
 			UnitRemoveAbility(caster,FourCC('A005'))--дегенерация маны
 			UnitRemoveAbility(caster,FourCC('B001'))--её аура
 			BlzUnitHideAbility(caster,FourCC('A002') ,false)
 			local data = HERO[GetHandleId(caster)]
 			local chakrum=data.ChakrumUnit
 			data.IsReturned=true
-			--print(GetUnitName(chakrum).." определён")
 			local NewX,NewY,z = 0,0,0
 			local Angle=0
 			local speed=20
-
+			--активаця возврата
 			TimerStart(CreateTimer(), 0.03, true, function()
 				Angle=AngleBetweenXY(GetUnitX(chakrum),GetUnitY(chakrum),GetUnitX(caster),GetUnitY(caster))/bj_DEGTORAD
 				NewX=MoveX(GetUnitX(chakrum),speed,Angle)
@@ -305,7 +306,6 @@ function InitSpellTrigger()
 					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
 				end
 			end)
-
 		end
 	end)
 end
