@@ -33,7 +33,7 @@ function InitGameCore()
 		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
-			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
+			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
 			HEROSimple[GetPlayerId(GetOwningPlayer(hero))+1]=hero
 			-- ReactiveArmor

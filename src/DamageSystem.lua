@@ -31,6 +31,7 @@ do
 					local charges        = data.ReactiveArmorChargesTime
 					----TODO добавить снятие лимита
 					if data.FirstDamage==false then
+						print("FirstDamage")
 						data.FirstDamage=true
 						AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 					end

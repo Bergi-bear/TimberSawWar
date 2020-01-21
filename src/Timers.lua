@@ -24,4 +24,19 @@ function InitTimers()
 			AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 		end
 	end)
+	--Abilities\Spells\Other\Aneu\AneuCaster.mdl
+	
+
+	local hero=HEROSimple[1]
+	local x,y=GetUnitX(hero),GetUnitY(hero)
+	local QuestPointer=AddSpecialEffect("war3mapImported/AneuCaster.mdl",x,y)
+	BlzSetSpecialEffectPitch(QuestPointer,math.rad(-90))--/bj_DEGTORAD
+	--print("Создан указатель")
+	local p=0
+	TimerStart(CreateTimer(), 0.03, true, function()
+		local z=GetUnitZ(hero)
+		local Angle=AngleBetweenXY(GetUnitX(hero),GetUnitY(hero),0,0)--/bj_DEGTORAD
+		BlzSetSpecialEffectPosition(QuestPointer,MoveX(GetUnitX(hero),130,Angle/bj_DEGTORAD),MoveY(GetUnitY(hero),130,Angle/bj_DEGTORAD),z+10)
+		BlzSetSpecialEffectYaw(QuestPointer,Angle)
+	end)
 end

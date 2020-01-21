@@ -1,6 +1,7 @@
-gg_rct________________000 = nil
-gg_trg_TreeDeadTimer = nil
-gg_trg_Init = nil
+gg_rct_OrcField = nil
+gg_rct_SoundLantern = nil
+gg_trg_Enter = nil
+gg_trg_InitGui = nil
 function InitGlobals()
 end
 
@@ -271,7 +272,7 @@ function CreateNeutralPassive()
     u = CreateUnit(p, FourCC("npig"), -3115.2, -1110.5, 120.568)
     u = CreateUnit(p, FourCC("npig"), -3097.5, -805.1, 111.910)
     u = CreateUnit(p, FourCC("nrac"), -7265.2, 4647.8, 173.139)
-    u = CreateUnit(p, FourCC("nrac"), -6827.8, 6905.3, 145.826)
+    u = CreateUnit(p, FourCC("nrac"), -6138.7, 7065.7, 145.826)
     u = CreateUnit(p, FourCC("nrac"), -5605.6, 4981.8, 134.191)
     u = CreateUnit(p, FourCC("nrac"), -3957.9, 6882.6, 154.516)
     u = CreateUnit(p, FourCC("nrac"), -1987.2, 6861.4, 217.305)
@@ -337,7 +338,8 @@ end
 
 function CreateRegions()
     local we
-    gg_rct________________000 = Rect(-7552.0, -2176.0, -6624.0, -672.0)
+    gg_rct_OrcField = Rect(-7552.0, -2176.0, -6624.0, -672.0)
+    gg_rct_SoundLantern = Rect(-6752.0, 6432.0, -6592.0, 6592.0)
 end
 
 --CUSTOM_CODE
@@ -574,6 +576,7 @@ do
 					local charges        = data.ReactiveArmorChargesTime
 					----TODO добавить снятие лимита
 					if data.FirstDamage==false then
+						print("FirstDamage")
 						data.FirstDamage=true
 						AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 					end
@@ -726,7 +729,7 @@ function InitGameCore()
 		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
-			--UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
+			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
 			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
 			HEROSimple[GetPlayerId(GetOwningPlayer(hero))+1]=hero
 			-- ReactiveArmor
@@ -1306,8 +1309,39 @@ function InitTimers()
 			AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 		end
 	end)
+	--Abilities\Spells\Other\Aneu\AneuCaster.mdl
+	
+
+	local hero=HEROSimple[1]
+	local x,y=GetUnitX(hero),GetUnitY(hero)
+	local QuestPointer=AddSpecialEffect("war3mapImported/AneuCaster.mdl",x,y)
+	BlzSetSpecialEffectPitch(QuestPointer,math.rad(-90))--/bj_DEGTORAD
+	print("Создан указатель")
+	local p=0
+	TimerStart(CreateTimer(), 0.03, true, function()
+		local z=GetUnitZ(hero)
+		local Angle=AngleBetweenXY(GetUnitX(hero),GetUnitY(hero),0,0)--/bj_DEGTORAD
+		BlzSetSpecialEffectPosition(QuestPointer,MoveX(GetUnitX(hero),130,Angle/bj_DEGTORAD),MoveY(GetUnitY(hero),130,Angle/bj_DEGTORAD),z+10)
+		BlzSetSpecialEffectYaw(QuestPointer,Angle)
+	end)
 end
 --CUSTOM_CODE
+function Trig_Enter_Actions()
+    DisableTrigger(GetTriggeringTrigger())
+    UnitAddAbilityBJ(FourCC("A001"), GetTriggerUnit())
+    QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(GetTriggerUnit())), bj_QUESTMESSAGE_ITEMACQUIRED, "TRIGSTR_157")
+end
+
+function InitTrig_Enter()
+    gg_trg_Enter = CreateTrigger()
+    TriggerRegisterEnterRectSimple(gg_trg_Enter, gg_rct_SoundLantern)
+    TriggerAddAction(gg_trg_Enter, Trig_Enter_Actions)
+end
+
+function InitCustomTriggers()
+    InitTrig_Enter()
+end
+
 function InitCustomPlayerSlots()
     SetPlayerStartLocation(Player(0), 0)
     ForcePlayerStartLocation(Player(0), 0)
@@ -1397,6 +1431,7 @@ function main()
     CreateAllUnits()
     InitBlizzard()
     InitGlobals()
+    InitCustomTriggers()
 end
 
 function config()
