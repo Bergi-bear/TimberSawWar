@@ -29,7 +29,7 @@ do
 				local data = HERO[targetHandleId]
 				if damageType == DAMAGE_TYPE_NORMAL and data ~= nil then
 					local charges        = data.ReactiveArmorChargesTime
-					--TODO добавить снятие лимита
+					----TODO добавить снятие лимита
 					if data.FirstDamage==false then
 						data.FirstDamage=true
 						AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
