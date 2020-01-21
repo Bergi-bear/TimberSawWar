@@ -1,19 +1,5 @@
 
-GlobalRect=Rect(0,0,0,0)
-function KillTreeInRange (x,y,range)
-	local k=0
-	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
-	EnumDestructablesInRect(GlobalRect,nil,function ()
-		local d=GetEnumDestructable()
-		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
-			k=k+1
-			DestructableState[GetHandleId(d)]=1-- параметр означает, что дерево уничтожено способностью
-				--print("найдено дерево")
-			KillDestructable(d)
-			end
-		end)
-	return k
-end
+
 
 
 perebor=CreateGroup()
@@ -112,11 +98,7 @@ function InitSpellTrigger()
 				durAll = durAll - period
 				if durAll < 0 then
 					--print("Всего срублено деревьев "..ttk)
-
-					if ttk>0 then
-						FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
-						AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
-					end
+					AddLumber(ttk,caster)
 					DestroyEffect(eff)
 					PauseTimer(GetExpiredTimer())
 					DestroyTimer(GetExpiredTimer())
@@ -187,10 +169,7 @@ function InitSpellTrigger()
 					UnitDamageArea(caster, damage, GetUnitX(caster), GetUnitY(caster), 150)
 					if CasterRange>=CurRange then
 						--BlzPauseUnitEx(caster,false)
-						if ttk>0 then
-							FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
-							AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
-						end
+						AddLumber(ttk,caster)
 						DestroyEffect(hook)
 						IssueImmediateOrder(caster,"stop")
 						PauseTimer(GetExpiredTimer())
@@ -265,10 +244,7 @@ function InitSpellTrigger()
 
 				UnitDamageArea(caster,damage,GetUnitX(chakrum),GetUnitY(chakrum),150)
 				local ttk=KillTreeInRange(GetUnitX(chakrum), GetUnitY(chakrum),150)
-				if ttk>0 then
-					FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
-					AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
-				end
+				AddLumber(ttk,caster)
 				if UnitAlive(chakrum)==false then
 				--	print("чакрум уничтожен")
 					PauseTimer(GetExpiredTimer())

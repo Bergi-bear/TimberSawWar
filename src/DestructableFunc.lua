@@ -24,8 +24,7 @@ function InitDestructablesActions()
 			end
 			local min=math.min (data[1],data[2],data[3],data[4])
 			for i = 1, 4 do if data[i]==min then KillerID=i-1	end	end
-			FlyTextTagLumberBounty(HEROSimple[KillerID+1],"+"..1,Player(KillerID))
-			AdjustPlayerStateBJ(1, Player(KillerID), PLAYER_STATE_RESOURCE_LUMBER )
+			AddLumber(1,HEROSimple[KillerID+1])
 		end
 		DestructableState[GetHandleId(d)]=nil
 		TimerStart(CreateTimer(), SpawnTime, false, function()
@@ -34,4 +33,27 @@ function InitDestructablesActions()
 			DestroyTimer(GetExpiredTimer())
 		end)
 	end)
+end
+
+GlobalRect=Rect(0,0,0,0)
+function KillTreeInRange (x,y,range)
+	local k=0
+	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
+	EnumDestructablesInRect(GlobalRect,nil,function ()
+		local d=GetEnumDestructable()
+		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
+			k=k+1
+			DestructableState[GetHandleId(d)]=1-- параметр означает, что дерево уничтожено способностью
+			--print("найдено дерево")
+			KillDestructable(d)
+		end
+	end)
+	return k
+end
+function AddLumber (ttk,caster)
+	local ownplayer=GetOwningPlayer(caster)
+	if ttk>0 then
+		FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
+		AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+	end
 end
