@@ -16,16 +16,21 @@ function InitDestructablesActions()
 		--print("умер"..GetDestructableName(d))
 		local SpawnTime=GetRandomInt(30,60)
 		if DestructableState[GetHandleId(d)]==nil then
-			--print("убит с руки")
-			local data={}
-			local KillerID=99
-			for i = 0, 3 do
-				local id=GetPlayerId(Player(i))
-				data[i+1]=R2I(DistanceBetweenXY(GetDestructableX(d),GetDestructableY(d),GetUnitX(HEROSimple[id+1]),GetUnitY(HEROSimple[id+1])))
+			local xd, yd = GetDestructableX(d), GetDestructableY(d)
+			local unit, dist
+			for handle, data in pairs(HERO) do
+				local hero   = data.unit
+				local dx, dy = GetUnitX(hero) - xd, GetUnitY(hero) - yd
+				local d      = dx * dx + dy * dy
+				if unit == nil then
+					unit = hero
+					dist = d
+				elseif d < dist then
+					unit = hero
+					dist = d
+				end
 			end
-			local min=math.min (data[1],data[2],data[3],data[4])
-			for i = 1, 4 do if data[i]==min then KillerID=i-1	end	end
-			AddLumber(1,HEROSimple[KillerID+1])
+			AddLumber(1,unit)
 		end
 		DestructableState[GetHandleId(d)]=nil
 		TimerStart(CreateTimer(), SpawnTime, false, function()
