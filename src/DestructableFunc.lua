@@ -3,6 +3,7 @@
 --- Created by Bergi.
 --- DateTime: 21.01.2020 1:15
 ---
+-----
 DestructableState={}
 function InitDestructablesActions()
 	AnyDeathDestructEnum = CreateTrigger()
