@@ -13,30 +13,17 @@ function InitTimers()
 			local hero         = data.unit
 			local charges      = data.ReactiveArmorChargesTime
 			local chargesCount = 0
-			-- считаем количество активных зарядов
-			for i = 1, #charges do
-				if charges[i] >= SECOND then
-					chargesCount = chargesCount + 1
+			if data.FirstDamage then
+				-- считаем количество активных зарядов
+				for i = 1, #charges do
+					if charges[i] >= SECOND then
+						chargesCount = chargesCount + 1
+					end
 				end
+				UnitSetBonus(hero,5,chargesCount)--армор
+				UnitSetBonus(hero,6,chargesCount)--Hpregen
+				AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 			end
-			UnitSetBonus(hero,5,chargesCount)--армор
-			UnitSetBonus(hero,6,chargesCount)--Hpregen
-			AddUnitToStock(hero, ReactiveArmorUnit, chargesCount, chargesCount)
 		end
-	end)
-	--Abilities\Spells\Other\Aneu\AneuCaster.mdl
-	
-
-	local hero=HEROSimple[1]
-	local x,y=GetUnitX(hero),GetUnitY(hero)
-	local QuestPointer=AddSpecialEffect("war3mapImported/AneuCaster.mdl",x,y)
-	BlzSetSpecialEffectPitch(QuestPointer,math.rad(-90))--/bj_DEGTORAD
-	--print("Создан указатель")
-	local p=0
-	TimerStart(CreateTimer(), 0.03, true, function()
-		local z=GetUnitZ(hero)
-		local Angle=AngleBetweenXY(GetUnitX(hero),GetUnitY(hero),0,0)--/bj_DEGTORAD
-		BlzSetSpecialEffectPosition(QuestPointer,MoveX(GetUnitX(hero),130,Angle/bj_DEGTORAD),MoveY(GetUnitY(hero),130,Angle/bj_DEGTORAD),z+10)
-		BlzSetSpecialEffectYaw(QuestPointer,Angle)
 	end)
 end

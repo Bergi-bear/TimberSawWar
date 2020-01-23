@@ -16,6 +16,7 @@ do
 		InitDamage()
 		InitTimers()
 		InitDestructablesActions()
+		InitUnitDeath()
 	end
 
 end
@@ -40,6 +41,7 @@ function InitGameCore()
 			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
 			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
+			--BlzSetUnitWeaponRealField(caster,UNIT_WEAPON_RF_ATTACK_RANGE,0,1000)
 
 			HERO[GetHandleId(hero)] = {
 				unit                 = hero, -- ссылка на юнита
