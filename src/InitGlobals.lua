@@ -25,13 +25,14 @@ HERO_ID               = FourCC('H000') -- ид единственного гер
 ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
 ReactiveArmorUnit     = FourCC('n000')
 HEROSimple            = {} -- упрощённая таблица
-
+Quest                 = {} -- таблица квестов
 
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
-		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+		if i==0 then -- GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+			print("3")
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
@@ -43,17 +44,49 @@ function InitGameCore()
 			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
 			--BlzSetUnitWeaponRealField(caster,UNIT_WEAPON_RF_ATTACK_RANGE,0,1000)
 
-			HERO[GetHandleId(hero)] = {
+			HERO[GetHandleId(hero)] = {--стартовые параметры героя
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
 				ChakrumUnit=nil,
 				IsReturned=false,
-				FirstDamage=false
+				FirstDamage=false,
+				KillCount=0,
+				TreeCount=0
 			}
-		end
+			--регистрация
+				gg_trg_InRange = CreateTrigger()
+				TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
+				TriggerAddAction(gg_trg_InRange, function()
+					local entering=GetTriggerUnit()
+					print(GetUnitName(entering).." зарегистрирован возле "..GetUnitName(hero))
+					if GetUnitTypeId(entering)==FourCC('Obla') then--- мастер клинка
+						local dataq=Quest[2]
+						if dataq.hero==hero then
+							dataq.isend=true
+							SetPlayerAllianceStateBJ(GetOwningPlayer(hero), Player(5), bj_ALLIANCE_ALLIED)
+						end
+					end
+
+					--Перечисляем события регистрации кого либо возле героя
+					print(GetUnitName(GetTriggerUnit()).." зарегистрирован возле "..GetUnitName(hero))
+					end)
+
+		end--цикл всех игроков
 	end
+	--инициализация квестов
+	local questmax=20
+	for i = 1, questmax do
+		--print("добавление квестов")
+		Quest[i]={
+			isend=false,
+			questendunit=nil,
+			hero=nil,
+			isactive=false
+		}
+	end
+
 end
 
 

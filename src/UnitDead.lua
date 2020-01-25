@@ -8,6 +8,25 @@ function InitUnitDeath()
 	TriggerAddAction(gg_trg_DEADGUI, function()
 		local deadunit=GetTriggerUnit()
 		local killer=GetKillingUnit()
-		--if GetUnitTypeId(deadunit)==Four
+		local data=HERO[GetHandleId(killer)]
+		data.KillCount=data.KillCount+1--считаем трупы
+		if data.KillCount==2 then
+			UnitAddAbility(killer,FourCC('A002'))--Чакрам
+			QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(killer)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Апргейд:|r Доступна новая способность - Волшебная пила")
+		end
+
+		if GetUnitTypeId(deadunit)==FourCC('n002') then -- первый волк
+			local bigwolf=FindUnitOfType(FourCC('n003'))
+			--print("Добавляем квест в сторону"..GetUnitName(bigwolf))
+			AddQuest(1,true,killer,0,0,bigwolf)
+
+		elseif GetUnitTypeId(deadunit)==FourCC('n001')  then -- мелкий волк
+
+		elseif GetUnitTypeId(deadunit)==FourCC('n003') then -- большой волк
+			--print("Волк покиб")
+			local dataq=Quest[1]
+			dataq.isend=true
+			AddQuest(2,true,killer,GetPlayerStartLocationX(Player(5)),GetPlayerStartLocationY(Player(5)))
+		end
 	end)
 end

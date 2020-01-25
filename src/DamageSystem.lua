@@ -33,7 +33,8 @@ do
 					if data.FirstDamage==false then
 						--print("FirstDamage")
 						data.FirstDamage=true
-						AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+						AddUnitToStock(target, ReactiveArmorUnit, 0, 0)
+						QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(target)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Апргейд:|r Доступна новая способность - Реактивная броня")
 					end
 					local chargeMinIndex = 1 -- индекс заряда с минимальным значением
 					for i = 2, #charges do

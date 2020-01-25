@@ -61,5 +61,10 @@ function AddLumber (ttk,caster)
 	if ttk>0 then
 		FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 		AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+		local data=HERO[GetHandleId(caster)]
+		data.TreeCount=data.TreeCount+ttk
+		if data.TreeCount>10 and data.TreeCount<20  then
+			UnitAddAbility(caster,FourCC('A001'))
+		end
 	end
 end

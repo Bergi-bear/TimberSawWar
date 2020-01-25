@@ -2,8 +2,8 @@ gg_rct_OrcField = nil
 gg_rct_SoundLantern = nil
 gg_rct_OrcBase = nil
 gg_trg_Enter = nil
-gg_trg_InitGui = nil
-gg_trg_DEADGUI = nil
+gg_trg_StartAlly = nil
+gg_unit_Obla_0010 = nil
 function InitGlobals()
 end
 
@@ -95,12 +95,12 @@ function CreateUnitsForPlayer5()
     local t
     local life
     u = CreateUnit(p, FourCC("opeo"), -6902.1, -2337.1, 185.521)
-    u = CreateUnit(p, FourCC("Obla"), -3524.8, -69.4, 227.642)
+    u = CreateUnit(p, FourCC("Obla"), -3678.7, -669.0, 227.642)
     u = CreateUnit(p, FourCC("opeo"), -6983.0, -2513.7, 300.683)
     u = CreateUnit(p, FourCC("Nsjs"), -6796.6, 3735.0, 303.583)
     u = CreateUnit(p, FourCC("odkt"), -2608.9, -453.5, 168.836)
-    u = CreateUnit(p, FourCC("owar"), -3388.1, -110.9, 225.434)
-    u = CreateUnit(p, FourCC("owar"), -3601.4, 38.4, 231.982)
+    u = CreateUnit(p, FourCC("owar"), -2882.9, -655.8, 225.434)
+    u = CreateUnit(p, FourCC("owar"), -4327.1, 458.1, 231.982)
     u = CreateUnit(p, FourCC("nw2w"), -2545.7, -388.5, 172.253)
     u = CreateUnit(p, FourCC("nw2w"), -2580.9, -543.5, 169.868)
     u = CreateUnit(p, FourCC("oosc"), -3929.0, 530.9, 225.457)
@@ -140,6 +140,7 @@ function CreateBuildingsForPlayer6()
     u = CreateUnit(p, FourCC("edos"), 1216.0, 1152.0, 270.000)
     u = CreateUnit(p, FourCC("eaoe"), 768.0, 2048.0, 270.000)
     u = CreateUnit(p, FourCC("eaom"), 1472.0, 3072.0, 270.000)
+    u = CreateUnit(p, FourCC("e003"), -6880.0, -1056.0, 270.000)
 end
 
 function CreateUnitsForPlayer6()
@@ -213,31 +214,16 @@ function CreateUnitsForPlayer7()
     u = CreateUnit(p, FourCC("uswb"), 3367.9, -1916.6, 309.027)
 end
 
-function CreateNeutralHostileBuildings()
-    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+function CreateUnitsForPlayer10()
+    local p = Player(10)
     local u
     local unitID
     local t
     local life
-    u = CreateUnit(p, FourCC("nfgo"), 7040.0, 6656.0, 270.000)
-end
-
-function CreateNeutralHostile()
-    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
-    local u
-    local unitID
-    local t
-    local life
-    u = CreateUnit(p, FourCC("nslf"), 6509.4, 6610.7, 92.925)
-    u = CreateUnit(p, FourCC("nslf"), 6486.7, 6100.3, 112.657)
-    u = CreateUnit(p, FourCC("nslf"), 7022.6, 5931.8, 65.557)
-    u = CreateUnit(p, FourCC("nsln"), 6767.3, 6268.4, 63.898)
-    u = CreateUnit(p, FourCC("nslm"), 6807.7, 6018.4, 30.763)
-    u = CreateUnit(p, FourCC("nslm"), 6563.5, 6366.2, 163.888)
-    u = CreateUnit(p, FourCC("nmfs"), 4138.4, 6660.8, 140.508)
-    u = CreateUnit(p, FourCC("nmpg"), 4285.3, 6577.3, 339.664)
-    u = CreateUnit(p, FourCC("nmpg"), 3961.5, 6589.0, 259.835)
-    u = CreateUnit(p, FourCC("nmmu"), 4118.3, 6472.0, 83.389)
+    u = CreateUnit(p, FourCC("nrac"), -5605.6, 4981.8, 134.191)
+    SetUnitAcquireRange(u, 200.0)
+    u = CreateUnit(p, FourCC("nfro"), -5947.6, 4880.2, 42.255)
+    SetUnitAcquireRange(u, 200.0)
     u = CreateUnit(p, FourCC("n003"), -5690.8, 4870.2, 316.482)
     SetUnitAcquireRange(u, 200.0)
     u = CreateUnit(p, FourCC("n001"), -5604.7, 4593.3, 170.722)
@@ -267,6 +253,33 @@ function CreateNeutralHostile()
     SetUnitAcquireRange(u, 200.0)
     u = CreateUnit(p, FourCC("n001"), -5513.1, 4532.3, 206.956)
     SetUnitAcquireRange(u, 200.0)
+end
+
+function CreateNeutralHostileBuildings()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("nfgo"), 7040.0, 6656.0, 270.000)
+end
+
+function CreateNeutralHostile()
+    local p = Player(PLAYER_NEUTRAL_AGGRESSIVE)
+    local u
+    local unitID
+    local t
+    local life
+    u = CreateUnit(p, FourCC("nslf"), 6509.4, 6610.7, 92.925)
+    u = CreateUnit(p, FourCC("nslf"), 6486.7, 6100.3, 112.657)
+    u = CreateUnit(p, FourCC("nslf"), 7022.6, 5931.8, 65.557)
+    u = CreateUnit(p, FourCC("nsln"), 6767.3, 6268.4, 63.898)
+    u = CreateUnit(p, FourCC("nslm"), 6807.7, 6018.4, 30.763)
+    u = CreateUnit(p, FourCC("nslm"), 6563.5, 6366.2, 163.888)
+    u = CreateUnit(p, FourCC("nmfs"), 4138.4, 6660.8, 140.508)
+    u = CreateUnit(p, FourCC("nmpg"), 4285.3, 6577.3, 339.664)
+    u = CreateUnit(p, FourCC("nmpg"), 3961.5, 6589.0, 259.835)
+    u = CreateUnit(p, FourCC("nmmu"), 4118.3, 6472.0, 83.389)
 end
 
 function CreateNeutralPassiveBuildings()
@@ -304,8 +317,6 @@ function CreateNeutralPassive()
     u = CreateUnit(p, FourCC("npig"), -3097.5, -805.1, 111.910)
     u = CreateUnit(p, FourCC("nrac"), -7265.2, 4647.8, 173.139)
     u = CreateUnit(p, FourCC("nrac"), -6138.7, 7065.7, 145.826)
-    u = CreateUnit(p, FourCC("nrac"), -5605.6, 4981.8, 134.191)
-    SetUnitAcquireRange(u, 200.0)
     u = CreateUnit(p, FourCC("nrac"), -3957.9, 6882.6, 154.516)
     u = CreateUnit(p, FourCC("nrac"), -1987.2, 6861.4, 217.305)
     u = CreateUnit(p, FourCC("nrac"), -2824.2, 2989.4, 146.749)
@@ -316,8 +327,6 @@ function CreateNeutralPassive()
     u = CreateUnit(p, FourCC("nfro"), -2819.1, 3386.6, 316.449)
     u = CreateUnit(p, FourCC("nfro"), -1569.2, 3308.0, 177.544)
     u = CreateUnit(p, FourCC("nfro"), -3524.3, 2838.2, 51.011)
-    u = CreateUnit(p, FourCC("nfro"), -5947.6, 4880.2, 42.255)
-    SetUnitAcquireRange(u, 200.0)
     u = CreateUnit(p, FourCC("n004"), -3453.7, -885.6, 232.670)
     u = CreateUnit(p, FourCC("necr"), -7120.2, 3121.8, 224.370)
     u = CreateUnit(p, FourCC("necr"), -6723.0, -3047.5, 137.982)
@@ -358,6 +367,7 @@ function CreatePlayerUnits()
     CreateUnitsForPlayer5()
     CreateUnitsForPlayer6()
     CreateUnitsForPlayer7()
+    CreateUnitsForPlayer10()
 end
 
 function CreateAllUnits()
@@ -373,7 +383,7 @@ function CreateRegions()
     local we
     gg_rct_OrcField = Rect(-7552.0, -2176.0, -6624.0, -672.0)
     gg_rct_SoundLantern = Rect(-6752.0, 6432.0, -6592.0, 6592.0)
-    gg_rct_OrcBase = Rect(-4832.0, -1568.0, -2592.0, 1024.0)
+    gg_rct_OrcBase = Rect(-4800.0, -1664.0, -2560.0, 928.0)
 end
 
 --CUSTOM_CODE
@@ -612,7 +622,8 @@ do
 					if data.FirstDamage==false then
 						--print("FirstDamage")
 						data.FirstDamage=true
-						AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
+						AddUnitToStock(target, ReactiveArmorUnit, 0, 0)
+						QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(target)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Апргейд:|r Доступна новая способность - Реактивная броня")
 					end
 					local chargeMinIndex = 1 -- индекс заряда с минимальным значением
 					for i = 2, #charges do
@@ -704,6 +715,11 @@ function AddLumber (ttk,caster)
 	if ttk>0 then
 		FlyTextTagLumberBounty(caster,"+"..ttk,ownplayer)
 		AdjustPlayerStateBJ(ttk, ownplayer, PLAYER_STATE_RESOURCE_LUMBER )
+		local data=HERO[GetHandleId(caster)]
+		data.TreeCount=data.TreeCount+ttk
+		if data.TreeCount>10 and data.TreeCount<20  then
+			UnitAddAbility(caster,FourCC('A001'))
+		end
 	end
 end
 ---
@@ -746,6 +762,7 @@ do
 		InitDamage()
 		InitTimers()
 		InitDestructablesActions()
+		InitUnitDeath()
 	end
 
 end
@@ -754,13 +771,14 @@ HERO_ID               = FourCC('H000') -- ид единственного гер
 ReactiveArmorCooldown = 10 -- время снятия заряда пассивки
 ReactiveArmorUnit     = FourCC('n000')
 HEROSimple            = {} -- упрощённая таблица
-
+Quest                 = {} -- таблица квестов
 
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
-		if GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+		if i==0 then -- GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
+			print("3")
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
@@ -772,17 +790,51 @@ function InitGameCore()
 			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
 			--BlzSetUnitWeaponRealField(caster,UNIT_WEAPON_RF_ATTACK_RANGE,0,1000)
 
-			HERO[GetHandleId(hero)] = {
+			HERO[GetHandleId(hero)] = {--стартовые параметры героя
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов
 				ReactiveArmorLimit   = true, -- ограниченное количество зарядов
 				WaitReturnerUnit = WaitReturner,
 				ChakrumUnit=nil,
 				IsReturned=false,
-				FirstDamage=false
+				FirstDamage=false,
+				KillCount=0,
+				TreeCount=0
 			}
-		end
+			print("2")
+			--function InitTrig_InRange()
+				print("1")
+				gg_trg_InRange = CreateTrigger()
+				TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
+				TriggerAddAction(gg_trg_InRange, function()
+					local entering=GetTriggerUnit()
+					print(GetUnitName(entering).." зарегистрирован возле "..GetUnitName(hero))
+					if GetUnitTypeId(entering)==FourCC('Obla') then--- мастер клинка
+						local dataq=Quest[2]
+						if dataq.hero==hero then
+							dataq.isend=true
+							SetPlayerAllianceStateBJ(GetOwningPlayer(hero), Player(5), bj_ALLIANCE_ALLIED)
+						end
+					end
+
+					--Перечисляем события регистрации кого либо возле героя
+					print(GetUnitName(GetTriggerUnit()).." зарегистрирован возле "..GetUnitName(hero))
+					end)
+			--end
+		end--цикл всех игроков
 	end
+	--инициализация квестов
+	local questmax=20
+	for i = 1, questmax do
+		--print("добавление квестов")
+		Quest[i]={
+			isend=false,
+			questendunit=nil,
+			hero=nil,
+			isactive=false
+		}
+	end
+
 end
 
 
@@ -958,35 +1010,79 @@ end
 --- Generated by EmmyLua(https://github.com/EmmyLua)
 --- Created by Bergi.
 --- DateTime: 23.01.2020 20:04
-Quest={
-	isend=false,
-	questendunit=nil,
-	hero=nil,
-	isactive=false
-}
+
 function AddQuest(questnumber,compas,hero,qx,qy,questendunit)
 	local x,y=GetUnitX(hero),GetUnitY(hero)
-	local QuestPointer=AddSpecialEffect("war3mapImported/AneuCaster.mdl",x,y)
+	local model="war3mapImported/AneuCaster.mdl"
+	local player=GetOwningPlayer(hero)
+	--FIXME GetLocalPlayer
+	if GetLocalPlayer()~=player then	model="" end
+	local QuestPointer=AddSpecialEffect(model,x,y)
 	local data=Quest[questnumber]
 	data.hero=hero
 	data.questendunit=questendunit
 	data.isactive=true
 	BlzSetSpecialEffectPitch(QuestPointer,math.rad(-90))--/bj_DEGTORAD
-	if compas then
+
+	if compas==true then
 		TimerStart(CreateTimer(), 0.03, true, function()
 			local z=GetUnitZ(hero)
 			local xc,yc=GetUnitX(hero),GetUnitY(hero)
+			if questendunit~=nil then
+				qx,qy=GetUnitX(questendunit),GetUnitY(questendunit)
+			end
 			local Angle=AngleBetweenXY(xc,yc,qx,qy)
 			BlzSetSpecialEffectPosition(QuestPointer,MoveX(xc,130,Angle/bj_DEGTORAD),MoveY(yc,130,Angle/bj_DEGTORAD),z+10)
 			BlzSetSpecialEffectYaw(QuestPointer,Angle)
+
+			if data.isend==true then
+				if GetLocalPlayer()==player then
+					StartSound(bj_questCompletedSound)
+					DestroyTimer(GetExpiredTimer())
+					DestroyEffect(QuestPointer)
+					print("квест "..questnumber.." выполнен, даём награду")
+				end
+			end
+		end)
+		TimerStart(CreateTimer(), 10, true, function()
+			PingMinimapForPlayer(player,qx,qy,3)
+			if data.isend==true then
+				DestroyTimer(GetExpiredTimer())
+				print("Выключаем мигалку")
+			end
 		end)
 	end
-
-	if data.isend then
-		DestroyEffect(QuestPointer)
-		print("квесты выполнен, играем музыку, даём награду")
-	end
 end
+--BlzSetSpecialEffectMatrixScale()
+
+function FindUnitOfType(id)
+	local unit=nil
+	local e--временный юнит
+	local k=0
+	--print("ищем")
+	GroupEnumUnitsInRect(perebor,bj_mapInitialPlayableArea,nil)
+	while true do
+		e = FirstOfGroup(perebor)
+
+		if e == nil then break end
+		if UnitAlive(e) and GetUnitTypeId(e)==id then
+			k=k+1
+			--print("найден")
+			--UnitDamageTarget( u, e, damage, true, false, ATTACK_TYPE_NORMAL, DAMAGE_TYPE_NORMAL, WEAPON_TYPE_WHOKNOWS )
+			unit=e
+		end
+		GroupRemoveUnit(perebor,e)
+	end
+	if k>1 then
+		print("Ошибка получено "..k.." юнитов")
+	end
+	if unit==nil then
+		print("Не найдено живых юнитов данного типа")
+
+	end
+	return unit
+end
+
 
 
 
@@ -1385,13 +1481,48 @@ end
 --- Generated by EmmyLua(https://github.com/EmmyLua)
 --- Created by Bergi.
 --- DateTime: 23.01.2020 20:11
+function InitUnitDeath()
+	gg_trg_DEADGUI = CreateTrigger()
+	TriggerRegisterAnyUnitEventBJ(gg_trg_DEADGUI, EVENT_PLAYER_UNIT_DEATH)--меня полностью устраивает это событие
+	TriggerAddAction(gg_trg_DEADGUI, function()
+		local deadunit=GetTriggerUnit()
+		local killer=GetKillingUnit()
+		local data=HERO[GetHandleId(killer)]
+		data.KillCount=data.KillCount+1--считаем трупы
+		if data.KillCount==2 then
+			UnitAddAbility(killer,FourCC('A002'))--Чакрам
+			QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(killer)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Апргейд:|r Доступна новая способность - Волшебная пила")
+		end
 
+		if GetUnitTypeId(deadunit)==FourCC('n002') then -- первый волк
+			local bigwolf=FindUnitOfType(FourCC('n003'))
+			--print("Добавляем квест в сторону"..GetUnitName(bigwolf))
+			AddQuest(1,true,killer,0,0,bigwolf)
 
+		elseif GetUnitTypeId(deadunit)==FourCC('n001')  then -- мелкий волк
+
+		elseif GetUnitTypeId(deadunit)==FourCC('n003') then -- большой волк
+			--print("Волк покиб")
+			local dataq=Quest[1]
+			dataq.isend=true
+			AddQuest(2,true,killer,GetPlayerStartLocationX(Player(5)),GetPlayerStartLocationY(Player(5)))
+		end
+	end)
+end
+
+---
+--- Generated by EmmyLua(https://github.com/EmmyLua)
+--- Created by Bergi.
+--- DateTime: 25.01.2020 16:29
+---
+function InitOrc()
+
+end
 --CUSTOM_CODE
 function Trig_Enter_Actions()
     DisableTrigger(GetTriggeringTrigger())
     UnitAddAbilityBJ(FourCC("A001"), GetTriggerUnit())
-    QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(GetTriggerUnit())), bj_QUESTMESSAGE_ITEMACQUIRED, "TRIGSTR_157")
+    QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(GetTriggerUnit())), bj_QUESTMESSAGE_UNITAVAILABLE, "TRIGSTR_157")
 end
 
 function InitTrig_Enter()
@@ -1400,19 +1531,27 @@ function InitTrig_Enter()
     TriggerAddAction(gg_trg_Enter, Trig_Enter_Actions)
 end
 
-function Trig_DEADGUI_Actions()
-    DoNothing()
+function Trig_StartAlly_Actions()
+    SetPlayerAllianceStateBJ(Player(0), Player(5), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(5), Player(0), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(0), Player(4), bj_ALLIANCE_UNALLIED)
+    SetPlayerAllianceStateBJ(Player(0), Player(7), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(7), Player(0), bj_ALLIANCE_NEUTRAL)
+    SetPlayerAllianceStateBJ(Player(0), Player(6), bj_ALLIANCE_UNALLIED)
 end
 
-function InitTrig_DEADGUI()
-    gg_trg_DEADGUI = CreateTrigger()
-    TriggerRegisterAnyUnitEventBJ(gg_trg_DEADGUI, EVENT_PLAYER_UNIT_DEATH)
-    TriggerAddAction(gg_trg_DEADGUI, Trig_DEADGUI_Actions)
+function InitTrig_StartAlly()
+    gg_trg_StartAlly = CreateTrigger()
+    TriggerAddAction(gg_trg_StartAlly, Trig_StartAlly_Actions)
 end
 
 function InitCustomTriggers()
     InitTrig_Enter()
-    InitTrig_DEADGUI()
+    InitTrig_StartAlly()
+end
+
+function RunInitializationTriggers()
+    ConditionalTriggerExecute(gg_trg_StartAlly)
 end
 
 function InitCustomPlayerSlots()
@@ -1549,6 +1688,7 @@ function main()
     InitBlizzard()
     InitGlobals()
     InitCustomTriggers()
+    RunInitializationTriggers()
 end
 
 function config()
@@ -1562,7 +1702,7 @@ function config()
     DefineStartLocation(2, 4352.0, 1216.0)
     DefineStartLocation(3, 448.0, 1920.0)
     DefineStartLocation(4, -704.0, -3456.0)
-    DefineStartLocation(5, -3264.0, 256.0)
+    DefineStartLocation(5, -3712.0, -768.0)
     DefineStartLocation(6, 1216.0, 1664.0)
     DefineStartLocation(7, 5248.0, -2112.0)
     DefineStartLocation(8, 6464.0, -6848.0)
