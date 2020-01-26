@@ -28,24 +28,37 @@ ReactiveArmorCooldown = 10 -- время снятия заряда пассив�
 ReactiveArmorUnit     = FourCC('n000')
 HEROSimple            = {} -- упрощённая таблица
 Quest                 = {} -- таблица квестов
-
+Talants               = {} -- таблица юнитов талантов
 
 function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
 		if i==0 then -- GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
-			--print("3")
+
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
+			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)--юнит требование, для возврата пилы
+			local pid=GetPlayerId(player)
+			--базовые знания героев
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
-			local WaitReturner = CreateUnit(player, FourCC('e001'), -0, 0, 0)
-			HEROSimple[GetPlayerId(GetOwningPlayer(hero))+1]=hero
-			-- ReactiveArmor
-			--AddUnitToStock(hero, ReactiveArmorUnit, 0, 0)
 			UnitAddAbility(hero,FourCC('A003'))--возврат пилы
 			BlzUnitHideAbility(hero,FourCC('A003') ,true)-- и скрыть
-			--BlzSetUnitWeaponRealField(caster,UNIT_WEAPON_RF_ATTACK_RANGE,0,1000)
 
+			--таблицы
+			Talants[pid]={
+				main=CreateUnit(player, FourCC('e005'), -0, 0, 0),
+				q=CreateUnit(player, FourCC('e006'), -0, 0, 0),
+				w=CreateUnit(player, FourCC('e004'), -0, 0, 0),
+				e=CreateUnit(player, FourCC('e007'), -0, 0, 0),
+				r=CreateUnit(player, FourCC('e008'), -0, 0, 0)
+
+			}
+			TimerStart(CreateTimer(), 1, true, function()
+				local data=Talants[pid]
+				SetUnitPosition(data.w,GetUnitX(hero),GetUnitY(hero))
+			end)
+			---------------------------------------------------------------
+			HEROSimple[pid]=hero
 			HERO[GetHandleId(hero)] = {--стартовые параметры героя
 				unit                 = hero, -- ссылка на юнита
 				ReactiveArmorChargesTime = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, -- время снятия заряда, количество зарядов определяется количество элементов

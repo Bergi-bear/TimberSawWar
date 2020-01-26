@@ -87,7 +87,7 @@ function QuestRegistrator(hero)
 	if gg_trg_InRange==nil then
 		gg_trg_InRange = CreateTrigger()
 	end
-	
+
 	TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
 	--print("регистрация для"..GetUnitName(hero))
 	TriggerAddAction(gg_trg_InRange, function()

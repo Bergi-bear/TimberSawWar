@@ -19,16 +19,21 @@ function InitTalants()
 			BlzTriggerRegisterFrameEvent(UI_SHOP_TRIGGER, UI_SHOP_BUTTON, FRAMEEVENT_CONTROL_CLICK)
 			TriggerAddAction(UI_SHOP_TRIGGER, function()
 				local p = GetTriggerPlayer()
-				local id = GetPlayerId(p)
-				print("Открыто меню талантов")
+				local pid = GetPlayerId(p)
+				local data=Talants[pid]
+				local hero=HEROSimple[pid]
+				SetUnitPosition(data.main,GetUnitX(hero),GetUnitY(hero))
+				SelectUnitForPlayerSingle(data.main,p)
+				--print(GetUnitName(data.main))
+				--print("Открыто меню талантов")
 
-				if(UI_BOOL[id])then
-					UI_BOOL[id] = false
+				if(UI_BOOL[pid])then
+					UI_BOOL[pid] = false
 					if(GetLocalPlayer() == p)then
 						--print("close")
 					end
 				else
-					UI_BOOL[id] = true
+					UI_BOOL[pid] = true
 					if(GetLocalPlayer() == p)then
 						--print("open")
 					end

@@ -202,6 +202,7 @@ function InitSpellTrigger()
 			if GetPlayerMouseX[id]==0 and GetPlayerMouseY[id]==0 then	Angle=GetUnitFacing(caster)	end
 			local MaxDistance =1000
 			local CurrentDistance=DistanceBetweenXY(casterX,casterY,GetPlayerMouseX[id],GetPlayerMouseY[id])
+			PlaySoundAtPointBJ(gg_snd_Saw, 100, GetUnitLoc(caster), 0)
 			if CurrentDistance>=MaxDistance then CurrentDistance=MaxDistance end
 			--print("Текущая дистанция= "..CurrentDistance)
 			local EndX,EndY=MoveX(casterX,CurrentDistance,Angle),MoveY(casterY,CurrentDistance,Angle)
