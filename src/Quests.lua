@@ -7,8 +7,14 @@ function AddQuest(questnumber,compas,hero,qx,qy,questendunit)
 	local x,y=GetUnitX(hero),GetUnitY(hero)
 	local model="war3mapImported/AneuCaster.mdl"
 	local player=GetOwningPlayer(hero)
+
 	--FIXME GetLocalPlayer
-	if GetLocalPlayer()~=player then	model="" end
+	if GetLocalPlayer()~=player then
+		model=""
+	else
+		--print("звук созданного квеста")
+		StartSound(bj_questSecretSound)
+	end
 	local QuestPointer=AddSpecialEffect(model,x,y)
 	local data=Quest[questnumber]
 	data.hero=hero
@@ -30,17 +36,18 @@ function AddQuest(questnumber,compas,hero,qx,qy,questendunit)
 			if data.isend==true then
 				if GetLocalPlayer()==player then
 					StartSound(bj_questCompletedSound)
-					DestroyTimer(GetExpiredTimer())
-					DestroyEffect(QuestPointer)
-					print("квест "..questnumber.." выполнен, даём награду")
 				end
+				DestroyTimer(GetExpiredTimer())
+				DestroyEffect(QuestPointer)
+				print("квест №"..questnumber.." выполнен, даём награду")
 			end
 		end)
 		TimerStart(CreateTimer(), 10, true, function()
-			PingMinimapForPlayer(player,qx,qy,3)
 			if data.isend==true then
 				DestroyTimer(GetExpiredTimer())
 				--print("Выключаем мигалку")
+			else
+				PingMinimapForPlayer(player,qx,qy,3)
 			end
 		end)
 	end
@@ -73,4 +80,30 @@ function FindUnitOfType(id)
 
 	end
 	return unit
+end
+
+function QuestRegistrator(hero)
+	--регистрация
+	if gg_trg_InRange==nil then
+		gg_trg_InRange = CreateTrigger()
+	end
+	
+	TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
+	--print("регистрация для"..GetUnitName(hero))
+	TriggerAddAction(gg_trg_InRange, function()
+		local entering=GetTriggerUnit()
+		local dataq=nil
+		if GetUnitTypeId(entering)==FourCC('Obla') then--- мастер клинка
+		dataq=Quest[2]
+			if dataq.hero==hero and dataq.isend==false then
+				dataq.isend=true
+				SetPlayerAllianceStateBJ(Player(5),GetOwningPlayer(hero), bj_ALLIANCE_ALLIED_VISION)
+				SetPlayerAllianceStateBJ(GetOwningPlayer(hero),Player(5), bj_ALLIANCE_ALLIED_VISION)
+				QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(hero)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Заключен союз:|r теперь вы имеете общий обзор с деревней орков")
+			end
+		end
+
+		--Перечисляем события регистрации кого либо возле героя
+		--print(GetUnitName(GetTriggerUnit()).." зарегистрирован возле "..GetUnitName(hero))
+	end)
 end

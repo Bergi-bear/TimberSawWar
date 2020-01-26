@@ -1,10 +1,18 @@
 gg_rct_OrcField = nil
 gg_rct_SoundLantern = nil
 gg_rct_OrcBase = nil
+gg_snd_Saw = nil
 gg_trg_Enter = nil
 gg_trg_StartAlly = nil
-gg_unit_Obla_0010 = nil
+gg_trg_NonAttack = nil
+gg_trg_SoundAbility = nil
 function InitGlobals()
+end
+
+function InitSounds()
+    gg_snd_Saw = CreateSound("Buildings\\Human\\HumanLumberMill\\HumanLumberMillWhat1.wav", false, true, true, 10, 10, "DefaultEAXON")
+    SetSoundParamsFromLabel(gg_snd_Saw, "HumanLumberMillWhat")
+    SetSoundDuration(gg_snd_Saw, 2577)
 end
 
 function CreateBuildingsForPlayer4()
@@ -701,7 +709,8 @@ function KillTreeInRange (x,y,range)
 	SetRect(GlobalRect, x - range, y - range, x + range, y +range)
 	EnumDestructablesInRect(GlobalRect,nil,function ()
 		local d=GetEnumDestructable()
-		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr')) or GetDestructableTypeId(d)==(FourCC('B001'))) then --
+		if GetDestructableLife(d)>0 and (GetDestructableTypeId(d)==(FourCC('ATtc')) or GetDestructableTypeId(d)==(FourCC('ATtr'))  or GetDestructableTypeId(d)==(FourCC('FTtw'))
+		or GetDestructableTypeId(d)==(FourCC('B001'))) then --
 			k=k+1
 			DestructableState[GetHandleId(d)]=1-- параметр означает, что дерево уничтожено способностью
 			--print("найдено дерево")
@@ -763,6 +772,8 @@ do
 		InitTimers()
 		InitDestructablesActions()
 		InitUnitDeath()
+		InitTalants()
+		--InitShop()
 	end
 
 end
@@ -778,7 +789,7 @@ function InitGameCore()
 	for i = 0, bj_MAX_PLAYER_SLOTS - 1 do
 		local player = Player(i)
 		if i==0 then -- GetPlayerController(player) == MAP_CONTROL_USER and GetPlayerSlotState(player) == PLAYER_SLOT_STATE_PLAYING then
-			print("3")
+			--print("3")
 			--FIXME сделать нормальное появление героя
 			local hero = CreateUnit(player, HERO_ID, -7042, 6910, 0)
 			UnitAddAbility(hero, FourCC('Asud')) -- Продажа юнита
@@ -801,26 +812,8 @@ function InitGameCore()
 				KillCount=0,
 				TreeCount=0
 			}
-			print("2")
-			--function InitTrig_InRange()
-				print("1")
-				gg_trg_InRange = CreateTrigger()
-				TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
-				TriggerAddAction(gg_trg_InRange, function()
-					local entering=GetTriggerUnit()
-					print(GetUnitName(entering).." зарегистрирован возле "..GetUnitName(hero))
-					if GetUnitTypeId(entering)==FourCC('Obla') then--- мастер клинка
-						local dataq=Quest[2]
-						if dataq.hero==hero then
-							dataq.isend=true
-							SetPlayerAllianceStateBJ(GetOwningPlayer(hero), Player(5), bj_ALLIANCE_ALLIED)
-						end
-					end
+			QuestRegistrator(hero)
 
-					--Перечисляем события регистрации кого либо возле героя
-					print(GetUnitName(GetTriggerUnit()).." зарегистрирован возле "..GetUnitName(hero))
-					end)
-			--end
 		end--цикл всех игроков
 	end
 	--инициализация квестов
@@ -1015,8 +1008,14 @@ function AddQuest(questnumber,compas,hero,qx,qy,questendunit)
 	local x,y=GetUnitX(hero),GetUnitY(hero)
 	local model="war3mapImported/AneuCaster.mdl"
 	local player=GetOwningPlayer(hero)
+
 	--FIXME GetLocalPlayer
-	if GetLocalPlayer()~=player then	model="" end
+	if GetLocalPlayer()~=player then
+		model=""
+	else
+		--print("звук созданного квеста")
+		StartSound(bj_questSecretSound)
+	end
 	local QuestPointer=AddSpecialEffect(model,x,y)
 	local data=Quest[questnumber]
 	data.hero=hero
@@ -1038,17 +1037,18 @@ function AddQuest(questnumber,compas,hero,qx,qy,questendunit)
 			if data.isend==true then
 				if GetLocalPlayer()==player then
 					StartSound(bj_questCompletedSound)
-					DestroyTimer(GetExpiredTimer())
-					DestroyEffect(QuestPointer)
-					print("квест "..questnumber.." выполнен, даём награду")
 				end
+				DestroyTimer(GetExpiredTimer())
+				DestroyEffect(QuestPointer)
+				print("квест №"..questnumber.." выполнен, даём награду")
 			end
 		end)
 		TimerStart(CreateTimer(), 10, true, function()
-			PingMinimapForPlayer(player,qx,qy,3)
 			if data.isend==true then
 				DestroyTimer(GetExpiredTimer())
-				print("Выключаем мигалку")
+				--print("Выключаем мигалку")
+			else
+				PingMinimapForPlayer(player,qx,qy,3)
 			end
 		end)
 	end
@@ -1083,6 +1083,28 @@ function FindUnitOfType(id)
 	return unit
 end
 
+function QuestRegistrator(hero)
+	--регистрация
+	gg_trg_InRange = CreateTrigger()
+	TriggerRegisterUnitInRangeSimple(gg_trg_InRange, 256, hero)
+	--print("регистрация для"..GetUnitName(hero))
+	TriggerAddAction(gg_trg_InRange, function()
+		local entering=GetTriggerUnit()
+		local dataq=nil
+		if GetUnitTypeId(entering)==FourCC('Obla') then--- мастер клинка
+		dataq=Quest[2]
+			if dataq.hero==hero then
+				dataq.isend=true
+				SetPlayerAllianceStateBJ(Player(5),GetOwningPlayer(hero), bj_ALLIANCE_ALLIED_VISION)
+				SetPlayerAllianceStateBJ(GetOwningPlayer(hero),Player(5), bj_ALLIANCE_ALLIED_VISION)
+				QuestMessageBJ(GetPlayersAllies(GetOwningPlayer(hero)), bj_QUESTMESSAGE_UNITAVAILABLE, "|cffffff00Заключен союз:|r теперь вы имеете общий обзор с деревней орков")
+			end
+		end
+
+		--Перечисляем события регистрации кого либо возле героя
+		--print(GetUnitName(GetTriggerUnit()).." зарегистрирован возле "..GetUnitName(hero))
+	end)
+end
 
 
 
@@ -1370,6 +1392,46 @@ function InitSpellTrigger()
 		end
 	end)
 end
+---
+--- Generated by EmmyLua(https://github.com/EmmyLua)
+--- Created by Bergi.
+--- DateTime: 26.01.2020 17:12
+---
+function InitTalants()
+		local UI_SHOP_BUTTON
+		local UI_SHOP_TRIGGER
+		local UI_BOOL = {}
+		local timer = CreateTimer()
+		TimerStart(timer, 0.0, false, function()
+			local ui = BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI,0)
+			-- SHOP BUTTON
+			UI_SHOP_BUTTON = BlzCreateFrame("ReplayButton", ui, 0, 0)
+			BlzFrameSetSize(UI_SHOP_BUTTON, 0.09, 0.025)
+			BlzFrameSetAbsPoint(UI_SHOP_BUTTON, FRAMEPOINT_CENTER, 0.55, 0.145)-- надо 65 145
+			BlzFrameSetText(UI_SHOP_BUTTON, "Таланты (F2)")
+			UI_SHOP_TRIGGER = CreateTrigger()
+			BlzTriggerRegisterFrameEvent(UI_SHOP_TRIGGER, UI_SHOP_BUTTON, FRAMEEVENT_CONTROL_CLICK)
+			TriggerAddAction(UI_SHOP_TRIGGER, function()
+				local p = GetTriggerPlayer()
+				local id = GetPlayerId(p)
+				if(UI_BOOL[id])then
+					UI_BOOL[id] = false
+					if(GetLocalPlayer() == p)then
+						print("close")
+					end
+				else
+					UI_BOOL[id] = true
+					if(GetLocalPlayer() == p)then
+						print("open")
+					end
+				end
+				BlzFrameSetEnable(BlzGetTriggerFrame(), false)
+				BlzFrameSetEnable(BlzGetTriggerFrame(), true)
+			end)-- кнопка
+			DestroyTimer(timer)
+		end)
+end
+
 ---@param text string
 ---@param textSize real
 ---@param x real
@@ -1545,9 +1607,50 @@ function InitTrig_StartAlly()
     TriggerAddAction(gg_trg_StartAlly, Trig_StartAlly_Actions)
 end
 
+function Trig_NonAttack_Conditions()
+    if (not (IsPlayerAlly(GetTriggerPlayer(), GetOwningPlayer(GetAttacker())) == true)) then
+        return false
+    end
+    return true
+end
+
+function Trig_NonAttack_Actions()
+    PauseUnitBJ(true, GetAttacker())
+    IssueImmediateOrderBJ(GetAttacker(), "stop")
+    PauseUnitBJ(false, GetAttacker())
+end
+
+function InitTrig_NonAttack()
+    gg_trg_NonAttack = CreateTrigger()
+    TriggerRegisterAnyUnitEventBJ(gg_trg_NonAttack, EVENT_PLAYER_UNIT_ATTACKED)
+    TriggerAddCondition(gg_trg_NonAttack, Condition(Trig_NonAttack_Conditions))
+    TriggerAddAction(gg_trg_NonAttack, Trig_NonAttack_Actions)
+end
+
+function Trig_SoundAbility_Conditions()
+    if (not (GetSpellAbilityId() == FourCC("A002"))) then
+        return false
+    end
+    return true
+end
+
+function Trig_SoundAbility_Actions()
+    PlaySoundAtPointBJ(gg_snd_Saw, 100, GetUnitLoc(GetTriggerUnit()), 0)
+    DisplayTextToForce(GetPlayersAll(), "TRIGSTR_177")
+end
+
+function InitTrig_SoundAbility()
+    gg_trg_SoundAbility = CreateTrigger()
+    TriggerRegisterAnyUnitEventBJ(gg_trg_SoundAbility, EVENT_PLAYER_UNIT_SPELL_EFFECT)
+    TriggerAddCondition(gg_trg_SoundAbility, Condition(Trig_SoundAbility_Conditions))
+    TriggerAddAction(gg_trg_SoundAbility, Trig_SoundAbility_Actions)
+end
+
 function InitCustomTriggers()
     InitTrig_Enter()
     InitTrig_StartAlly()
+    InitTrig_NonAttack()
+    InitTrig_SoundAbility()
 end
 
 function RunInitializationTriggers()
@@ -1683,6 +1786,7 @@ function main()
     SetAmbientDaySound("AshenvaleDay")
     SetAmbientNightSound("AshenvaleNight")
     SetMapMusic("Music", true, 0)
+    InitSounds()
     CreateRegions()
     CreateAllUnits()
     InitBlizzard()
