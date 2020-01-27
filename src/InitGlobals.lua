@@ -18,6 +18,7 @@ do
 		InitDestructablesActions()
 		InitUnitDeath()
 		InitTalants()
+		InitTalantItemUse()
 		--InitShop()
 	end
 
@@ -55,7 +56,12 @@ function InitGameCore()
 			}
 			TimerStart(CreateTimer(), 1, true, function()
 				local data=Talants[pid]
-				SetUnitPosition(data.w,GetUnitX(hero),GetUnitY(hero))
+				local x,y=GetUnitX(hero),GetUnitY(hero)
+				SetUnitPosition(data.main,x,y)
+				SetUnitPosition(data.q,x,y)
+				SetUnitPosition(data.w,x,y)
+				SetUnitPosition(data.e,x,y)
+				SetUnitPosition(data.r,x,y)
 			end)
 			---------------------------------------------------------------
 			HEROSimple[pid]=hero
@@ -68,7 +74,18 @@ function InitGameCore()
 				IsReturned=false,
 				FirstDamage=false,
 				KillCount=0,
-				TreeCount=0
+				TreeCount=0,
+				TalantQ={
+
+				},
+				TalantW={
+					AddChain=false,
+					MeatHook=false,
+					AddCOre=false,
+					Fixed=false,
+					Willow=false,
+					Unwil=false
+				}
 			}
 			QuestRegistrator(hero)
 

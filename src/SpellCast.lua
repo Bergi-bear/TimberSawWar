@@ -107,7 +107,11 @@ function InitSpellTrigger()
 			end)
 
 		elseif spellId == FourCC('A001') then -- Крюк
+			local data=HERO[GetHandleId(caster)]
+			local dataT=data.TalantW
 			local MaxRange=700
+			if dataT.AddChain then	MaxRange=700+700	end--Самый первый талант
+
 			local EffChain={}
 			local speed=50
 			local ChainCount=1
@@ -123,6 +127,7 @@ function InitSpellTrigger()
 			local TreeFinderRange=70
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
+			local data=HERO[GetHandleId(caster)]
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
 			TimerStart(CreateTimer(), 0.03, true, function()
@@ -283,6 +288,27 @@ function InitSpellTrigger()
 					data.WaitReturnerUnit = CreateUnit(ownplayer, FourCC('e001'), -0, 0, 0)
 				end
 			end)
+		elseif spellId == FourCC('A007') then -- Q Талант
+			local data=Talants[id]
+			local hero=HEROSimple[id]
+			SetUnitPosition(data.q,GetUnitX(hero),GetUnitY(hero))
+			SelectUnitForPlayerSingle(data.q,ownplayer)
+		elseif spellId == FourCC('A008') then -- W Талант
+			local data=Talants[id]
+			local hero=HEROSimple[id]
+			SetUnitPosition(data.w,GetUnitX(hero),GetUnitY(hero))
+			SelectUnitForPlayerSingle(data.w,ownplayer)
+		elseif spellId == FourCC('A009') then -- E Талант
+			local data=Talants[id]
+			local hero=HEROSimple[id]
+			SetUnitPosition(data.e,GetUnitX(hero),GetUnitY(hero))
+			SelectUnitForPlayerSingle(data.e,ownplayer)
+		elseif spellId == FourCC('A00A') then -- R Талант
+			local data=Talants[id]
+			local hero=HEROSimple[id]
+			SetUnitPosition(data.r,GetUnitX(hero),GetUnitY(hero))
+			SelectUnitForPlayerSingle(data.r,ownplayer)
+
 		end
 	end)
 end
