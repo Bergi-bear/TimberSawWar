@@ -79,6 +79,7 @@ function InitGameCore()
 
 				},
 				TalantW={
+					AbilID=FourCC('A001'),
 					AddChain=false,
 					MeatHook=false,
 					AddCore=false,

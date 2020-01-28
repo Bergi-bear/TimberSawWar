@@ -127,7 +127,10 @@ function InitSpellTrigger()
 			local TreeFinderRange=70
 			local ttk=0
 			local damage=GetHeroStr(caster,true)/3
-			local data=HERO[GetHandleId(caster)]
+			--
+			print("0")
+			UnitRefreshAbilityTooltip(caster,spellId)
+			-- действия
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))
 			TimerStart(CreateTimer(), 0.03, true, function()

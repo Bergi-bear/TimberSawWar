@@ -3,6 +3,49 @@
 --- Created by Bergi.
 --- DateTime: 27.01.2020 23:44
 ---
+---
+---@param data table
+---@param str string
+---@return string
+function string.gsuber(data, str)
+	for k, v in pairs(data) do
+		str = string.gsub(str, '[' .. k .. ']', v)
+	end
+	return str
+end
+
+do
+	local GetAbilityDescriptionOriginalTable = {} ---@type table
+
+	function GetAbilityDescriptionOriginal(id)
+		--print("0.6")
+		if GetAbilityDescriptionOriginalTable[id] == nil then
+			GetAbilityDescriptionOriginalTable[id] = BlzGetAbilityExtendedTooltip(id,0)
+		--	print("0.7")
+		end
+		return GetAbilityDescriptionOriginalTable[id]
+	end
+	function UnitRefreshAbilityTooltip(caster,id)
+		local NativeString=GetAbilityDescriptionOriginal(id)
+		local data=HERO[GetHandleId(caster)]
+		local player=GetOwningPlayer(caster)
+
+		if id==data.TalantW.AbilID then -- описание способности
+			print("условие выполнено")
+			if data.TalantW.AddChain then
+				NativeString = string.gsuber({ mrange = 1400 }, NativeString)
+			else
+				NativeString = string.gsuber({ mrange = 700 }, NativeString)
+				--NativeString =string.gsub(NativeString,)
+				print("NativeString="..NativeString)
+			end
+			BlzSetAbilityExtendedTooltip(id,NativeString,0)
+		end
+		--print("Проверка "..NativeString)
+	end
+end
+
+---
 function InitTalantItemUse()
 	gg_trg_TalantItemUse = CreateTrigger()
 	TriggerRegisterAnyUnitEventBJ(gg_trg_TalantItemUse, EVENT_PLAYER_UNIT_PICKUP_ITEM)
@@ -11,37 +54,21 @@ function InitTalantItemUse()
 		local hero=GetTriggerUnit()
 		local data=HERO[GetHandleId(hero)]
 		--таланты способности W
-		--[[					AddChain=false,
-		--					MeatHook=false,
-		--					AddCore=false,
-		--					Fixed=false,
-		--					Willow=false,
-		--					Unwil=false,
-							Pudge=false
-		]]
 
 		if GetItemTypeId(item)==FourCC('I000') then --дополнительные звенья
-			local dataT=data.TalantW
-			dataT.AddChain=true
-			--print("изучен прототип таланта "..GetUnitName(hero))
+			data.TalantW.AddChain=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --Мясной крюк
-			local dataT=data.TalantW
-			dataT.MeatHook=true
+			data.TalantW.MeatHook=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --Ядро
-			local dataT=data.TalantW
-			dataT.AddCore=true
+			data.TalantW.AddCore=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --фиксатор
-			local dataT=data.TalantW
-			dataT.Fixed=true
+			data.TalantWFixed=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --корчеватель пней
-			local dataT=data.TalantW
-			dataT.Willow=true
+			data.TalantW.Willow=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --наковальня
-			local dataT=data.TalantW
-			dataT.Unwil=true
+			data.TalantW.Unwil=true
 		elseif GetItemTypeId(item)==FourCC('I00X') then --пудж
-			local dataT=data.TalantW
-			dataT.Pudge=true
+			data.TalantW.Pudge=true
 		end
 	end)
 end
