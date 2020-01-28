@@ -10,11 +10,38 @@ function InitTalantItemUse()
 		local item=GetManipulatedItem()
 		local hero=GetTriggerUnit()
 		local data=HERO[GetHandleId(hero)]
+		--таланты способности W
+		--[[					AddChain=false,
+		--					MeatHook=false,
+		--					AddCore=false,
+		--					Fixed=false,
+		--					Willow=false,
+		--					Unwil=false,
+							Pudge=false
+		]]
 
 		if GetItemTypeId(item)==FourCC('I000') then --дополнительные звенья
 			local dataT=data.TalantW
 			dataT.AddChain=true
-			print("изучен прототип таланта "..GetUnitName(hero))
+			--print("изучен прототип таланта "..GetUnitName(hero))
+		elseif GetItemTypeId(item)==FourCC('I00X') then --Мясной крюк
+			local dataT=data.TalantW
+			dataT.MeatHook=true
+		elseif GetItemTypeId(item)==FourCC('I00X') then --Ядро
+			local dataT=data.TalantW
+			dataT.AddCore=true
+		elseif GetItemTypeId(item)==FourCC('I00X') then --фиксатор
+			local dataT=data.TalantW
+			dataT.Fixed=true
+		elseif GetItemTypeId(item)==FourCC('I00X') then --корчеватель пней
+			local dataT=data.TalantW
+			dataT.Willow=true
+		elseif GetItemTypeId(item)==FourCC('I00X') then --наковальня
+			local dataT=data.TalantW
+			dataT.Unwil=true
+		elseif GetItemTypeId(item)==FourCC('I00X') then --пудж
+			local dataT=data.TalantW
+			dataT.Pudge=true
 		end
 	end)
 end

@@ -110,8 +110,8 @@ function InitSpellTrigger()
 			local data=HERO[GetHandleId(caster)]
 			local dataT=data.TalantW
 			local MaxRange=700
-			if dataT.AddChain then	MaxRange=700+700	end--Самый первый талант
-
+			if dataT.AddChain then	MaxRange=MaxRange+700	end--Удлинённый крюк
+			if dataT.Pudge then	MaxRange=MaxRange+500	end--Пудж
 			local EffChain={}
 			local speed=50
 			local ChainCount=1

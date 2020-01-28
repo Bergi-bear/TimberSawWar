@@ -81,13 +81,14 @@ function InitGameCore()
 				TalantW={
 					AddChain=false,
 					MeatHook=false,
-					AddCOre=false,
+					AddCore=false,
 					Fixed=false,
 					Willow=false,
-					Unwil=false
+					Unwil=false,
+					Pudge=false
 				}
 			}
-			QuestRegistrator(hero)
+			QuestRegistrator(hero)-- Событие приближения к квестовым объектам
 
 		end--цикл всех игроков
 	end
