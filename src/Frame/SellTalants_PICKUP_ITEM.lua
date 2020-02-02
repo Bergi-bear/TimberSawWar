@@ -33,13 +33,14 @@ do
 		if id==data.TalantW.AbilID then -- описание способности
 			print("условие выполнено")
 			if data.TalantW.AddChain then
-				NativeString = string.gsuber({ mrange = 1400 }, NativeString)
+				--NativeString = string.gsuber({ mrange = 1400 }, NativeString)
 			else
-				NativeString = string.gsuber({ mrange = 700 }, NativeString)
-				--NativeString =string.gsub(NativeString,)
-				print("NativeString="..NativeString)
+				--NativeString = string.gsuber({ mrange = 700 }, NativeString)
+				NativeString =string.gsub(NativeString,"mrange","700")
 			end
+			print("Результат NativeString="..NativeString)
 			BlzSetAbilityExtendedTooltip(id,NativeString,0)
+			BlzSetAbilityExtendedTooltip(id,NativeString,1)
 		end
 		--print("Проверка "..NativeString)
 	end

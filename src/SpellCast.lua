@@ -126,10 +126,14 @@ function InitSpellTrigger()
 			local CasterRange=0
 			local TreeFinderRange=70
 			local ttk=0
-			local damage=GetHeroStr(caster,true)/3
+			local damage=GetHeroStr(caster,true)--/3 убрал деление на 3
 			--
-			print("0")
-			UnitRefreshAbilityTooltip(caster,spellId)
+			--print("0")
+			--UnitRefreshAbilityTooltip(caster,spellId)
+			--BlzSetAbilityExtendedTooltip(spellId,"описание",0) -- вообще не работает
+			--BlzSetAbilityTooltip(spellId,"название",0) -- работает только с цифрами
+			--BlzSetAbilityActivatedExtendedTooltip(spellId,"чё это вообще такое",0)-- варкрафт уходит в ошибку
+
 			-- действия
 			BlzSetSpecialEffectScale(hook, 2)
 			BlzSetSpecialEffectYaw(hook,math.rad(Angle))

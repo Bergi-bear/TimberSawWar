@@ -1,65 +1,65 @@
 ﻿STRING 7
-// Войска: e000 (Dummy), Name (Название)
+// Units: e000 (Dummy), Name (Name)
 {
 Dummy
 }
 
 STRING 8
-// Войска: H000 (Гоблинский Резак), Propernames (Имена собственные)
+// Units: H000 (Крошшер), Propernames (Proper Names)
 {
 Тимбер,Риззрак,Шреддер,Justin Timber Saw,Justin Timber Like
 }
 
 STRING 9
-// Способности: A000 (Острые клинки), Name (Название)
+// Abilities: A000 (Острые клинки), Name (Name)
 {
 Острые клинки
 }
 
 STRING 12
-// Способности: A000 (Острые клинки), Hotkey (Горячая клавиша: используется)
+// Abilities: A000 (Острые клинки), Hotkey (Hotkey - Normal)
 {
 Q
 }
 
 STRING 13
-// Способности: A001 (Гарпун), Name (Название)
+// Abilities: A001 (Гарпун), Name (Name)
 {
 Гарпун
 }
 
 STRING 16
-// Способности: A001 (Гарпун), Hotkey (Горячая клавиша: используется)
+// Abilities: A001 (Гарпун), Hotkey (Hotkey - Normal)
 {
 W
 }
 
 STRING 17
-// Способности: A001 (Гарпун), Unhotkey (Горячая клавиша: не используется)
+// Abilities: A001 (Гарпун), Unhotkey (Hotkey - Turn Off)
 {
 W
 }
 
 STRING 18
-// Войска: n000 (Реактивная броня), Name (Название)
+// Units: n000 (Реактивная броня), Name (Name)
 {
 Реактивная броня
 }
 
 STRING 19
-// Войска: n000 (Реактивная броня), Hotkey (Горячая клавиша)
+// Units: n000 (Реактивная броня), Hotkey (Hotkey)
 {
 E
 }
 
 STRING 20
-// Войска: n000 (Реактивная броня), Tip (Подсказка: краткая)
+// Units: n000 (Реактивная броня), Tip (Tooltip - Basic)
 {
 Реактивная броня
 }
 
 STRING 21
-// Войска: n000 (Реактивная броня), Ubertip (Подсказка: подробная)
+// Units: n000 (Реактивная броня), Ubertip (Tooltip - Extended)
 {
 При атаках врагов увеличивает броню и регенерацию за каждый заряд
 Дополнительная броня: 1
@@ -70,661 +70,661 @@ STRING 21
 }
 
 STRING 22
-// Способности: ZxA0 (BonusMod - Armor (+0001)), Name (Название)
+// Abilities: ZxA0 (BonusMod - Armor (+0001)), Name (Name)
 {
 BonusMod - Armor (+0001)
 }
 
 STRING 23
-// Способности: ZxB0 (BonusMod - Damage (+0001)), Name (Название)
+// Abilities: ZxB0 (BonusMod - Damage (+0001)), Name (Name)
 {
 BonusMod - Damage (+0001)
 }
 
 STRING 24
-// Способности: ZxC0 (BonusMod - Sight Range (+0001)), Name (Название)
+// Abilities: ZxC0 (BonusMod - Sight Range (+0001)), Name (Name)
 {
 BonusMod - Sight Range (+0001)
 }
 
 STRING 25
-// Способности: ZxD0 (BonusMod - Mana Regen (+0001)), Name (Название)
+// Abilities: ZxD0 (BonusMod - Mana Regen (+0001)), Name (Name)
 {
 BonusMod - Mana Regen (+0001)
 }
 
 STRING 26
-// Способности: ZxE0 (BonusMod - Life Regen (+0001)), Name (Название)
+// Abilities: ZxE0 (BonusMod - Life Regen (+0001)), Name (Name)
 {
 BonusMod - Life Regen (+0001)
 }
 
 STRING 27
-// Способности: ZxF0 (BonusMod - Hero STR (+0001)), Name (Название)
+// Abilities: ZxF0 (BonusMod - Hero STR (+0001)), Name (Name)
 {
 BonusMod - Hero STR (+0001)
 }
 
 STRING 28
-// Способности: ZxG0 (BonusMod - Hero AGI (+0001)), Name (Название)
+// Abilities: ZxG0 (BonusMod - Hero AGI (+0001)), Name (Name)
 {
 BonusMod - Hero AGI (+0001)
 }
 
 STRING 29
-// Способности: ZxH0 (BonusMod - Hero INT (+0001)), Name (Название)
+// Abilities: ZxH0 (BonusMod - Hero INT (+0001)), Name (Name)
 {
 BonusMod - Hero INT (+0001)
 }
 
 STRING 30
-// Способности: ZxA1 (BonusMod - Armor (+0002)), Name (Название)
+// Abilities: ZxA1 (BonusMod - Armor (+0002)), Name (Name)
 {
 BonusMod - Armor (+0002)
 }
 
 STRING 31
-// Способности: ZxB1 (BonusMod - Damage (+0002)), Name (Название)
+// Abilities: ZxB1 (BonusMod - Damage (+0002)), Name (Name)
 {
 BonusMod - Damage (+0002)
 }
 
 STRING 32
-// Способности: ZxC1 (BonusMod - Sight Range (+0002)), Name (Название)
+// Abilities: ZxC1 (BonusMod - Sight Range (+0002)), Name (Name)
 {
 BonusMod - Sight Range (+0002)
 }
 
 STRING 33
-// Способности: ZxD1 (BonusMod - Mana Regen (+0002)), Name (Название)
+// Abilities: ZxD1 (BonusMod - Mana Regen (+0002)), Name (Name)
 {
 BonusMod - Mana Regen (+0002)
 }
 
 STRING 34
-// Способности: ZxE1 (BonusMod - Life Regen (+0002)), Name (Название)
+// Abilities: ZxE1 (BonusMod - Life Regen (+0002)), Name (Name)
 {
 BonusMod - Life Regen (+0002)
 }
 
 STRING 35
-// Способности: ZxF1 (BonusMod - Hero STR (+0002)), Name (Название)
+// Abilities: ZxF1 (BonusMod - Hero STR (+0002)), Name (Name)
 {
 BonusMod - Hero STR (+0002)
 }
 
 STRING 36
-// Способности: ZxG1 (BonusMod - Hero AGI (+0002)), Name (Название)
+// Abilities: ZxG1 (BonusMod - Hero AGI (+0002)), Name (Name)
 {
 BonusMod - Hero AGI (+0002)
 }
 
 STRING 37
-// Способности: ZxH1 (BonusMod - Hero INT (+0002)), Name (Название)
+// Abilities: ZxH1 (BonusMod - Hero INT (+0002)), Name (Name)
 {
 BonusMod - Hero INT (+0002)
 }
 
 STRING 38
-// Способности: ZxA2 (BonusMod - Armor (+0004)), Name (Название)
+// Abilities: ZxA2 (BonusMod - Armor (+0004)), Name (Name)
 {
 BonusMod - Armor (+0004)
 }
 
 STRING 39
-// Способности: ZxB2 (BonusMod - Damage (+0004)), Name (Название)
+// Abilities: ZxB2 (BonusMod - Damage (+0004)), Name (Name)
 {
 BonusMod - Damage (+0004)
 }
 
 STRING 40
-// Способности: ZxC2 (BonusMod - Sight Range (+0004)), Name (Название)
+// Abilities: ZxC2 (BonusMod - Sight Range (+0004)), Name (Name)
 {
 BonusMod - Sight Range (+0004)
 }
 
 STRING 41
-// Способности: ZxD2 (BonusMod - Mana Regen (+0004)), Name (Название)
+// Abilities: ZxD2 (BonusMod - Mana Regen (+0004)), Name (Name)
 {
 BonusMod - Mana Regen (+0004)
 }
 
 STRING 42
-// Способности: ZxE2 (BonusMod - Life Regen (+0004)), Name (Название)
+// Abilities: ZxE2 (BonusMod - Life Regen (+0004)), Name (Name)
 {
 BonusMod - Life Regen (+0004)
 }
 
 STRING 43
-// Способности: ZxF2 (BonusMod - Hero STR (+0004)), Name (Название)
+// Abilities: ZxF2 (BonusMod - Hero STR (+0004)), Name (Name)
 {
 BonusMod - Hero STR (+0004)
 }
 
 STRING 44
-// Способности: ZxG2 (BonusMod - Hero AGI (+0004)), Name (Название)
+// Abilities: ZxG2 (BonusMod - Hero AGI (+0004)), Name (Name)
 {
 BonusMod - Hero AGI (+0004)
 }
 
 STRING 45
-// Способности: ZxH2 (BonusMod - Hero INT (+0004)), Name (Название)
+// Abilities: ZxH2 (BonusMod - Hero INT (+0004)), Name (Name)
 {
 BonusMod - Hero INT (+0004)
 }
 
 STRING 46
-// Способности: ZxA3 (BonusMod - Armor (+0008)), Name (Название)
+// Abilities: ZxA3 (BonusMod - Armor (+0008)), Name (Name)
 {
 BonusMod - Armor (+0008)
 }
 
 STRING 47
-// Способности: ZxB3 (BonusMod - Damage (+0008)), Name (Название)
+// Abilities: ZxB3 (BonusMod - Damage (+0008)), Name (Name)
 {
 BonusMod - Damage (+0008)
 }
 
 STRING 48
-// Способности: ZxC3 (BonusMod - Sight Range (+0008)), Name (Название)
+// Abilities: ZxC3 (BonusMod - Sight Range (+0008)), Name (Name)
 {
 BonusMod - Sight Range (+0008)
 }
 
 STRING 49
-// Способности: ZxD3 (BonusMod - Mana Regen (+0008)), Name (Название)
+// Abilities: ZxD3 (BonusMod - Mana Regen (+0008)), Name (Name)
 {
 BonusMod - Mana Regen (+0008)
 }
 
 STRING 50
-// Способности: ZxE3 (BonusMod - Life Regen (+0008)), Name (Название)
+// Abilities: ZxE3 (BonusMod - Life Regen (+0008)), Name (Name)
 {
 BonusMod - Life Regen (+0008)
 }
 
 STRING 51
-// Способности: ZxF3 (BonusMod - Hero STR (+0008)), Name (Название)
+// Abilities: ZxF3 (BonusMod - Hero STR (+0008)), Name (Name)
 {
 BonusMod - Hero STR (+0008)
 }
 
 STRING 52
-// Способности: ZxG3 (BonusMod - Hero AGI (+0008)), Name (Название)
+// Abilities: ZxG3 (BonusMod - Hero AGI (+0008)), Name (Name)
 {
 BonusMod - Hero AGI (+0008)
 }
 
 STRING 53
-// Способности: ZxH3 (BonusMod - Hero INT (+0008)), Name (Название)
+// Abilities: ZxH3 (BonusMod - Hero INT (+0008)), Name (Name)
 {
 BonusMod - Hero INT (+0008)
 }
 
 STRING 54
-// Способности: ZxA4 (BonusMod - Armor (+0016)), Name (Название)
+// Abilities: ZxA4 (BonusMod - Armor (+0016)), Name (Name)
 {
 BonusMod - Armor (+0016)
 }
 
 STRING 55
-// Способности: ZxB4 (BonusMod - Damage (+0016)), Name (Название)
+// Abilities: ZxB4 (BonusMod - Damage (+0016)), Name (Name)
 {
 BonusMod - Damage (+0016)
 }
 
 STRING 56
-// Способности: ZxC4 (BonusMod - Sight Range (+0016)), Name (Название)
+// Abilities: ZxC4 (BonusMod - Sight Range (+0016)), Name (Name)
 {
 BonusMod - Sight Range (+0016)
 }
 
 STRING 57
-// Способности: ZxD4 (BonusMod - Mana Regen (+0016)), Name (Название)
+// Abilities: ZxD4 (BonusMod - Mana Regen (+0016)), Name (Name)
 {
 BonusMod - Mana Regen (+0016)
 }
 
 STRING 58
-// Способности: ZxE4 (BonusMod - Life Regen (+0016)), Name (Название)
+// Abilities: ZxE4 (BonusMod - Life Regen (+0016)), Name (Name)
 {
 BonusMod - Life Regen (+0016)
 }
 
 STRING 59
-// Способности: ZxF4 (BonusMod - Hero STR (+0016)), Name (Название)
+// Abilities: ZxF4 (BonusMod - Hero STR (+0016)), Name (Name)
 {
 BonusMod - Hero STR (+0016)
 }
 
 STRING 60
-// Способности: ZxG4 (BonusMod - Hero AGI (+0016)), Name (Название)
+// Abilities: ZxG4 (BonusMod - Hero AGI (+0016)), Name (Name)
 {
 BonusMod - Hero AGI (+0016)
 }
 
 STRING 61
-// Способности: ZxH4 (BonusMod - Hero INT (+0016)), Name (Название)
+// Abilities: ZxH4 (BonusMod - Hero INT (+0016)), Name (Name)
 {
 BonusMod - Hero INT (+0016)
 }
 
 STRING 62
-// Способности: ZxA5 (BonusMod - Armor (+0032)), Name (Название)
+// Abilities: ZxA5 (BonusMod - Armor (+0032)), Name (Name)
 {
 BonusMod - Armor (+0032)
 }
 
 STRING 63
-// Способности: ZxB5 (BonusMod - Damage (+0032)), Name (Название)
+// Abilities: ZxB5 (BonusMod - Damage (+0032)), Name (Name)
 {
 BonusMod - Damage (+0032)
 }
 
 STRING 64
-// Способности: ZxC5 (BonusMod - Sight Range (+0032)), Name (Название)
+// Abilities: ZxC5 (BonusMod - Sight Range (+0032)), Name (Name)
 {
 BonusMod - Sight Range (+0032)
 }
 
 STRING 65
-// Способности: ZxD5 (BonusMod - Mana Regen (+0032)), Name (Название)
+// Abilities: ZxD5 (BonusMod - Mana Regen (+0032)), Name (Name)
 {
 BonusMod - Mana Regen (+0032)
 }
 
 STRING 66
-// Способности: ZxE5 (BonusMod - Life Regen (+0032)), Name (Название)
+// Abilities: ZxE5 (BonusMod - Life Regen (+0032)), Name (Name)
 {
 BonusMod - Life Regen (+0032)
 }
 
 STRING 67
-// Способности: ZxF5 (BonusMod - Hero STR (+0032)), Name (Название)
+// Abilities: ZxF5 (BonusMod - Hero STR (+0032)), Name (Name)
 {
 BonusMod - Hero STR (+0032)
 }
 
 STRING 68
-// Способности: ZxG5 (BonusMod - Hero AGI (+0032)), Name (Название)
+// Abilities: ZxG5 (BonusMod - Hero AGI (+0032)), Name (Name)
 {
 BonusMod - Hero AGI (+0032)
 }
 
 STRING 69
-// Способности: ZxH5 (BonusMod - Hero INT (+0032)), Name (Название)
+// Abilities: ZxH5 (BonusMod - Hero INT (+0032)), Name (Name)
 {
 BonusMod - Hero INT (+0032)
 }
 
 STRING 70
-// Способности: ZxA6 (BonusMod - Armor (+0064)), Name (Название)
+// Abilities: ZxA6 (BonusMod - Armor (+0064)), Name (Name)
 {
 BonusMod - Armor (+0064)
 }
 
 STRING 71
-// Способности: ZxB6 (BonusMod - Damage (+0064)), Name (Название)
+// Abilities: ZxB6 (BonusMod - Damage (+0064)), Name (Name)
 {
 BonusMod - Damage (+0064)
 }
 
 STRING 72
-// Способности: ZxC6 (BonusMod - Sight Range (+0064)), Name (Название)
+// Abilities: ZxC6 (BonusMod - Sight Range (+0064)), Name (Name)
 {
 BonusMod - Sight Range (+0064)
 }
 
 STRING 73
-// Способности: ZxD6 (BonusMod - Mana Regen (+0064)), Name (Название)
+// Abilities: ZxD6 (BonusMod - Mana Regen (+0064)), Name (Name)
 {
 BonusMod - Mana Regen (+0064)
 }
 
 STRING 74
-// Способности: ZxE6 (BonusMod - Life Regen (+0064)), Name (Название)
+// Abilities: ZxE6 (BonusMod - Life Regen (+0064)), Name (Name)
 {
 BonusMod - Life Regen (+0064)
 }
 
 STRING 75
-// Способности: ZxF6 (BonusMod - Hero STR (+0064)), Name (Название)
+// Abilities: ZxF6 (BonusMod - Hero STR (+0064)), Name (Name)
 {
 BonusMod - Hero STR (+0064)
 }
 
 STRING 76
-// Способности: ZxG6 (BonusMod - Hero AGI (+0064)), Name (Название)
+// Abilities: ZxG6 (BonusMod - Hero AGI (+0064)), Name (Name)
 {
 BonusMod - Hero AGI (+0064)
 }
 
 STRING 77
-// Способности: ZxH6 (BonusMod - Hero INT (+0064)), Name (Название)
+// Abilities: ZxH6 (BonusMod - Hero INT (+0064)), Name (Name)
 {
 BonusMod - Hero INT (+0064)
 }
 
 STRING 78
-// Способности: ZxA7 (BonusMod - Armor (+0128)), Name (Название)
+// Abilities: ZxA7 (BonusMod - Armor (+0128)), Name (Name)
 {
 BonusMod - Armor (+0128)
 }
 
 STRING 79
-// Способности: ZxB7 (BonusMod - Damage (+0128)), Name (Название)
+// Abilities: ZxB7 (BonusMod - Damage (+0128)), Name (Name)
 {
 BonusMod - Damage (+0128)
 }
 
 STRING 80
-// Способности: ZxC7 (BonusMod - Sight Range (+0128)), Name (Название)
+// Abilities: ZxC7 (BonusMod - Sight Range (+0128)), Name (Name)
 {
 BonusMod - Sight Range (+0128)
 }
 
 STRING 81
-// Способности: ZxD7 (BonusMod - Mana Regen (+0128)), Name (Название)
+// Abilities: ZxD7 (BonusMod - Mana Regen (+0128)), Name (Name)
 {
 BonusMod - Mana Regen (+0128)
 }
 
 STRING 82
-// Способности: ZxE7 (BonusMod - Life Regen (+0128)), Name (Название)
+// Abilities: ZxE7 (BonusMod - Life Regen (+0128)), Name (Name)
 {
 BonusMod - Life Regen (+0128)
 }
 
 STRING 83
-// Способности: ZxF7 (BonusMod - Hero STR (+0128)), Name (Название)
+// Abilities: ZxF7 (BonusMod - Hero STR (+0128)), Name (Name)
 {
 BonusMod - Hero STR (+0128)
 }
 
 STRING 84
-// Способности: ZxG7 (BonusMod - Hero AGI (+0128)), Name (Название)
+// Abilities: ZxG7 (BonusMod - Hero AGI (+0128)), Name (Name)
 {
 BonusMod - Hero AGI (+0128)
 }
 
 STRING 85
-// Способности: ZxH7 (BonusMod - Hero INT (+0128)), Name (Название)
+// Abilities: ZxH7 (BonusMod - Hero INT (+0128)), Name (Name)
 {
 BonusMod - Hero INT (+0128)
 }
 
 STRING 86
-// Способности: ZxA8 (BonusMod - Armor (+0256)), Name (Название)
+// Abilities: ZxA8 (BonusMod - Armor (+0256)), Name (Name)
 {
 BonusMod - Armor (+0256)
 }
 
 STRING 87
-// Способности: ZxB8 (BonusMod - Damage (+0256)), Name (Название)
+// Abilities: ZxB8 (BonusMod - Damage (+0256)), Name (Name)
 {
 BonusMod - Damage (+0256)
 }
 
 STRING 88
-// Способности: ZxC8 (BonusMod - Sight Range (+0256)), Name (Название)
+// Abilities: ZxC8 (BonusMod - Sight Range (+0256)), Name (Name)
 {
 BonusMod - Sight Range (+0256)
 }
 
 STRING 89
-// Способности: ZxD8 (BonusMod - Mana Regen (+0256)), Name (Название)
+// Abilities: ZxD8 (BonusMod - Mana Regen (+0256)), Name (Name)
 {
 BonusMod - Mana Regen (+0256)
 }
 
 STRING 90
-// Способности: ZxE8 (BonusMod - Life Regen (+0256)), Name (Название)
+// Abilities: ZxE8 (BonusMod - Life Regen (+0256)), Name (Name)
 {
 BonusMod - Life Regen (+0256)
 }
 
 STRING 91
-// Способности: ZxF8 (BonusMod - Hero STR (+0256)), Name (Название)
+// Abilities: ZxF8 (BonusMod - Hero STR (+0256)), Name (Name)
 {
 BonusMod - Hero STR (+0256)
 }
 
 STRING 92
-// Способности: ZxG8 (BonusMod - Hero AGI (+0256)), Name (Название)
+// Abilities: ZxG8 (BonusMod - Hero AGI (+0256)), Name (Name)
 {
 BonusMod - Hero AGI (+0256)
 }
 
 STRING 93
-// Способности: ZxH8 (BonusMod - Hero INT (+0256)), Name (Название)
+// Abilities: ZxH8 (BonusMod - Hero INT (+0256)), Name (Name)
 {
 BonusMod - Hero INT (+0256)
 }
 
 STRING 94
-// Способности: ZxA9 (BonusMod - Armor (+0512)), Name (Название)
+// Abilities: ZxA9 (BonusMod - Armor (+0512)), Name (Name)
 {
 BonusMod - Armor (+0512)
 }
 
 STRING 95
-// Способности: ZxB9 (BonusMod - Damage (+0512)), Name (Название)
+// Abilities: ZxB9 (BonusMod - Damage (+0512)), Name (Name)
 {
 BonusMod - Damage (+0512)
 }
 
 STRING 96
-// Способности: ZxC9 (BonusMod - Sight Range (+0512)), Name (Название)
+// Abilities: ZxC9 (BonusMod - Sight Range (+0512)), Name (Name)
 {
 BonusMod - Sight Range (+0512)
 }
 
 STRING 97
-// Способности: ZxD9 (BonusMod - Mana Regen (+0512)), Name (Название)
+// Abilities: ZxD9 (BonusMod - Mana Regen (+0512)), Name (Name)
 {
 BonusMod - Mana Regen (+0512)
 }
 
 STRING 98
-// Способности: ZxE9 (BonusMod - Life Regen (+0512)), Name (Название)
+// Abilities: ZxE9 (BonusMod - Life Regen (+0512)), Name (Name)
 {
 BonusMod - Life Regen (+0512)
 }
 
 STRING 99
-// Способности: ZxF9 (BonusMod - Hero STR (+0512)), Name (Название)
+// Abilities: ZxF9 (BonusMod - Hero STR (+0512)), Name (Name)
 {
 BonusMod - Hero STR (+0512)
 }
 
 STRING 100
-// Способности: ZxG9 (BonusMod - Hero AGI (+0512)), Name (Название)
+// Abilities: ZxG9 (BonusMod - Hero AGI (+0512)), Name (Name)
 {
 BonusMod - Hero AGI (+0512)
 }
 
 STRING 101
-// Способности: ZxH9 (BonusMod - Hero INT (+0512)), Name (Название)
+// Abilities: ZxH9 (BonusMod - Hero INT (+0512)), Name (Name)
 {
 BonusMod - Hero INT (+0512)
 }
 
 STRING 102
-// Способности: ZxAa (BonusMod - Armor (+1024)), Name (Название)
+// Abilities: ZxAa (BonusMod - Armor (+1024)), Name (Name)
 {
 BonusMod - Armor (+1024)
 }
 
 STRING 103
-// Способности: ZxBa (BonusMod - Damage (+1024)), Name (Название)
+// Abilities: ZxBa (BonusMod - Damage (+1024)), Name (Name)
 {
 BonusMod - Damage (+1024)
 }
 
 STRING 104
-// Способности: ZxCa (BonusMod - Sight Range (+1024)), Name (Название)
+// Abilities: ZxCa (BonusMod - Sight Range (+1024)), Name (Name)
 {
 BonusMod - Sight Range (+1024)
 }
 
 STRING 105
-// Способности: ZxDa (BonusMod - Mana Regen (+1024)), Name (Название)
+// Abilities: ZxDa (BonusMod - Mana Regen (+1024)), Name (Name)
 {
 BonusMod - Mana Regen (+1024)
 }
 
 STRING 106
-// Способности: ZxEa (BonusMod - Life Regen (+1024)), Name (Название)
+// Abilities: ZxEa (BonusMod - Life Regen (+1024)), Name (Name)
 {
 BonusMod - Life Regen (+1024)
 }
 
 STRING 107
-// Способности: ZxFa (BonusMod - Hero STR (+1024)), Name (Название)
+// Abilities: ZxFa (BonusMod - Hero STR (+1024)), Name (Name)
 {
 BonusMod - Hero STR (+1024)
 }
 
 STRING 108
-// Способности: ZxGa (BonusMod - Hero AGI (+1024)), Name (Название)
+// Abilities: ZxGa (BonusMod - Hero AGI (+1024)), Name (Name)
 {
 BonusMod - Hero AGI (+1024)
 }
 
 STRING 109
-// Способности: ZxHa (BonusMod - Hero INT (+1024)), Name (Название)
+// Abilities: ZxHa (BonusMod - Hero INT (+1024)), Name (Name)
 {
 BonusMod - Hero INT (+1024)
 }
 
 STRING 110
-// Способности: ZxAb (BonusMod - Armor (+2048)), Name (Название)
+// Abilities: ZxAb (BonusMod - Armor (+2048)), Name (Name)
 {
 BonusMod - Armor (+2048)
 }
 
 STRING 111
-// Способности: ZxBb (BonusMod - Damage (+2048)), Name (Название)
+// Abilities: ZxBb (BonusMod - Damage (+2048)), Name (Name)
 {
 BonusMod - Damage (+2048)
 }
 
 STRING 112
-// Способности: ZxCb (BonusMod - Sight Range (+2048)), Name (Название)
+// Abilities: ZxCb (BonusMod - Sight Range (+2048)), Name (Name)
 {
 BonusMod - Sight Range (+2048)
 }
 
 STRING 113
-// Способности: ZxDb (BonusMod - Mana Regen (+2048)), Name (Название)
+// Abilities: ZxDb (BonusMod - Mana Regen (+2048)), Name (Name)
 {
 BonusMod - Mana Regen (+2048)
 }
 
 STRING 114
-// Способности: ZxEb (BonusMod - Life Regen (+2048)), Name (Название)
+// Abilities: ZxEb (BonusMod - Life Regen (+2048)), Name (Name)
 {
 BonusMod - Life Regen (+2048)
 }
 
 STRING 115
-// Способности: ZxFb (BonusMod - Hero STR (+2048)), Name (Название)
+// Abilities: ZxFb (BonusMod - Hero STR (+2048)), Name (Name)
 {
 BonusMod - Hero STR (+2048)
 }
 
 STRING 116
-// Способности: ZxGb (BonusMod - Hero AGI (+2048)), Name (Название)
+// Abilities: ZxGb (BonusMod - Hero AGI (+2048)), Name (Name)
 {
 BonusMod - Hero AGI (+2048)
 }
 
 STRING 117
-// Способности: ZxHb (BonusMod - Hero INT (+2048)), Name (Название)
+// Abilities: ZxHb (BonusMod - Hero INT (+2048)), Name (Name)
 {
 BonusMod - Hero INT (+2048)
 }
 
 STRING 118
-// Способности: ZxAc (BonusMod - Armor (-4096)), Name (Название)
+// Abilities: ZxAc (BonusMod - Armor (-4096)), Name (Name)
 {
 BonusMod - Armor (-4096)
 }
 
 STRING 119
-// Способности: ZxBc (BonusMod - Damage (-4096)), Name (Название)
+// Abilities: ZxBc (BonusMod - Damage (-4096)), Name (Name)
 {
 BonusMod - Damage (-4096)
 }
 
 STRING 120
-// Способности: ZxCc (BonusMod - Sight Range (-4096)), Name (Название)
+// Abilities: ZxCc (BonusMod - Sight Range (-4096)), Name (Name)
 {
 BonusMod - Sight Range (-4096)
 }
 
 STRING 121
-// Способности: ZxDc (BonusMod - Mana Regen (-4096)), Name (Название)
+// Abilities: ZxDc (BonusMod - Mana Regen (-4096)), Name (Name)
 {
 BonusMod - Mana Regen (-4096)
 }
 
 STRING 122
-// Способности: ZxEc (BonusMod - Life Regen (-4096)), Name (Название)
+// Abilities: ZxEc (BonusMod - Life Regen (-4096)), Name (Name)
 {
 BonusMod - Life Regen (-4096)
 }
 
 STRING 123
-// Способности: ZxFc (BonusMod - Hero STR (-4096)), Name (Название)
+// Abilities: ZxFc (BonusMod - Hero STR (-4096)), Name (Name)
 {
 BonusMod - Hero STR (-4096)
 }
 
 STRING 124
-// Способности: ZxGc (BonusMod - Hero AGI (-4096)), Name (Название)
+// Abilities: ZxGc (BonusMod - Hero AGI (-4096)), Name (Name)
 {
 BonusMod - Hero AGI (-4096)
 }
 
 STRING 125
-// Способности: ZxHc (BonusMod - Hero INT (-4096)), Name (Название)
+// Abilities: ZxHc (BonusMod - Hero INT (-4096)), Name (Name)
 {
 BonusMod - Hero INT (-4096)
 }
 
 STRING 126
-// Войска: e001 (Ждать возврата пилы), Name (Название)
+// Units: e001 (Ждать возврата пилы), Name (Name)
 {
 Ждать возврата пилы
 }
 
 STRING 127
-// Способности: A002 (Волшебная пила), Name (Название)
+// Abilities: A002 (Волшебная пила), Name (Name)
 {
 Волшебная пила
 }
 
 STRING 128
-// Способности: A002 (Волшебная пила), Researchtip (Подсказка: выучить)
+// Abilities: A002 (Волшебная пила), Researchtip (Tooltip - Learn)
 {
 Волшебная пила
 }
 
 STRING 129
-// Способности: A002 (Волшебная пила), Researchhotkey (Горячая клавиша: выучить)
+// Abilities: A002 (Волшебная пила), Researchhotkey (Hotkey - Learn)
 {
 R
 }
 
 STRING 130
-// Способности: A002 (Волшебная пила), Hotkey (Горячая клавиша: используется)
+// Abilities: A002 (Волшебная пила), Hotkey (Hotkey - Normal)
 {
 R
 }
 
 STRING 131
-// Способности: A002 (Волшебная пила), Ubertip (Подсказка: используется, подробная)
+// Abilities: A002 (Волшебная пила), Ubertip (Tooltip - Normal - Extended)
 {
 Укажите точку, чтобы туда бросить пилу, пила наносит урон касанием и замедляет цели
 Урон: 10% от силы атаки
@@ -740,37 +740,37 @@ STRING 131
 }
 
 STRING 132
-// Способности: A002 (Волшебная пила), Tip (Подсказка: используется, нормальная)
+// Abilities: A002 (Волшебная пила), Tip (Tooltip - Normal)
 {
 Волшебная пила (|cffffcc00R|r)
 }
 
 STRING 133
-// Способности: A003 (Возврат пилы), Name (Название)
+// Abilities: A003 (Возврат пилы), Name (Name)
 {
 Возврат пилы
 }
 
 STRING 134
-// Способности: A003 (Возврат пилы), Researchtip (Подсказка: выучить)
+// Abilities: A003 (Возврат пилы), Researchtip (Tooltip - Learn)
 {
 Волшебная пила
 }
 
 STRING 135
-// Способности: A003 (Возврат пилы), Researchhotkey (Горячая клавиша: выучить)
+// Abilities: A003 (Возврат пилы), Researchhotkey (Hotkey - Learn)
 {
 R
 }
 
 STRING 136
-// Способности: A003 (Возврат пилы), Hotkey (Горячая клавиша: используется)
+// Abilities: A003 (Возврат пилы), Hotkey (Hotkey - Normal)
 {
 R
 }
 
 STRING 137
-// Способности: A003 (Возврат пилы), Ubertip (Подсказка: используется, подробная)
+// Abilities: A003 (Возврат пилы), Ubertip (Tooltip - Normal - Extended)
 {
 Активируте, чтобы вернуть пилу обратно
 Автоматически возврат пилы, если закончиться мана: Да
@@ -779,37 +779,37 @@ STRING 137
 }
 
 STRING 138
-// Способности: A003 (Возврат пилы), Tip (Подсказка: используется, нормальная)
+// Abilities: A003 (Возврат пилы), Tip (Tooltip - Normal)
 {
 Возврат пилы (|cffffcc00R|r)
 }
 
 STRING 139
-// Войска: e002 (Chakrum), Name (Название)
+// Units: e002 (Chakrum), Name (Name)
 {
 Chakrum
 }
 
 STRING 140
-// Способности: A004 (Аура замедления), EditorSuffix (Суффикс редактора)
+// Abilities: A004 (Замедляющая аура), EditorSuffix (Editor Suffix)
 {
  (Пила)
 }
 
 STRING 141
-// Способности: A005 (Дегенерация маны), Name (Название)
+// Abilities: A005 (Дегенерация маны), Name (Name)
 {
 Дегенерация маны
 }
 
 STRING 144
-// Способности: A000 (Острые клинки), Tip (Подсказка: используется, нормальная)
+// Abilities: A000 (Острые клинки), Tip (Tooltip - Normal)
 {
 Острые клинки (|cffffcc00Q|r)
 }
 
 STRING 145
-// Способности: A001 (Гарпун), Tip (Подсказка: используется, нормальная)
+// Abilities: A001 (Гарпун), Tip (Tooltip - Normal)
 {
 Гарпун (|cffffcc00W|r)
 }
@@ -835,19 +835,19 @@ Bergi
 }
 
 STRING 154
-// Способности: A006 (Продажа войск), EditorSuffix (Суффикс редактора)
+// Abilities: A006 (Продать войска), EditorSuffix (Editor Suffix)
 {
  (самопродажа)
 }
 
 STRING 155
-// Разрушаемые объекты: B001 (Фонарь), Name (Название)
+// Destructibles: B001 (Фонарь), Name (Name)
 {
 Фонарь
 }
 
 STRING 156
-// Способности: A000 (Острые клинки), Ubertip (Подсказка: используется, подробная)
+// Abilities: A000 (Острые клинки), Ubertip (Tooltip - Normal - Extended)
 {
 Наносит урон всем врагам вокруг героя и уничтожает деревья
 Урон: 
@@ -863,13 +863,13 @@ STRING 157
 }
 
 STRING 158
-// Заклинания/эффекты: B002 (), Bufftip (Подсказка)
+// Buffs/Effects: B002 (), Bufftip (Tooltip)
 {
 Вращающиеся клинки
 }
 
 STRING 159
-// Заклинания/эффекты: B002 (), Buffubertip (Подсказка: подробная)
+// Buffs/Effects: B002 (), Buffubertip (Tooltip - Extended)
 {
 Герой неуязвим к урону
 }
@@ -935,115 +935,115 @@ STRING 171
 }
 
 STRING 172
-// Войска: n004 (Прототип), Propernames (Имена собственные)
+// Units: n004 (Прототип), Propernames (Proper Names)
 {
 Тимбер,Риззрак,Шреддер,Justin Timber Saw,Justin Timber Like
 }
 
 STRING 173
-// Войска: n004 (Прототип), Name (Название)
+// Units: n004 (Прототип), Name (Name)
 {
 Прототип
 }
 
 STRING 174
-// Войска: e003 (Злое дерево), Name (Название)
+// Units: e003 (Злое дерево), Name (Name)
 {
 Злое дерево
 }
 
 STRING 175
-// Заклинания/эффекты: B000 (), Bufftip (Подсказка)
+// Buffs/Effects: B000 (), Bufftip (Tooltip)
 {
 Вошебная пила
 }
 
 STRING 176
-// Заклинания/эффекты: B000 (), Buffubertip (Подсказка: подробная)
+// Buffs/Effects: B000 (), Buffubertip (Tooltip - Extended)
 {
 Замедлен
 }
 
 STRING 178
-// Войска: e004 (Таланты W), Name (Название)
+// Units: e004 (Таланты W), Name (Name)
 {
 Таланты W
 }
 
 STRING 179
-// Войска: e004 (Таланты W), Tip (Подсказка: краткая)
+// Units: e004 (Таланты W), Tip (Tooltip - Basic)
 {
 Таланты W
 }
 
 STRING 180
-// Предметы: I000 (Дополнительные звенья), Name (Название)
+// Items: I000 (Дополнительные звенья), Name (Name)
 {
 Дополнительные звенья
 }
 
 STRING 181
-// Предметы: I000 (Дополнительные звенья), Tip (Подсказка: краткая)
+// Items: I000 (Дополнительные звенья), Tip (Tooltip - Basic)
 {
 Дополнительные звенья
 }
 
 STRING 185
-// Войска: e005 (Меню талантов), Name (Название)
+// Units: e005 (Меню талантов), Name (Name)
 {
 Меню талантов
 }
 
 STRING 186
-// Войска: e006 (Таланты Q), Tip (Подсказка: краткая)
+// Units: e006 (Таланты Q), Tip (Tooltip - Basic)
 {
 Таланты W
 }
 
 STRING 187
-// Войска: e006 (Таланты Q), Name (Название)
+// Units: e006 (Таланты Q), Name (Name)
 {
 Таланты Q
 }
 
 STRING 188
-// Войска: e007 (Таланты E), Tip (Подсказка: краткая)
+// Units: e007 (Таланты E), Tip (Tooltip - Basic)
 {
 Таланты W
 }
 
 STRING 189
-// Войска: e007 (Таланты E), Name (Название)
+// Units: e007 (Таланты E), Name (Name)
 {
 Таланты E
 }
 
 STRING 190
-// Войска: e008 (Таланты R), Tip (Подсказка: краткая)
+// Units: e008 (Таланты R), Tip (Tooltip - Basic)
 {
 Таланты W
 }
 
 STRING 191
-// Войска: e008 (Таланты R), Name (Название)
+// Units: e008 (Таланты R), Name (Name)
 {
 Таланты R
 }
 
 STRING 193
-// Способности: A007 (Таланты: Острые клинки Q), Hotkey (Горячая клавиша: используется)
+// Abilities: A007 (Таланты: Острые клинки Q), Hotkey (Hotkey - Normal)
 {
 Q
 }
 
 STRING 194
-// Способности: A007 (Таланты: Острые клинки Q), Tip (Подсказка: используется, нормальная)
+// Abilities: A007 (Таланты: Острые клинки Q), Tip (Tooltip - Normal)
 {
 Острые клинки (|cffffcc00Q|r)
 }
 
 STRING 195
-// Способности: A007 (Таланты: Острые клинки Q), Ubertip (Подсказка: используется, подробная)
+// Abilities: A007 (Таланты: Острые клинки Q), Ubertip (Tooltip - Normal - Extended)
 {
 Открывает дерево доступных талантов для этой способности:
 Топоры
@@ -1056,31 +1056,31 @@ STRING 195
 }
 
 STRING 196
-// Способности: A007 (Таланты: Острые клинки Q), Name (Название)
+// Abilities: A007 (Таланты: Острые клинки Q), Name (Name)
 {
 Таланты: Острые клинки Q
 }
 
 STRING 197
-// Войска: e005 (Меню талантов), Tip (Подсказка: краткая)
+// Units: e005 (Меню талантов), Tip (Tooltip - Basic)
 {
 Меню талантов
 }
 
 STRING 198
-// Способности: A008 (Таланты: Гарпун W), Hotkey (Горячая клавиша: используется)
+// Abilities: A008 (Таланты: Гарпун W), Hotkey (Hotkey - Normal)
 {
 W
 }
 
 STRING 199
-// Способности: A008 (Таланты: Гарпун W), Tip (Подсказка: используется, нормальная)
+// Abilities: A008 (Таланты: Гарпун W), Tip (Tooltip - Normal)
 {
 Гарпун (|cffffcc00W|r)
 }
 
 STRING 200
-// Способности: A008 (Таланты: Гарпун W), Ubertip (Подсказка: используется, подробная)
+// Abilities: A008 (Таланты: Гарпун W), Ubertip (Tooltip - Normal - Extended)
 {
 Открывает дерево доступных талантов для этой способности:
 Дополнительные звенья
@@ -1093,79 +1093,79 @@ STRING 200
 }
 
 STRING 201
-// Способности: A008 (Таланты: Гарпун W), Name (Название)
+// Abilities: A008 (Таланты: Гарпун W), Name (Name)
 {
 Таланты: Гарпун W
 }
 
 STRING 202
-// Способности: A009 (Таланты: Реактивная броня E), Hotkey (Горячая клавиша: используется)
+// Abilities: A009 (Таланты: Реактивная броня E), Hotkey (Hotkey - Normal)
 {
 E
 }
 
 STRING 203
-// Способности: A009 (Таланты: Реактивная броня E), Tip (Подсказка: используется, нормальная)
+// Abilities: A009 (Таланты: Реактивная броня E), Tip (Tooltip - Normal)
 {
 Реактивная броня (|cffffcc00E|r)
 }
 
 STRING 204
-// Способности: A009 (Таланты: Реактивная броня E), Ubertip (Подсказка: используется, подробная)
+// Abilities: A009 (Таланты: Реактивная броня E), Ubertip (Tooltip - Normal - Extended)
 {
 Открывает дерево доступных талантов для этой способности:
 
 }
 
 STRING 205
-// Способности: A009 (Таланты: Реактивная броня E), Name (Название)
+// Abilities: A009 (Таланты: Реактивная броня E), Name (Name)
 {
 Таланты: Реактивная броня E
 }
 
 STRING 206
-// Способности: A00A (Таланты: Волшебная пила R), Hotkey (Горячая клавиша: используется)
+// Abilities: A00A (Таланты: Волшебная пила R), Hotkey (Hotkey - Normal)
 {
 R
 }
 
 STRING 207
-// Способности: A00A (Таланты: Волшебная пила R), Tip (Подсказка: используется, нормальная)
+// Abilities: A00A (Таланты: Волшебная пила R), Tip (Tooltip - Normal)
 {
 Реактивная броня (|cffffcc00E|r)
 }
 
 STRING 208
-// Способности: A00A (Таланты: Волшебная пила R), Ubertip (Подсказка: используется, подробная)
+// Abilities: A00A (Таланты: Волшебная пила R), Ubertip (Tooltip - Normal - Extended)
 {
 Открывает дерево доступных талантов для этой способности:
 
 }
 
 STRING 209
-// Способности: A00A (Таланты: Волшебная пила R), Name (Название)
+// Abilities: A00A (Таланты: Волшебная пила R), Name (Name)
 {
 Таланты: Волшебная пила R
 }
 
 STRING 210
-// Предметы: I000 (Дополнительные звенья), Description (Описание)
+// Items: I000 (Дополнительные звенья), Description (Description)
 {
 Увеличение дальности способности Гарпун [W] на 500 ед.
 }
 
 STRING 211
-// Предметы: I000 (Дополнительные звенья), Ubertip (Подсказка: подробная)
+// Items: I000 (Дополнительные звенья), Ubertip (Tooltip - Extended)
 {
 Увеличение дальности способности Гарпун [W] на 500 ед.
 }
 
-STRING 214
-// Способности: A001 (Гарпун), Ubertip (Подсказка: используется, подробная)
+STRING 215
+// Abilities: A001 (Гарпун), Ubertip (Tooltip - Normal - Extended)
 {
 Укажите точку, чтобы выпустить гарпун в этом направлении, гарпун зацепится за близжаешее дервево в радиусе 50, и стремительно переместит туда героя, герой в движении наносит урон корпусом.
-Урон: dmg
-Максимальная дальность: mrange
+Урон: [dmg]
+Максимальная дальность: [mrange]
 Притягивает предметы: [meathook]
 Зепляется за здания: [fixed]
 Выкорчевывает деревья: [willow]

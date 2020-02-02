@@ -1,5 +1,4 @@
 require 'build' {
 	--run      = 'editor',
-	--run  = 'game',
-	--reforged=true
+	run  = 'game',
 }
