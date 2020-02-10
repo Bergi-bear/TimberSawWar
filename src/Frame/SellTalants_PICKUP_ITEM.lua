@@ -34,13 +34,14 @@ do
 			print("условие выполнено")
 			if data.TalantW.AddChain then
 				--NativeString = string.gsuber({ mrange = 1400 }, NativeString)
+				NativeString =string.gsub(NativeString,"mrange","1400")
 			else
 				--NativeString = string.gsuber({ mrange = 700 }, NativeString)
 				NativeString =string.gsub(NativeString,"mrange","700")
 			end
-			print("Результат NativeString="..NativeString)
+			--print("Результат NativeString="..NativeString)
 			BlzSetAbilityExtendedTooltip(id,NativeString,0)
-			BlzSetAbilityExtendedTooltip(id,NativeString,1)
+			--BlzSetAbilityExtendedTooltip(id,NativeString,1)
 		end
 		--print("Проверка "..NativeString)
 	end

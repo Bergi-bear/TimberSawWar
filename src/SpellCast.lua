@@ -129,7 +129,7 @@ function InitSpellTrigger()
 			local damage=GetHeroStr(caster,true)--/3 убрал деление на 3
 			--
 			--print("0")
-			--UnitRefreshAbilityTooltip(caster,spellId)
+			UnitRefreshAbilityTooltip(caster,spellId)
 			--BlzSetAbilityExtendedTooltip(spellId,"описание",0) -- вообще не работает
 			--BlzSetAbilityTooltip(spellId,"название",0) -- работает только с цифрами
 			--BlzSetAbilityActivatedExtendedTooltip(spellId,"чё это вообще такое",0)-- варкрафт уходит в ошибку

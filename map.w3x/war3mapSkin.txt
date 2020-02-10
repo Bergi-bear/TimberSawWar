@@ -1,0 +1,3 @@
+[CustomSkin]
+GoldIcon=ReplaceableTextures\CommandButtons\BTNHumanArmorUpOne.blp
+

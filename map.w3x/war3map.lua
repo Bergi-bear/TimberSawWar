@@ -1273,13 +1273,13 @@ function InitSpellTrigger()
 			local CasterRange=0
 			local TreeFinderRange=70
 			local ttk=0
-			local damage=GetHeroStr(caster,true)/3
+			local damage=GetHeroStr(caster,true)--/3 убрал деление на 3
 			--
 			--print("0")
-			--UnitRefreshAbilityTooltip(caster,spellId)
-			BlzSetAbilityExtendedTooltip(spellId,"123",0) -- описание
-			BlzSetAbilityTooltip(spellId,"321",0) -- название
-			--BlzSetAbilityActivatedExtendedTooltip(spellId,"321",0)
+			UnitRefreshAbilityTooltip(caster,spellId)
+			--BlzSetAbilityExtendedTooltip(spellId,"описание",0) -- вообще не работает
+			--BlzSetAbilityTooltip(spellId,"название",0) -- работает только с цифрами
+			--BlzSetAbilityActivatedExtendedTooltip(spellId,"чё это вообще такое",0)-- варкрафт уходит в ошибку
 
 			-- действия
 			BlzSetSpecialEffectScale(hook, 2)
@@ -1642,13 +1642,14 @@ do
 			print("условие выполнено")
 			if data.TalantW.AddChain then
 				--NativeString = string.gsuber({ mrange = 1400 }, NativeString)
+				NativeString =string.gsub(NativeString,"mrange","1400")
 			else
 				--NativeString = string.gsuber({ mrange = 700 }, NativeString)
 				NativeString =string.gsub(NativeString,"mrange","700")
 			end
-			print("Результат NativeString="..NativeString)
+			--print("Результат NativeString="..NativeString)
 			BlzSetAbilityExtendedTooltip(id,NativeString,0)
-			BlzSetAbilityExtendedTooltip(id,NativeString,1)
+			--BlzSetAbilityExtendedTooltip(id,NativeString,1)
 		end
 		--print("Проверка "..NativeString)
 	end
